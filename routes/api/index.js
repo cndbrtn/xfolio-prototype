@@ -8,4 +8,8 @@ router.use('/users', userRoutes);
 // router.use('/blog', journalRoutes);
 // router.use('/gallery', artRoutes)
 
+router.post('/login', (req, res) => {
+
+});
+
 module.exports = router;

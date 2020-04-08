@@ -1,4 +1,8 @@
 const express = require('express');
+const dotenv = require('dotenv').config();
+
+const result = dotenv;
+if (result.error) throw result.error;
 
 const mongoose = require('mongoose');
 const routes = require('./routes');
