@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
 const Schema = mongoose.Schema;
+mongoose.promise = Promise;
+
 
 // user schema
 const UserSchema = new Schema({
@@ -37,15 +38,15 @@ const UserSchema = new Schema({
     // journal posts stored here for each user
     journal: [
         {
-        type: Schema.Types.ObjectId,
-        ref: 'Journal'
+            type: Schema.Types.ObjectId,
+            ref: 'Journal'
         }
     ],
     // artworks stored here for each user
     works: [
         {
-        type: Schema.Types.ObjectId,
-        ref: 'Art'
+            type: Schema.Types.ObjectId,
+            ref: 'Art'
         }
     ],
     // favorite artworks for each user
@@ -55,7 +56,7 @@ const UserSchema = new Schema({
             ref: 'Art'
         }
     ]
-})
+});
 
 // Define schema methods
 UserSchema.methods = {
