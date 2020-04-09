@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import UserContext from './utils/UserContext'
 import Login from './components/Login';
 import Upload from './components/Upload'
 import Blog from './components/Blog'
@@ -7,20 +8,19 @@ import Blog from './components/Blog'
 // import { BrowserRouter as Router, Route, Switch } from 'react-router'
 
 
-function App() {
-
-  const [user, setUser] = useState();
-  
+function App() {  
   return (
-    <useContext.Provider value={user}>
-    <Router>
-      <Switch>
-        <Route exact path={'/'} component={Login} />
-        <Route exact path={'/:username/blog'} component={Blog} />
-        <Route exact path={'/upload'} component={Upload} />
-      </Switch>
+    <UserContext.Provider value={UserContext}>
+      <Router>
+        <Switch>
+          <Route exact path={'/'} component={Login} />
+          <Route exact path={'/:username/blog'}>
+            <Blog username={UserContext.username} />
+          </Route>
+          <Route exact path={'/upload'} component={Upload} />
+        </Switch>
       </Router>
-    </useContext.Provider>
+    </UserContext.Provider>
   )
 }
 
