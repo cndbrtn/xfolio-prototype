@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const { User } = require("../models");
+const { User } = require("../models/user");
 const bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function (username, password, done) {
@@ -9,13 +9,12 @@ passport.use(new LocalStrategy(function (username, password, done) {
     console.log('password', password);
     // takes in username and password to search database by username to validate entered password
     // against encrypted password in the db
-    User.find({ username: username }).then(function (dbUser) {
+    User.findOne({ username: username }).then(function (user) {
         // if an entry for the username is not found do this
-        console.log("dbUser in passportk", dbUser)
-        const validatePass = dbUser[0].password
+        console.log("user in passport", user)
+        const validatePass = user[0].password
 
-        // console.log("bcrypt attempt", bcrypt.compareSync(password, validatePass))
-        if (!dbUser) {
+        if (!user) {
             return done(null, false, {
                 message: "invalid username"
             });
@@ -26,7 +25,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
             });
         }
 
-        return done(null, dbUser);
+        return done(null, user);
     });
 }
 ));

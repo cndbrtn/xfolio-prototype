@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
-import Axios from 'axios';
-
+import API from '../utils/API'
 
 function Login() {
 
-    const [login, setLogin] = useState({});
+    const [userLogin, setUserLogin] = useState({
+        username: '',
+        password: ''
+    });
 
     const nameRef = useRef();
     const passRef = useRef();
@@ -12,12 +14,12 @@ function Login() {
     const handleChange = () => {
         const username = nameRef.current.value;
         const password = passRef.current.value;
-        const login = {
-            username,
-            password
-        }
+        // const login = {
+        //     username,
+        //     password
+        // }
 
-        setLogin({
+        setUserLogin({
             username: username,
             password: password
         })
@@ -25,12 +27,15 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        Axios.post('/api/login', login);
-
+        API.login(userLogin)
+            .then(() => window.location.assign(`/${userLogin.username}/blog`))
+            .catch(err => {
+                if (err) console.log(err);
+            })
 
     }
 
-    console.log(`login state username: ${login.username} password: ${login.password}`);
+    console.log(`login state username: ${userLogin.username} password: ${userLogin.password}`);
 
     return (
         <div className="container login">
@@ -43,7 +48,7 @@ function Login() {
                         <input type="password" name="password" placeholder="password" ref={passRef} />
                     </div>
                     <div>
-                        <button type="submit" name="submit" onClick={handleLogin}>sign in</button>
+                        <button name="login" onClick={handleLogin}>sign in</button>
                     </div>
                 </form>
             </div>

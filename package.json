@@ -21,10 +21,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "4.0.1",
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^3.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "express-session": "^1.17.0",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
-    "node-pre-gyp": "^0.14.0"
+    "morgan": "^1.10.0",
+    "node-pre-gyp": "^0.14.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   }
 }
