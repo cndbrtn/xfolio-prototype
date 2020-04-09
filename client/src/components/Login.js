@@ -27,10 +27,15 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        API.login(userLogin)
+        const login = {
+            username: userLogin.username,
+            password: userLogin.password
+        }
+        console.log('components/Login.js login', login)
+        API.login(login)
             .then(() => window.location.assign(`/${userLogin.username}/blog`))
             .catch(err => {
-                if (err) console.log(err);
+                if (err) console.log('components/Login.js error', err);
             })
 
     }
@@ -40,12 +45,12 @@ function Login() {
     return (
         <div className="container login">
             <div>
-                <form onChange={handleChange}>
+                <form>
                     <div>
-                        <input type="text" name="username" placeholder="Username" ref={nameRef} />
+                        <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="password" ref={passRef} />
+                        <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />
                     </div>
                     <div>
                         <button name="login" onClick={handleLogin}>sign in</button>

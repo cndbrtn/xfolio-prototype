@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const passport = require('./config/passport');
+const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const dbConnect = require('./dbConnect')
@@ -9,6 +9,19 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const result = dotenv;
 if (result.error) throw result.error;
+
+['log', 'warn'].forEach(function (method) {
+    var old = console[method];
+    console[method] = function () {
+        var stack = (new Error()).stack.split(/\n/);
+        // Chrome includes a single "Error" line, FF doesn't.
+        if (stack[0].indexOf('Error') === 0) {
+            stack = stack.slice(1);
+        }
+        var args = [].slice.apply(arguments).concat([stack[1].trim()]);
+        return old.apply(console, args);
+    };
+});
 
 // express middleware
 app.use(express.urlencoded({ extended: true }));
