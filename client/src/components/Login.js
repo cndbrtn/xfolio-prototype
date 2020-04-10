@@ -1,7 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
 import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
+import Granim from 'react-granim';
+
+
+const granimColor = ({   "default-state": {
+    gradients: [
+        ['#29323c', '#485563'],
+        ['#FF6B6B', '#556270'],
+        ['#80d3fe', '#7ea0c4'],
+        ['#f0ab51', '#eceba3']
+    ],
+    transitionSpeed: 7000}});
+    
+const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
+
 
 function Login() {
 
@@ -54,42 +68,27 @@ function Login() {
                 .catch(err => {
                     if (err) console.log('components/Login.js error', err);
                 })
-                
-                // console.log(`login state username: ${}`);
-        
-        // const storeUser = (userData) => {
-        //     dispatch({
-        //         type: SET_CURRENT_USER,
-        //         _id: data._id,
-        //         username: data.username,
-        //         nickname: data.nickname,
-        //         journal: data.journal,
-        //         works: data.works,
-        //         favorites: data.favorites
-        //     })
-            // .catch(err => console.log('error at Login.js storeUser', err))
-            // console.log(`login state username: ${state.username} password: ${state.password}`);
         }
 
-    
-
-
     return (
-        <div className="container login">
-            <div>
-                <form>
-                    <div>
-                        <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
+        <div className="login-page">
+            <div className="container login">
+                <div>
+                    <form>
+                        <div>
+                            <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
                     </div>
                     <div>
                         <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />
-                    </div>
-                    <div>
-                        <button name="login" onClick={handleLogin}>sign in</button>
-                    </div>
-                </form>
+                        </div>
+                        <div>
+                            <button name="login" onClick={handleLogin}>sign in</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+          <Granim isPausedWhenNotInView ="true" image= {granimImg} states = {granimColor} id="canvas-image" />
+       </div>
     )
 }
 
