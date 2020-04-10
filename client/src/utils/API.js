@@ -23,5 +23,8 @@ export default {
     },
     logout: function () {
         return axios.post("/api/user/logout");
+    },
+    status: function () {
+        return axios.get('/api/user')
     }
 }
