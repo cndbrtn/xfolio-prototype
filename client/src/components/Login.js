@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
-import API from '../utils/API';
+import React, { useRef } from 'react';
+import { useUserContext } from '../utils/GlobalState'
+import API from '../utils/API'
+import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
 import Granim from 'react-granim';
 
 
@@ -14,12 +16,15 @@ const granimColor = ({   "default-state": {
     
 const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 
+
 function Login() {
 
-    const [userLogin, setUserLogin] = useState({
-        username: '',
-        password: ''
-    });
+    // const [userLogin, setUserLogin] = useState({
+    //     username: '',
+    //     password: ''
+    // });
+
+    const [state, dispatch] = useUserContext();
 
     const nameRef = useRef();
     const passRef = useRef();
@@ -32,30 +37,38 @@ function Login() {
         //     password
         // }
 
-        setUserLogin({
+        dispatch({
+            ...state,
+            type: LOGIN_USER,
             username: username,
             password: password
         })
+        // console.log('state after login', state)
     }
 
     const handleLogin = (e) => {
         e.preventDefault();
         const login = {
-            username: userLogin.username,
-            password: userLogin.password
+            username: state.username,
+            password: state.password
         }
         console.log('components/Login.js login', login)
         API.login(login)
-            .then(() => window.location.assign(`/${userLogin.username}/blog`))
-            .catch(err => {
-                if (err) console.log('components/Login.js error', err);
-            })
-
-    }
-
-    
-
-    console.log(`login state username: ${userLogin.username} password: ${userLogin.password}`);
+            .then((user) => {
+                console.log('Login.js api.login() result', user.data[0]);
+                const userData = user.data[0];
+                dispatch({
+                    type: SET_CURRENT_USER,
+                    ...userData
+                })
+                    // .catch(err => console.log('error at Login.js storeUser', err))
+                
+                    // window.location.assign(`/${userLogin.username}/blog`)
+                })
+                .catch(err => {
+                    if (err) console.log('components/Login.js error', err);
+                })
+        }
 
     return (
         <div className="login-page">

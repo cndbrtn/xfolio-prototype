@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import UserContext from './utils/UserContext'
+import { UserProvider } from './utils/GlobalState'
 import Login from './components/Login';
 import Upload from './components/Upload';
 import Blog from './components/Blog';
@@ -11,35 +11,39 @@ import API from './utils/API';
 
 function App() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  
   useEffect(() => {
     API.status()
-      .then(res => {
-        if (res.data.user) {
-          setIsLoggedIn(true);
-        }
-      })
-      .catch(err => {
-        console.log('error', err)
-      })
+    .then(res => {
+      if (res.data.user) {
+        setIsLoggedIn(true);
+      }
+    })
+    .catch(err => {
+      console.log('error', err)
+    })
   });
-
+  
   return (
-    <UserContext.Provider value={UserContext}>
-      <Router>
-        <Switch>
-          <Route exact path={'/'} component={Login} />
-          <Route exact path={'/:username/blog'}>
-            <Blog isLoggedIn={isLoggedIn} username={UserContext.username} />
-          </Route>
-          <Route exact path={'/upload'}>
-            <Upload isLoggedIn={isLoggedIn} />
-          </Route>
-        </Switch>
-      </Router>
-    </UserContext.Provider>
+    <Router>
+      <div>
+        <UserProvider>
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route exact path='/:username/blog'>
+              <Blog isLoggedIn={isLoggedIn} />
+            </Route>
+            <Route exact path='/upload'>
+              <Upload isLoggedIn={isLoggedIn} />
+            </Route>
+          </Switch>
+        </UserProvider>
+      </div>
+    </Router>
   )
 }
+
+export default App;
 
 // function App() {
 
@@ -74,4 +78,3 @@ function App() {
 //   );
 // }
 
-export default App;

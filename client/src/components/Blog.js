@@ -4,7 +4,7 @@ function Blog(props) {
 
     return (
         <div className="container blog">
-            <h1>Hello {props.username}</h1>
+            <h1>Hello</h1>
         </div>
     )
 };

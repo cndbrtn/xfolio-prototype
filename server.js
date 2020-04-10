@@ -1,14 +1,16 @@
 const express = require('express');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
+require('./awsUpload');
+const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const dbConnect = require('./dbConnect')
+const dbConnect = require('./dbConnect');
 const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
-const result = dotenv;
-if (result.error) throw result.error;
+// const result = dotenv;
+// if (result.error) throw result.error;
 
 ['log', 'warn'].forEach(function (method) {
     var old = console[method];
@@ -26,6 +28,9 @@ if (result.error) throw result.error;
 // express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// cors
+app.use(cors())
 
 // session
 app.use(session({
