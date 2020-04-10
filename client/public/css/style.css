@@ -1,0 +1,49 @@
+body {
+  font: 100% Arial, sans-serif;
+  background-color: #454545;
+  color: #dedede;
+}
+
+.login-page {
+  width: 100%;
+}
+
+.login {
+  padding-top: 280px;
+  width: 300px;
+  margin: auto;
+  z-index: 2;
+}
+.login input {
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 5px;
+  width: 250px;
+}
+.login button {
+  float: right;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  margin-top: 5px;
+  background-color: #b9000f;
+  color: #dedede;
+}
+.login button:hover {
+  background-color: red;
+}
+
+#canvas-image {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1 !important;
+}
+
+/*# sourceMappingURL=style.css.map */
