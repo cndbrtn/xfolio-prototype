@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
+import { SET_CURRENT_USER, LOGIN_USER } from './actions';
 
 const UserContext = createContext();
 const { Provider } = UserContext;

@@ -29,9 +29,18 @@ body {
   margin-top: 5px;
   background-color: #b9000f;
   color: #dedede;
+  margin-bottom: 15px;
 }
 .login button:hover {
   background-color: red;
+}
+.login a {
+  color: #dedede;
+  font-size: 13px;
+  text-decoration: none;
+}
+.login a:hover {
+  color: #cfff1f;
 }
 
 #canvas-image {
