@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
-import { SET_CURRENT_USER, LOGIN_USER, ADD_USER } from '../utils/actions';
+import { SET_CURRENT_USER, ADD_USER } from '../utils/actions';
 import Granim from 'react-granim';
 import { Link } from 'react-router-dom';
 
@@ -27,6 +27,8 @@ function Signup() {
 
     const [state, dispatch] = useUserContext();
 
+    console.log("state", state);
+
     const emailRef = useRef();
     const nameRef = useRef();
     const passRef = useRef();
@@ -42,7 +44,7 @@ function Signup() {
 
         dispatch({
             ...state,
-            type: LOGIN_USER,
+            type: ADD_USER,
             username: username,
             password: password,
             email: email
@@ -60,10 +62,10 @@ function Signup() {
         console.log('components/Signup.js sign up', newUser)
         API.registerUser(newUser)
             .then((user) => {
-                console.log('Signup.js api.signup() result', user.data[0]);
-                const userData = user.data[0];
+                console.log('Signup.js api.signup() result', user.data);
+                const userData = user.data;
                 dispatch({
-                    type: ADD_USER,
+                    type: SET_CURRENT_USER,
                     ...userData
                 })
                     // .catch(err => console.log('error at Login.js storeUser', err))
@@ -77,7 +79,7 @@ function Signup() {
 
     return (
         <div className="signup-page">
-            <div className="container login">
+            <div className="container login signup">
                 <div>
                     <form>
                         <div>
@@ -91,7 +93,7 @@ function Signup() {
                         <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />
                         </div>
                         <div>
-                            <button name="login" onClick={handleSignup}>sign up</button>
+                            <button name="signup" onClick={handleSignup}>sign up</button>
                             <br />
                         </div>
                     </form>
