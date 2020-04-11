@@ -1,44 +1,57 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
+import { SET_CURRENT_USER, LOGIN_USER, GET_CURRENT_USER } from '../utils/actions';
 
 const UserContext = createContext();
 const { Provider } = UserContext;
 
 const reducer = (state, action) => {
-    console.log('action object', action) // console logs the action object with all the info I need to store
-    switch (action.type) {
+    console.log('action object', action.type) // console logs the action object with all the info I need to store
+    const { type, _id, username, nickname, journal, works, favorites, password } = action;
+    switch (type) {
         case SET_CURRENT_USER:
+            // console.log('action inside SET CURRENT', action);
+            
             return {
-                _id: action._id,
-                username: action.username,
-                nickname: action.nickname,
-                journal: action.journal,
-                works: action.works,
-                favorites: action.favorites
-            };
+                ...state,
+                type,
+                _id,
+                username,
+                nickname,
+                journal,
+                works,
+                favorites,
+                password: ''
+            }
         case LOGIN_USER:
             return {
-                ...action
+                ...state,
+                type,
+                username,
+                password
+            }
+        case GET_CURRENT_USER:
+            return {
+                ...state
             }
         default:
             return state;
     }
 };
 
-const initialState = {
-    _id: 0,
+let initialState = {
+    type: '',
+    _id: '0',
     username: '',
     nickname: '',
     journal: [],
     works: [],
     favorites: [],
-    password: '',
-    email: ''
+    password: ''
 };
 
 const UserProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    
+    // console.log('UserProvider props', props);
     return <Provider value={[state, dispatch]} {...props} />
 };
 

@@ -17,14 +17,10 @@ const granimColor = ({   "default-state": {
 const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 
 
-function Login() {
-
-    // const [userLogin, setUserLogin] = useState({
-    //     username: '',
-    //     password: ''
-    // });
+const Login = () => {
 
     const [state, dispatch] = useUserContext();
+    console.log('early state', state)
 
     const nameRef = useRef();
     const passRef = useRef();
@@ -32,19 +28,16 @@ function Login() {
     const handleChange = () => {
         const username = nameRef.current.value;
         const password = passRef.current.value;
-        // const login = {
-        //     username,
-        //     password
-        // }
+        const type = LOGIN_USER;
 
         dispatch({
             ...state,
-            type: LOGIN_USER,
-            username: username,
-            password: password
+            type,
+            username,
+            password
         })
         // console.log('state after login', state)
-    }
+    };
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -57,18 +50,29 @@ function Login() {
             .then((user) => {
                 console.log('Login.js api.login() result', user.data[0]);
                 const userData = user.data[0];
+                const type = SET_CURRENT_USER;
+                const _id = userData._id;
+                const username = userData.username;
+                const nickname = userData.nickname;
+                const password = '';
+                const journal = userData.journal;
+                const works = userData.works;
+                const favorites = userData.favorites;
+
                 dispatch({
-                    type: SET_CURRENT_USER,
-                    ...userData
-                })
-                    // .catch(err => console.log('error at Login.js storeUser', err))
-                
-                    // window.location.assign(`/${userLogin.username}/blog`)
-                })
-                .catch(err => {
-                    if (err) console.log('components/Login.js error', err);
-                })
-        }
+                    ...state,
+                    type,
+                    _id,
+                    username,
+                    nickname,
+                    password,
+                    journal,
+                    works,
+                    favorites
+                });
+            })
+            // window.location.replace(`/${state.username}/blog`);
+    };
 
     return (
         <div className="login-page">

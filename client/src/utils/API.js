@@ -26,5 +26,8 @@ export default {
     },
     status: function () {
         return axios.get('/api/user')
+    },
+    getArtworks: () => {
+        return axios.get('api/artwork')
     }
 }
