@@ -1,15 +1,14 @@
 import React, { useRef } from 'react';
 import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
-import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
+import { SET_CURRENT_USER, LOGIN_USER, ADD_USER } from '../utils/actions';
 import Granim from 'react-granim';
 import { Link } from 'react-router-dom';
 
 
-
 const granimColor = ({   "default-state": {
     gradients: [
-        ['#29323c', '#485563'],
+        ['#e5ff00', '#485563'],
         ['#FF6B6B', '#556270'],
         ['#80d3fe', '#7ea0c4'],
         ['#f0ab51', '#eceba3']
@@ -19,7 +18,7 @@ const granimColor = ({   "default-state": {
 const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 
 
-function Login() {
+function Signup() {
 
     // const [userLogin, setUserLogin] = useState({
     //     username: '',
@@ -28,10 +27,12 @@ function Login() {
 
     const [state, dispatch] = useUserContext();
 
+    const emailRef = useRef();
     const nameRef = useRef();
     const passRef = useRef();
 
     const handleChange = () => {
+        const email = emailRef.current.value;
         const username = nameRef.current.value;
         const password = passRef.current.value;
         // const login = {
@@ -43,24 +44,26 @@ function Login() {
             ...state,
             type: LOGIN_USER,
             username: username,
-            password: password
+            password: password,
+            email: email
         })
         // console.log('state after login', state)
     }
 
-    const handleLogin = (e) => {
+    const handleSignup = (e) => {
         e.preventDefault();
-        const login = {
+        const newUser = {
+            email: state.email,
             username: state.username,
             password: state.password
         }
-        console.log('components/Login.js login', login)
-        API.login(login)
+        console.log('components/Signup.js sign up', newUser)
+        API.registerUser(newUser)
             .then((user) => {
-                console.log('Login.js api.login() result', user.data[0]);
+                console.log('Signup.js api.signup() result', user.data[0]);
                 const userData = user.data[0];
                 dispatch({
-                    type: SET_CURRENT_USER,
+                    type: ADD_USER,
                     ...userData
                 })
                     // .catch(err => console.log('error at Login.js storeUser', err))
@@ -68,15 +71,19 @@ function Login() {
                     // window.location.assign(`/${userLogin.username}/blog`)
                 })
                 .catch(err => {
-                    if (err) console.log('components/Login.js error', err);
+                    if (err) console.log('components/Signup.js error', err);
                 })
         }
 
     return (
-        <div className="login-page">
+        <div className="signup-page">
             <div className="container login">
                 <div>
                     <form>
+                        <div>
+                            <p>Sign up:</p>
+                            <input type="text" name="email" placeholder="email" onChange={handleChange} ref={emailRef} />
+                    </div>
                         <div>
                             <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
                     </div>
@@ -84,15 +91,16 @@ function Login() {
                         <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />
                         </div>
                         <div>
-                            <button name="login" onClick={handleLogin}>sign in</button>
+                            <button name="login" onClick={handleSignup}>sign up</button>
+                            <br />
                         </div>
                     </form>
                 </div>
-                <Link to="/Signup"><p>New to Xfolio? Sign up here</p></Link>
+                <Link to="/Login"><p>Already have an account? Log in here</p></Link>
             </div>
           <Granim isPausedWhenNotInView ="true" image= {granimImg} states = {granimColor} id="canvas-image" />
        </div>
     )
 }
 
-export default Login;
+export default Signup;
