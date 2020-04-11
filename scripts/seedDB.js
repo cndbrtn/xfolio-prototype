@@ -3,7 +3,7 @@ const { User } = require("../models");
 
 // This file empties the Posts collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactcms");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/artdb");
 
 const userSeed = [
     {
@@ -13,11 +13,10 @@ const userSeed = [
         journal: [],
         works: [],
         favorites: []
-
     },
     {
         username: "cndbrtn",
-        email: "user@email.com",
+        email: "cndbrtn@email.com",
         password: "password",
         journal: [],
         works: [],
@@ -25,7 +24,7 @@ const userSeed = [
     },
     {
         username: "buttbutt",
-        email: "user@email.com",
+        email: "buttbutt@email.com",
         password: "password",
         journal: [],
         works: [],
