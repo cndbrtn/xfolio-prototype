@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { SET_CURRENT_USER, LOGIN_USER, GET_CURRENT_USER } from '../utils/actions';
 
+import { SET_CURRENT_USER, LOGIN_USER, ADD_USER } from './actions';
 
 const UserContext = createContext();
 const { Provider } = UserContext;
@@ -25,15 +25,17 @@ const reducer = (state, action) => {
             }
         case LOGIN_USER:
             return {
-                ...state,
-                type,
-                username,
-                password
-            }
+                ...action
+            };
+        case ADD_USER: 
+            return {
+                ...action
+            };
         case GET_CURRENT_USER:
             return {
                 ...state
             }
+
         default:
             return state;
     }

@@ -10,8 +10,8 @@ export default {
     registerUser: function (newUser) {
         return axios.post('/api/user', {
             username: newUser.username,
-            email: newUser.email,
-            password: newUser.password
+            password: newUser.password,
+            email: newUser.email
         })
     },
     login: function (login) {
