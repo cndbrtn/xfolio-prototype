@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export default {
-    getUsers: function () {
-        return axios.get('/api/user');
-    },
+    // getUsers: function () {
+    //     return axios.get('/api/user');
+    // },
     getUser: function (id) {
         return axios.get(`/api/user/${id}`)
     },
@@ -25,5 +25,8 @@ export default {
     },
     status: function () {
         return axios.get('/api/user')
+    },
+    getArtworks: () => {
+        return axios.get('api/artwork')
     }
 }

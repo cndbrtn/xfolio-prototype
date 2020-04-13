@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { findAll, findByUsername, findById, create, update, remove } = require('../../controllers/usersController');
+const { findAll, findByUsername, findById, create, update, remove } = require('../../controllers/usersController');
 const { User } = require('../../models')
 const passport = require('../../passport');
 
@@ -44,6 +44,7 @@ router.post("/", (req, res) => {
 
 
 router.get("/", (req, res) => {
+    // console.log('rq.user frin api/user', req.user)
     if (!req.user) {
         res.json({ user: null });
     } else {
@@ -62,6 +63,16 @@ router.post("/logout", (req, res) => {
     }
 });
 
+router.get('/users', (req, res) => {
+    console.log(req.user)
+    User.find()
+        .then(user => res.send(user))
+        .catch(err => console.log(err));
+})
+//     .post(create)
+//     .put(update)
+//     .delete(remove);
+
 module.exports = router;
 // router.route('/login').post(function (req, res, next) {
 //         console.log('routes/login.js, login, req.body', req.body);
@@ -79,8 +90,4 @@ module.exports = router;
 // router.route('/:id')
 //     .get(findById);
 
-// router.route('/')
-//     .get(findAll)
-//     .post(create)
-//     .put(update)
-//     .delete(remove);
+

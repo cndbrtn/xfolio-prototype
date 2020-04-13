@@ -1,5 +1,5 @@
 {
-  "name": "devtum_prototype",
+  "name": "xfolio",
   "version": "1.0.0",
   "description": "All the good parts of deviantArt and all the good parts of tumblr together to make the art blogging platform we're all dying for",
   "main": "server.js",
@@ -10,7 +10,8 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "seed": "node scripts/seedDB.js"
   },
   "author": "CND & AJ",
   "license": "ISC",
