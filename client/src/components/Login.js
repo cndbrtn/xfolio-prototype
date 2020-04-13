@@ -3,7 +3,8 @@ import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
 import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
 import Granim from 'react-granim';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 
 // initialize granim
 const granimColor = ({   "default-state": {
@@ -123,6 +124,7 @@ const Login = () => {
                         </div>
                     </form>
                 </div>
+                <Link to="/Signup"><p>New to Xfolio? Sign up here</p></Link>
             </div>
           <Granim isPausedWhenNotInView ="true" image= {granimImg} states = {granimColor} id="canvas-image" />
        </div>

@@ -1,6 +1,6 @@
 $font-stack:    Arial, sans-serif;
 $main-color: rgb(69, 69, 69);
-$sub-color-1: rgb(229, 255, 0);
+$sub-color-1: rgb(207, 255, 31);
 $sub-color-2: rgb(185, 0, 15);
 $font-color: rgb(222, 222, 222);
 
@@ -37,9 +37,18 @@ body {
         margin-top: 5px;
         background-color: $sub-color-2;
         color: $font-color;
+        margin-bottom: 15px;
     }
     button:hover {
         background-color: red;
+    }
+    a {
+        color: $font-color;
+        font-size: 13px;
+        text-decoration: none;
+    }
+    a:hover {
+        color: $sub-color-1;
     }
 }
 
