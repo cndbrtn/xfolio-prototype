@@ -46,14 +46,14 @@ const UserSchema = new Schema({
     works: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Art'
+            ref: 'Works'
         }
     ],
     // favorite artworks for each user
     favorites: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Art'
+            ref: 'Works'
         }
     ]
 });

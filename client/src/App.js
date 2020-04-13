@@ -8,19 +8,7 @@ import API from './utils/API';
 
 
 function App() {  
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-  useEffect(() => {
-    API.status()
-    .then(res => {
-      if (res.data.user) {
-        setIsLoggedIn(true);
-      }
-    })
-    .catch(err => {
-      console.log('error', err)
-    })
-  });
+
   
   return (
         <UserProvider>
@@ -28,10 +16,10 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/:username/blog'>
-              <Blog isLoggedIn={isLoggedIn} />
+              <Blog />
             </Route>
             <Route exact path='/upload'>
-              <Upload isLoggedIn={isLoggedIn} />
+              <Upload />
             </Route>
           </Switch>
     </Router>

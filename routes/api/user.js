@@ -44,6 +44,7 @@ router.post("/", (req, res) => {
 
 
 router.get("/", (req, res) => {
+    console.log('rq.user frin api/user', req.user)
     if (!req.user) {
         res.json({ user: null });
     } else {
@@ -62,7 +63,12 @@ router.post("/logout", (req, res) => {
     }
 });
 
-router.get('/', findAll)
+router.get('/users', (req, res) => {
+    console.log(req.user)
+    User.find()
+        .then(user => res.send(user))
+        .catch(err => console.log(err));
+})
 //     .post(create)
 //     .put(update)
 //     .delete(remove);

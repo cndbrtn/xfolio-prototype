@@ -5,7 +5,7 @@ const UserContext = createContext();
 const { Provider } = UserContext;
 
 const reducer = (state, action) => {
-    console.log('action object', action.type) // console logs the action object with all the info I need to store
+    // console.log('action object', action.type) // console logs the action object with all the info I need to store
     const { type, _id, username, nickname, journal, works, favorites, password } = action;
     switch (type) {
         case SET_CURRENT_USER:
@@ -46,7 +46,8 @@ let initialState = {
     journal: [],
     works: [],
     favorites: [],
-    password: ''
+    password: '',
+    isLoggedIn: false
 };
 
 const UserProvider = ({ value = [], ...props }) => {
