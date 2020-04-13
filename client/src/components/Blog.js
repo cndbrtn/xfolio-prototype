@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import { useUserContext } from '../utils/GlobalState';
+import { Link, useHistory } from 'react-router-dom';
 // import { GET_CURRENT_USER } from '../utils/actions';
 
 
 
 const Posts = () => {
     const [state, dispatch] = useUserContext();
+    const history = useHistory();
+    const galleryLink = history.push(`/gallery`);
 
     const { journal, works } = state;
     if (!journal.length) {
         return (
-        <div>
-            <h3>You don't have any posts yet</h3>
-        </div>
+            <div>
+                <h3>You don't have any posts yet</h3>
+                <Link to={galleryLink}>Gallery Page</Link>
+            </div>
         )
     } else {
         return (

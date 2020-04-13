@@ -7,7 +7,7 @@ const strategy = new LocalStrategy(
     usernameField: "username" // not necessary, DEFAULT
   },
   function (username, password, done) {
-    User.find({ username: username }).then((user) => {
+    User.find({ username: username }).populate('journal works favorites').then((user) => {
       // console.log('user result on login', user)
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });

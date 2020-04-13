@@ -4,24 +4,31 @@ const mongoose = require('mongoose');
 
 
 router.post('/', ({ body }, res) => {
-    console.log(body.userId);
+    const { userId, url, title, postBody, tags } = body;
+    console.log(postBody);
     
     const work = new Works({
         _id: new mongoose.Types.ObjectId(),
-        user: mongoose.Types.ObjectId(body.userId),
-        img: body.url,
-        title: body.title,
-        body: body.body,
-        tags: body.tags
+        user: mongoose.Types.ObjectId(userId),
+        img: url,
+        title: title,
+        description: postBody,
+        tags: tags
     });
 
-    work.save(err => {
-        if (err) console.log('err', err)
+    Works.create(work).then(work => {
+        console.log('create new Works res', work)
+        return User.findOneAndUpdate({ _id: userId }, { works: work._id }, { new: true })
+    }).then(user => {
+        console.log('updated user with work', user);
     })
 })
 
-// router.get('/artwork', (req, res) => {
-//     // res.send()
-// })
+router.get('/', (req, res) => {
+    User.findOne({ username: 'username' }).populate('works').then(user => {
+        console.log('get user and populate works', user)
+        res.send(user)
+    })
+})
 
 module.exports = router;

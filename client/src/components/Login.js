@@ -101,7 +101,7 @@ const Login = () => {
                     favorites
                 });
                 if (!user) return console.log('invalid');
-                // history.push(`/${state.username}/blog`);
+                history.push(`/${state.username}/gallery`);
             }).catch(err => console.log(err));
         
         // send user to new location by manipulating browser history? I think? Whatever it does it WORKS

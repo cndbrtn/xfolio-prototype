@@ -15,7 +15,7 @@ const Upload = () => {
 
     const [artState, setArtState] = useState({
         title: '',
-        body: '',
+        postBody: '',
         tags: []
     });
     
@@ -116,14 +116,14 @@ const Upload = () => {
     };
 
     const handlePost = (url) => {
-        const { title, body, tags } = artState;
+        const { title, postBody, tags } = artState;
         const { _id } = state;
         // const { url } = fileState;
         const newArt = {
             userId: '5e93f5529466e5a248486282',
             url,
             title,
-            body,
+            postBody,
             tags
         }
         axios.post('/api/artwork', newArt)
@@ -134,27 +134,28 @@ const Upload = () => {
 
     const handleChange = e => {
         e.preventDefault();
-        let image;
         const title = titleRef.current.value;
-        const body = bodyRef.current.value;
-        const tag = tagsRef.current.value;
-        const splitTag = tag.split(',');
-        const allTags = splitTag;
-        const prettyTags = allTags.map(tag => tag.trim());
-        
-        // console.log('prettyTags', prettyTags);
+        const postBody = bodyRef.current.value;
+        const tags = tagsRef.current.value.split(',');
+        // const splitTag = tag;
+        // const allTags = splitTag;
+        const prettyTags = tags.map(tag => {
+            const trimTag = tag.trim();
+            const regex = /\s+/g;
+            const underscoreTag = trimTag.replace(regex, '_')
+            return underscoreTag;
+        });
+
+        console.log('prettyTags', prettyTags);
 
         setArtState({
             ...artState,
             title,
-            body,
+            postBody,
             tags: prettyTags
         })
     }
-
-    // const imgURL = `${fileState.file.name}`
     
-    const { file, url, message } = fileState;
     return (
         <div className="container upload">
             <form>

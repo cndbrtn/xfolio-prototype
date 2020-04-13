@@ -4,6 +4,7 @@ import { UserProvider } from './utils/GlobalState'
 import Login from './components/Login';
 import Upload from './components/Upload';
 import Blog from './components/Blog';
+import Gallery from './components/Gallery'
 import API from './utils/API';
 
 
@@ -18,9 +19,12 @@ function App() {
             <Route exact path='/:username/blog'>
               <Blog />
             </Route>
-            <Route exact path='/upload'>
+            <Route exact path='/:username/upload'>
               <Upload />
-            </Route>
+          </Route>
+          <Route exact path ='/:username/gallery'>
+            <Gallery />
+          </Route>
           </Switch>
     </Router>
         </UserProvider>

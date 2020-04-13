@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
 
 
 router.get("/", (req, res) => {
-    console.log('rq.user frin api/user', req.user)
+    // console.log('rq.user frin api/user', req.user)
     if (!req.user) {
         res.json({ user: null });
     } else {
