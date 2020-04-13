@@ -6,6 +6,7 @@ const journalRoutes = require('./journal');
 
 // Book routes
 router.use('/user', userRoutes);
+router.use('/artwork', artRoutes)
 // router.use('/login', loginRoute)
 // router.use('/blog', journalRoutes);
 // router.use('/gallery', artRoutes)
