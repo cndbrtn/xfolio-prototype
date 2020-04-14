@@ -3,10 +3,12 @@ import { useUserContext } from '../utils/GlobalState'
 import { useHistory } from 'react-router-dom';
 // import API from '../utils/API'
 import axios from 'axios';
+import API from '../utils/API';
 
-const Upload = props => {
+const Upload = () => {
 
-    // const [state] = useUserContext();
+    const [state, dispatch] = useUserContext();
+    console.log('state in upload', state)
     // const history = useHistory();
     // console.log('state in upload', state)
 
@@ -64,7 +66,7 @@ const Upload = props => {
         // console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
-                Key: `${props.username}/works/${Date.now()}_${file.name}`,
+                Key: `${state.username}/works/${Date.now()}_${file.name}`,
                 ContentType: contentType
             },
             headers: {
@@ -82,10 +84,6 @@ const Upload = props => {
                     .then((res) => {
                         // console.log('put file', res.config.params);
                         setFileState({ ...fileState, message: 'Upload Successful' });
-                        // setTimeout(() => {
-                        //     setFileState({ ...fileState, message: '' })
-                        //     imgRef.current.value = '';
-                        // }, 2000)
 
                         const params = res.config.params;
                         const generateGetUrl = `http://${host}/generate-put-url`
@@ -110,16 +108,26 @@ const Upload = props => {
 
     const handlePost = (url) => {
         const { title, postBody, tags } = artState;
-        const { _id } = props;
+        const { _id } = state;
+        console.log('_id in handlePost', _id)
         const newArt = {
             userId: _id,
             url,
             title,
             postBody,
             tags
-        }
-        axios.post('/api/artwork', newArt)
-        window.location.assign('gallery')
+        };
+
+        API.postArt(newArt);
+        dispatch({
+            ...state,
+            uploaded: true
+        })
+        uploadedImg.current.src = '';
+        titleRef.current.value = '';
+        bodyRef.current.value = '';
+        tagsRef.current.value = '';
+        // window.location.assign('gallery')
     }
 
 

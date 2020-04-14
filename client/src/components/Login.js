@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
 import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
@@ -22,9 +22,13 @@ const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 // login component
 const Login = () => {
     // setting up our global state context
-    const [state, dispatch] = useUserContext();
+    // const [state, dispatch] = useUserContext();
+    const [state, setState] = useState({
+        username: '',
+        password: ''
+    });
     // useHistory to send the user where we want without whiping out stored state
-    const history = useHistory();
+    // const history = useHistory();
     // console.log('early state', state);
 
     // checking if the user is already logged in
@@ -57,16 +61,17 @@ const Login = () => {
         // variables to dispatch
         const username = nameRef.current.value;
         const password = passRef.current.value;
-        const type = LOGIN_USER;
+        // const type = LOGIN_USER;
 
         // dispatch to our global state
-        dispatch({
-            ...state,
-            type,
+        setState({
+            // ...state,
+            // type,
             username,
             password
         })
     };
+    console.log('state', state);
 
     // posts user data to the api to validate against the database
     const handleLogin = (e) => {
@@ -78,31 +83,33 @@ const Login = () => {
         console.log('components/Login.js login', login)
         API.login(login)
             .then((user) => {
-                console.log('Login.js api.login() result', user);
-                const userData = user.data;
-                const type = SET_CURRENT_USER;
-                const _id = userData._id;
-                const username = userData.username;
-                const nickname = userData.nickname;
-                const password = '';
-                const journal = userData.journal;
-                const works = userData.works;
-                const favorites = userData.favorites;
+                console.log('Login.js api.login() result', user.data.username);
+                window.location.assign(`/${user.data.username}/gallery`);
+                // const userData = user.data;
+                // // const type = SET_CURRENT_USER;
+                // // const _id = userData._id;
+                // const username = userData.username;
+                // // const nickname = userData.nickname;
+                // const password = '';
+                // // const journal = userData.journal;
+                // // const works = userData.works;
+                // const favorites = userData.favorites;
 
-                // dispatch user data to global state to be used throughout their session
-                dispatch({
-                    ...state,
-                    type,
-                    _id,
-                    username,
-                    nickname,
-                    password,
-                    journal,
-                    works,
-                    favorites
-                });
-                if (!user) return console.log('invalid');
-                history.push(`/${state.username}/gallery`);
+                // // dispatch user data to global state to be used throughout their session
+                // dispatch({
+                //     ...state,
+                //     type,
+                //     _id,
+                //     username,
+                //     nickname,
+                //     password,
+                //     journal,
+                //     works,
+                //     favorites
+                // });
+                // if (!user) return console.log('invalid');
+                // // history.push(`/${state.username}/gallery`);
+                
             }).catch(err => console.log(err));
         
         // send user to new location by manipulating browser history? I think? Whatever it does it WORKS

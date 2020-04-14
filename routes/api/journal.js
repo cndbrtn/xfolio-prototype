@@ -6,7 +6,7 @@ const { Journal } = require('../../models');
 // })
 
 router.post('/', (req, res) => {
-    console.log('/api/journal/ .post', req.body)
+    console.log('/api/journal/ .post', req.body);
 })
 
 module.exports = router;
