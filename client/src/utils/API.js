@@ -25,9 +25,12 @@ export default {
         return axios.post("/api/user/logout");
     },
     status: function () {
-        return axios.get('/api/user')
+        return axios.get('/api/user');
     },
-    getArtworks: () => {
-        return axios.get('api/artwork')
+    postArt: (newArt) => {
+        return axios.post('/api/artwork', newArt);
+    },
+    postJournal: (newPost) => {
+        return axios.post('/api/journal', newPost);
     }
 }

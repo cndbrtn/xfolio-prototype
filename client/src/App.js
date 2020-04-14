@@ -44,24 +44,24 @@ function App() {
   //   return window.location.assign(`/${username}/gallery`)
   // }
   return (
-        <UserProvider>
+  <UserProvider>
     <Router>
-          <Switch>
-            <Route exact path='/' component={Login} />
-            <Route exact path='/Login' component={Login} />
-            <Route exact path='/Signup' component={Signup} />
-            <Route exact path='/:username/blog'>
-            <Blog loggedIn={loggedIn} username={username} _id={_id} />
-            </Route>
-            <Route exact path='/:username/upload'>
-            <Upload loggedIn={loggedIn} username={username} _id={_id} />
-          </Route>
-          <Route exact path ='/:username/gallery'>
-            <Gallery loggedIn={loggedIn} username={username} _id={_id} />
-          </Route>
-          </Switch>
+      <Switch>
+        <Route exact path='/' component={Login} />
+        <Route exact path='/Login' component={Login} />
+        <Route exact path='/Signup' component={Signup} />
+        <Route exact path='/:username/blog'>
+          <Blog loggedIn={loggedIn} username={username} _id={_id} />
+        </Route>
+        {/* <Route exact path='/:username/upload'>
+          <Upload loggedIn={loggedIn} username={username} _id={_id} />
+        </Route> */}
+        <Route exact path ='/:username/gallery'>
+          <Gallery loggedIn={loggedIn} username={username} _id={_id} />
+        </Route>
+      </Switch>
     </Router>
-        </UserProvider>
+  </UserProvider>
   )
 }
 

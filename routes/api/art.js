@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 router.post('/', ({ body }, res) => {
     const { userId, url, title, postBody, tags } = body;
-    console.log(postBody);
+    console.log('body in newArt post', body);
     
     const work = new Works({
         _id: new mongoose.Types.ObjectId(),

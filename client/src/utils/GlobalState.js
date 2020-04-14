@@ -1,27 +1,26 @@
 import React, { createContext, useReducer, useContext } from 'react';
 
-import { SET_CURRENT_USER, LOGIN_USER, ADD_USER } from './actions';
+import { SET_CURRENT_USER, LOGIN_USER, ADD_USER, GALLERY_PROPS } from './actions';
 
 const UserContext = createContext();
 const { Provider } = UserContext;
 
 const reducer = (state, action) => {
     // console.log('action object', action.type) // console logs the action object with all the info I need to store
-    const { type, _id, username, nickname, journal, works, favorites, password } = action;
-    switch (type) {
+    // const { type, _id, username, nickname, journal, works, favorites, password } = action;
+    switch (action.type) {
         case SET_CURRENT_USER:
             // console.log('action inside SET CURRENT', action);
-            
             return {
                 ...state,
-                type,
-                _id,
-                username,
-                nickname,
-                journal,
-                works,
-                favorites,
-                password: ''
+                type: action.type,
+                _id: action._id,
+                username: action.username,
+                // nickname,
+                // journal,
+                // works,
+                // favorites,
+                password: '',
             }
         case LOGIN_USER:
             return {
@@ -31,7 +30,10 @@ const reducer = (state, action) => {
             return {
                 ...action
             };
-
+        case GALLERY_PROPS:
+            return {
+                ...state,
+                ...action            }
         default:
             return state;
     }
@@ -46,7 +48,7 @@ let initialState = {
     works: [],
     favorites: [],
     password: '',
-    isLoggedIn: false
+    uploaded: false
 };
 
 const UserProvider = ({ value = [], ...props }) => {
