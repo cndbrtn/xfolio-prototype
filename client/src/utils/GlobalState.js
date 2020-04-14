@@ -31,10 +31,6 @@ const reducer = (state, action) => {
             return {
                 ...action
             };
-        case GET_CURRENT_USER:
-            return {
-                ...state
-            }
 
         default:
             return state;

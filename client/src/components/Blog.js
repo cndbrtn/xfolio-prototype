@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
 import { useUserContext } from '../utils/GlobalState';
 import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 // import { GET_CURRENT_USER } from '../utils/actions';
 
 
 
 const Posts = () => {
+
+    // useEffect(() => {
+    //     axios.get('/api/user/:username')
+    // }, [])
     const [state, dispatch] = useUserContext();
     const history = useHistory();
     const galleryLink = history.push(`/gallery`);
