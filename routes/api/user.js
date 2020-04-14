@@ -63,9 +63,9 @@ router.post("/logout", (req, res) => {
     }
 });
 
-router.get('/users', (req, res) => {
-    console.log(req.user)
-    User.find()
+router.get('/:id', (req, res) => {
+    // console.log('/api/user/:id req.params', req.params)
+    User.findById(req.params.id).populate({ path: 'journal works favorites', options: { sort: { _id: -1}} })
         .then(user => res.send(user))
         .catch(err => console.log(err));
 })

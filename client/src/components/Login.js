@@ -29,24 +29,24 @@ const Login = () => {
 
     // checking if the user is already logged in
 
-    useEffect(() => {
-        API.status()
-            .then(res => {
-                console.log('api.status response', res)
-                if (res.data.user) {
-                    dispatch({
-                        ...state,
-                        isLoggedIn: true
-                    });
-                }
-            })
-            // .then(() => {
-            //     history.push(`/${state.username}/blog`);
-            // })
-            .catch(err => {
-                console.log('error', err)
-            })
-    });
+    // useEffect(() => {
+    //     API.status()
+    //         .then(res => {
+    //             // console.log('api.status response', res)
+    //             if (res.data.user) {
+    //                 dispatch({
+    //                     ...state,
+    //                     isLoggedIn: true
+    //                 });
+    //             }
+    //         })
+    //         // .then(() => {
+    //         //     history.push(`/${state.username}/blog`);
+    //         // })
+    //         .catch(err => {
+    //             console.log('error', err)
+    //         })
+    // });
 
     // our element references
     const nameRef = useRef();
@@ -79,7 +79,7 @@ const Login = () => {
         API.login(login)
             .then((user) => {
                 console.log('Login.js api.login() result', user);
-                const userData = user.data[0];
+                const userData = user.data;
                 const type = SET_CURRENT_USER;
                 const _id = userData._id;
                 const username = userData.username;

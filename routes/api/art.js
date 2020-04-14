@@ -18,14 +18,15 @@ router.post('/', ({ body }, res) => {
 
     Works.create(work).then(work => {
         console.log('create new Works res', work)
-        return User.findOneAndUpdate({ _id: userId }, { works: work._id }, { new: true })
+        return User.findOneAndUpdate({ _id: userId }, { $push: { works: work._id }}, { new: true })
     }).then(user => {
         console.log('updated user with work', user);
     })
 })
 
-router.get('/', (req, res) => {
-    User.findOne({ username: 'username' }).populate('works').then(user => {
+router.get('/:username', (req, res) => {
+    console.log('req body in /:username', req.body)
+    User.findOne({ username: 'username' }).populate('works journal favorites').then(user => {
         console.log('get user and populate works', user)
         res.send(user)
     })

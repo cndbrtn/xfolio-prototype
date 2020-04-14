@@ -1,11 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useUserContext } from '../utils/GlobalState'
+import { useHistory } from 'react-router-dom';
 // import API from '../utils/API'
 import axios from 'axios';
 
-const Upload = () => {
+const Upload = props => {
 
-    const [state] = useUserContext();
+    // const [state] = useUserContext();
+    // const history = useHistory();
+    // console.log('state in upload', state)
 
     const [fileState, setFileState] = useState({
         message: '',
@@ -19,7 +22,7 @@ const Upload = () => {
         tags: []
     });
     
-    console.log('artState', artState)
+    // console.log('artState', artState)
 
     const imgRef = useRef();
     const titleRef = useRef();
@@ -61,7 +64,7 @@ const Upload = () => {
         // console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
-                Key: `${Date.now()}_${file.name}`,
+                Key: `${props.username}/works/${Date.now()}_${file.name}`,
                 ContentType: contentType
             },
             headers: {
@@ -73,7 +76,7 @@ const Upload = () => {
             .then(res => {
                 // console.log('res.data', res.data)
                 const { data } = res;
-                console.log('put url from res.data', data);
+                // console.log('put url from res.data', data);
 
                 axios.put(data, file, options)
                     .then((res) => {
@@ -96,16 +99,6 @@ const Upload = () => {
                                 setFileState({ ...fileState, url })
 
                                 handlePost(url);
-                                // console.log('fileState in generateGetUrl axios call', fileState)
-                                // const { url } = fileState;
-                                // const reader = new FileReader();
-                                // const { current } = uploadedImg;
-                                // current.file = url;
-                                // reader.onload = e => {
-                                //     current.src = e.target.result;
-                                // };
-
-                                // reader.readAsDataURL(url);
                             })
                     })
                     .catch(err => {
@@ -117,28 +110,24 @@ const Upload = () => {
 
     const handlePost = (url) => {
         const { title, postBody, tags } = artState;
-        const { _id } = state;
-        // const { url } = fileState;
+        const { _id } = props;
         const newArt = {
-            userId: '5e93f5529466e5a248486282',
+            userId: _id,
             url,
             title,
             postBody,
             tags
         }
         axios.post('/api/artwork', newArt)
-            .then(res => console.log('post new art res', res))
+        window.location.assign('gallery')
     }
 
-    // console.log('filestate', fileState);
 
     const handleChange = e => {
         e.preventDefault();
         const title = titleRef.current.value;
         const postBody = bodyRef.current.value;
         const tags = tagsRef.current.value.split(',');
-        // const splitTag = tag;
-        // const allTags = splitTag;
         const prettyTags = tags.map(tag => {
             const trimTag = tag.trim();
             const regex = /\s+/g;
@@ -146,7 +135,7 @@ const Upload = () => {
             return underscoreTag;
         });
 
-        console.log('prettyTags', prettyTags);
+        // console.log('prettyTags', prettyTags);
 
         setArtState({
             ...artState,

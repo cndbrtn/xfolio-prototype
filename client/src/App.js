@@ -11,7 +11,38 @@ import API from './utils/API';
 
 function App() {  
 
+  const [isLoggedIn, setIsLoggedIn] = useState({
+    loggedIn: false,
+    username: '',
+    _id: ''
+  });
+
+  // console.log('isLoggedIn state', isLoggedIn)
+
+  useEffect(() => {
+    API.status()
+      .then(res => {
+        if (res.data.user) {
+          // console.log('res in App.js useEffect', res.data.user[0])
+          setIsLoggedIn({
+            loggedIn: true,
+            username: res.data.user[0].username,
+            _id: res.data.user[0]._id
+          });
+        } else {
+          return;
+        }
+      })
+      .catch(e => {
+        console.log('error', e)
+      })
+  }, [])
   
+  
+  const { loggedIn, username, _id } = isLoggedIn;
+  // if (loggedIn) {
+  //   return window.location.assign(`/${username}/gallery`)
+  // }
   return (
         <UserProvider>
     <Router>
@@ -20,13 +51,13 @@ function App() {
             <Route exact path='/Login' component={Login} />
             <Route exact path='/Signup' component={Signup} />
             <Route exact path='/:username/blog'>
-              <Blog />
+            <Blog loggedIn={loggedIn} username={username} _id={_id} />
             </Route>
             <Route exact path='/:username/upload'>
-              <Upload />
+            <Upload loggedIn={loggedIn} username={username} _id={_id} />
           </Route>
           <Route exact path ='/:username/gallery'>
-            <Gallery />
+            <Gallery loggedIn={loggedIn} username={username} _id={_id} />
           </Route>
           </Switch>
     </Router>
