@@ -4,6 +4,10 @@ body {
   color: #dedede;
 }
 
+a {
+  color: #cfff1f;
+}
+
 .login-page {
   width: 100%;
 }
@@ -53,6 +57,102 @@ body {
   bottom: 0;
   left: 0;
   z-index: -1 !important;
+}
+
+.gallery-box {
+  display: flex;
+}
+
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.gall {
+  padding: 15px;
+  text-align: center;
+}
+
+.gall-thumb {
+  height: 300px;
+  width: 250px;
+  overflow: hidden;
+}
+
+.gall-info {
+  padding: 15px;
+}
+
+.gall-tags {
+  color: #858585;
+  border-top: #858585 solid 1px;
+  margin: 10px;
+  font-size: 14px;
+}
+
+.gall-descrip {
+  font-size: 15px;
+}
+
+.profile {
+  width: 130px;
+  height: 666px;
+  border-radius: 10px;
+  background-color: #282828;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+}
+.profile a {
+  padding: 10px;
+}
+.profile a:hover {
+  color: #dedede;
+}
+.profile p {
+  padding: 10px;
+}
+
+.upload-box {
+  display: flex;
+  flex-flow: row;
+}
+
+.upload-info {
+  display: flex;
+  flex-flow: column;
+  background-color: #282828;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.upload input {
+  padding: 10px;
+  padding-top: 0px;
+}
+.upload textarea {
+  padding: 10px;
+  padding-top: 0px;
+  height: 200px;
+  width: 350px;
+}
+.upload p {
+  color: #858585;
+  margin-top: 15px;
+  margin-bottom: 4px;
+}
+.upload button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  margin-top: 20px;
+  background-color: #b9000f;
+  color: #dedede;
+}
+.upload button:hover {
+  background-color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
