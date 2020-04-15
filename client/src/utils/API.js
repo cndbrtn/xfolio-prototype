@@ -4,9 +4,9 @@ export default {
     // getUsers: function () {
     //     return axios.get('/api/user');
     // },
-    getUser: function (id) {
-        console.log(id)
-        return axios.get(`/api/user/${id}`)
+    getUser: function (username) {
+        console.log(username)
+        return axios.get('/api/user/' + username)
     },
     registerUser: function (newUser) {
         return axios.post('/api/user', {
@@ -30,7 +30,13 @@ export default {
     postArt: (newArt) => {
         return axios.post('/api/artwork', newArt);
     },
+    getArt: (username) => {
+        return axios.get('/api/artwork' + username)
+    },
     postJournal: (newPost) => {
-        return axios.post('/api/journal', newPost);
+        return axios.post('/api/blog', newPost);
+    },
+    getJournal: (username) => {
+        return axios.get('/api/blog/' + username)
     }
 }

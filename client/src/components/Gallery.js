@@ -14,11 +14,11 @@ const Gallery = props => {
     // const history = useHistory();
     // console.log('props in gallery', props)
     // const uploadLink =  history.push(`/upload`)
-    console.log('state', state)
+    // console.log('state', state)
 
     useEffect(() => {
         console.log('props', props._id)
-        API.getUser(props._id)
+        API.getUser(props.username)
             .then(res => {
                 console.log('gallery get res', res.data)
                 setWorksState({
@@ -33,7 +33,7 @@ const Gallery = props => {
              })
     }, [props, state.uploaded])
 
-    console.log('worksState', worksState.works)
+    // console.log('worksState', worksState.works)
     const { works } = worksState;
     console.log('works', works)
 
@@ -44,7 +44,7 @@ const Gallery = props => {
                 <h3>No posts yet!</h3>
                 {/* <Link to={'upload'}>Upload an image</Link>
                 <br /> */}
-                <Link to={'journal'}>Go to your Jounral</Link>
+                <Link to={'blog'}>Go to your Jounral</Link>
             </div>
         )
     } else {
@@ -56,7 +56,8 @@ const Gallery = props => {
                 <Upload />
 
                 <br />
-                <Link to={'journal'}>Go to your Journal</Link>
+
+                <Link to={'blog'}>Go to your Jounral</Link>
                 </div>
                 <div class="gallery">
                 {works.map(post => (
