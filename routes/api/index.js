@@ -8,7 +8,7 @@ const journalRoutes = require('./journal');
 router.use('/user', userRoutes);
 router.use('/artwork', artRoutes)
 // router.use('/login', loginRoute)
-// router.use('/blog', journalRoutes);
+router.use('/blog', journalRoutes);
 // router.use('/gallery', artRoutes)
 
 

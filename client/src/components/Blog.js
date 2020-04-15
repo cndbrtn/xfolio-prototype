@@ -4,6 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Posts from './Post';
 import NewPost from './NewPost';
+import { GALLERY_PROPS } from '../utils/actions';
+import API from '../utils/API'
 // import { GET_CURRENT_USER } from '../utils/actions';
 
 
@@ -47,21 +49,41 @@ import NewPost from './NewPost';
 const Blog = (props) => {
     const [state, dispatch] = useUserContext();
     console.log('props in blog', props)
+    // console.log()
     
-    
+    const url = window.location.toString().split('/');
+    console.log('url', url[3])
 
-    // journal.map(post => {
-    //     console.log('posts', post)
-    //     if (!post) return console.log('no posts yet')
-    // })
+    // useEffect(() => {
+    //     dispatch({
+    //         ...state,
+    //         type: GALLERY_PROPS,
+    //         username: props.username,
+    //         _id: props._id
+    //     })
+    // }, [props])
     
-    console.log('state in blog after login', state);
+    useEffect(() => {
+        API.getJournal(url[3])
+           .then(res => {
+                console.log('no props res', res.data)
+                dispatch({
+                    ...state,
+                    _id: res.data._id,
+                    type: GALLERY_PROPS,
+                    journal: res.data.journal,
+                    uploaded: false
+                })
+           })
+           .catch(err => console.log('err', err))
+        }, [state.uploaded]);
     
-  
-    return (
-        <div className="container blog">
+        console.log('state', state);
+        
+        return (
+            <div className="container blog">
             <div>
-                <h1>Hello {state.username}!</h1>
+                <h1>Hello {props.username}!</h1>
             </div>
             <NewPost />
             <Posts />

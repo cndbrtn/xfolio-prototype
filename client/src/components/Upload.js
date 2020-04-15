@@ -109,7 +109,7 @@ const Upload = () => {
     const handlePost = (url) => {
         const { title, postBody, tags } = artState;
         const { _id } = state;
-        console.log('_id in handlePost', _id)
+        // console.log('_id in handlePost', _id)
         const newArt = {
             userId: _id,
             url,

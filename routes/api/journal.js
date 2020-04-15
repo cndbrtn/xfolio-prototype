@@ -1,12 +1,36 @@
 const router = require('express').Router();
-const { Journal } = require('../../models');
+const { Journal, User } = require('../../models');
+const mongoose = require('mongoose')
 
 // router.get('/journal', (req, res) => {
 //     Journal.get
 // })
 
-router.post('/', (req, res) => {
-    console.log('/api/journal/ .post', req.body);
+router.post('/', ({ body }, res) => {
+    console.log('/api/blog/ .post', body);
+
+    const post = new Journal({
+        _id: new mongoose.Types.ObjectId,
+        user: body.userId,
+        title: body.title,
+        body: body.body,
+        tags: body.tags
+    })
+    Journal.create(post)
+        .then(post => {
+            // console.log('then post after create', post)
+            return User.findOneAndUpdate({ _id: body.userId }, { $push: { journal: post._id } }, { new: true })
+        })
+        .then(user => {
+            console.log('updated user', user)
+        })
+        .catch(err => console.log('err in /api/blog .post', err))
+})
+
+router.get('/:username', ({ params }, res) => {
+    User.findOne({ username: params.username }).populate({ path: 'journal', options: { sort: { _id: -1 } } })
+        .then(user => res.send(user))
+        .catch(err => console.log('err in /api/blog/:username post route', err))
 })
 
 module.exports = router;

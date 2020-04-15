@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
+import API from '../utils/API';
 
 const Posts = () => {
+    const [state, dispatch] = useUserContext();
+
+    const url = window.location.toString().split('/');
 
     // useEffect(() => {
-    //     axios.get('/api/user/:username')
-    // }, [])
-    const [state, dispatch] = useUserContext();
+    //     API.getJournal(url[3])
+    // })
+
     // const history = useHistory();
     // const galleryLink = history.push(`/gallery`);
 
@@ -23,7 +27,7 @@ const Posts = () => {
         return (
             <div>
                 {journal.map(post => (
-                    <div>
+                    <div key={post.title}>
                         <h2>{post.title}</h2>
                         <div>
                             {post.body}
