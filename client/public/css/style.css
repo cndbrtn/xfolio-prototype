@@ -97,7 +97,7 @@ a {
 }
 
 .profile {
-  width: 130px;
+  width: 150px;
   height: 666px;
   border-radius: 10px;
   background-color: #282828;
@@ -115,28 +115,34 @@ a {
   padding: 10px;
 }
 
-.upload-box {
-  display: flex;
-  flex-flow: row;
-}
-
 .upload-info {
   display: flex;
   flex-flow: column;
   background-color: #282828;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
+  font-size: 13px;
 }
 
+.upload {
+  max-width: 150px;
+}
+.upload label {
+  color: #858585;
+  font-size: 13px;
+}
 .upload input {
-  padding: 10px;
-  padding-top: 0px;
+  padding: 5px;
+  width: 100px;
+  border: none;
 }
 .upload textarea {
+  resize: vertical;
+  border: none;
+  width: 100px;
+  height: 50px;
   padding: 10px;
   padding-top: 0px;
-  height: 200px;
-  width: 350px;
 }
 .upload p {
   color: #858585;
@@ -153,6 +159,14 @@ a {
 }
 .upload button:hover {
   background-color: red;
+}
+
+.upload-prev {
+  max-width: 100px;
+}
+
+.upload-mess {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

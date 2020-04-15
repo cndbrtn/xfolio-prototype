@@ -109,7 +109,7 @@ a {
 
 
 .profile {
-    width: 130px;
+    width: 150px;
     height: 666px;
     border-radius: 10px;
     background-color: $sub-color-3;
@@ -130,29 +130,38 @@ a {
 }
 
 
-.upload-box {
-    display: flex;
-    flex-flow: row;
-}
+// .upload-box {
+//     display: flex;
+//     flex-flow: row;
+// }
 
 .upload-info {
     display: flex;
     flex-flow: column;
     background-color: $sub-color-3;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
+    font-size: 13px;
 }
 
 .upload {
+    max-width: 150px;
+    label {
+        color: $font-color-2;
+        font-size: 13px;
+    }
     input {
-        padding: 10px;
-        padding-top: 0px;
+        padding: 5px;
+        width: 100px;
+        border: none;
     }
     textarea {
+        resize: vertical;
+        border: none;
+        width: 100px;
+        height: 50px;;
         padding: 10px;
         padding-top: 0px;
-        height: 200px;
-        width: 350px;
     }
     p {
         color: $font-color-2;
@@ -170,5 +179,13 @@ a {
     button:hover {
         background-color: red;
     }
+}
+
+.upload-prev {
+    max-width: 100px;
+}
+
+.upload-mess {
+   display: none;
 }
 

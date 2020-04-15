@@ -159,9 +159,9 @@ const Upload = () => {
                 <div class="upload-info">
                 <div>
                     <label htmlFor="upload">Choose an image</label>
-                    <input id="upload-fie" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
+                    <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
                 </div>
-                <div>
+                <div class="upload-mess">
                     {fileState.message}
                 </div>
                 <div>
@@ -181,7 +181,7 @@ const Upload = () => {
                 </div>
                 </div>
                     <div class="upload-prev">
-                        <img ref={uploadedImg} alt="preview" />
+                        <img ref={uploadedImg} alt="preview" width="140px" />
                     </div>
             </form>
         </div>

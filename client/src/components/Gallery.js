@@ -6,11 +6,15 @@ import API from '../utils/API';
 import Upload from './Upload'
 import { GALLERY_PROPS } from '../utils/actions';
 
+
 const Gallery = props => {
     const [state, dispatch] = useUserContext();
     const [worksState, setWorksState] = useState({
         works: []
     });
+    
+    
+
     // const history = useHistory();
     // console.log('props in gallery', props)
     // const uploadLink =  history.push(`/upload`)
@@ -33,6 +37,7 @@ const Gallery = props => {
              })
     }, [props, state.uploaded])
 
+    
     // console.log('worksState', worksState.works)
     const { works } = worksState;
     console.log('works', works)
