@@ -10,7 +10,7 @@ router.use('/api', apiRoutes);
 router.use(awsRoutes)
 
 // If no API routes are hit, send the React app
-router.use('*', (req, res) => {
+router.use('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
