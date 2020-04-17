@@ -34,7 +34,7 @@ const Upload = () => {
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
-    console.log('host url', host)
+    // console.log('host url', host)
 
     const getImage = e => {
         e.preventDefault();
@@ -64,7 +64,7 @@ const Upload = () => {
         const contentType = file.type;
 
         const generatePutUrl = `https://${host}/generate-put-url`;
-        // console.log('generatePutUrl', generatePutUrl)
+        console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
                 Key: `${state.username}/works/${Date.now()}_${file.name}`,
@@ -77,13 +77,13 @@ const Upload = () => {
 
         axios.get(generatePutUrl, options)
             .then(res => {
-                // console.log('res.data', res.data)
+                console.log('res.data', res.data)
                 const { data } = res;
                 // console.log('put url from res.data', data);
 
                 axios.put(data, file, options)
                     .then((res) => {
-                        // console.log('put file', res.config.params);
+                        console.log('put file', res.config.params);
                         setFileState({ ...fileState, message: 'Upload Successful' });
 
                         const params = res.config.params;
@@ -94,7 +94,7 @@ const Upload = () => {
                             .then(res => {
                                 const { data } = res;
                                 const url = data.replace(/\?.*/, '');
-                                console.log(url);
+                                console.log('replace ? and key in url', url);
                                 setFileState({ ...fileState, url })
 
                                 handlePost(url);
