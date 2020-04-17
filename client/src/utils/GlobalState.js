@@ -48,7 +48,8 @@ let initialState = {
     works: [],
     favorites: [],
     password: '',
-    uploaded: false
+    uploaded: false,
+    // loggedIn: false
 };
 
 const UserProvider = ({ value = [], ...props }) => {

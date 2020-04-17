@@ -1,21 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
-import API from '../utils/API';
+// import API from '../utils/API';
 
 const Posts = () => {
-    const [state, dispatch] = useUserContext();
+    const [state] = useUserContext();
 
-    const url = window.location.toString().split('/');
+    // const url = window.location.toString().split('/');
 
-    // useEffect(() => {
-    //     API.getJournal(url[3])
-    // })
-
-    // const history = useHistory();
-    // const galleryLink = history.push(`/gallery`);
-
-    const { journal, works } = state;
+    const { journal } = state;
     if (!journal.length) {
         return (
             <div>
