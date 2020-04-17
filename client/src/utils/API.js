@@ -25,7 +25,7 @@ export default {
         return axios.post("/api/user/logout");
     },
     status: function () {
-        return axios.get('/api/user');
+        return axios.get('api/user');
     },
     postArt: (newArt) => {
         return axios.post('/api/artwork', newArt);
