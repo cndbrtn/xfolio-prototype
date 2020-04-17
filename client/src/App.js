@@ -22,16 +22,16 @@ const App = () => {
   useEffect(() => {
     API.status()
       .then(res => {
-        if (res.data.user) {
+        // if (res.data.user) {
           console.log('res in App.js useEffect', res.data)
           setIsLoggedIn({
             loggedIn: true,
             username: res.data.user[0].username,
             _id: res.data.user[0]._id
           });
-        } else {
-          return;
-        }
+        // } else {
+        //   return;
+        // }
       })
       .catch(e => {
         console.log('error', e)
