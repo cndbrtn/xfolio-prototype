@@ -9,7 +9,7 @@ import Gallery from './components/Gallery'
 import API from './utils/API';
 
 
-function App() {  
+const App = () => {  
 
   const [isLoggedIn, setIsLoggedIn] = useState({
     loggedIn: false,
@@ -17,13 +17,15 @@ function App() {
     _id: ''
   });
 
-  // console.log('isLoggedIn state', isLoggedIn)
+  // const [state] = useUserContext();
+
+  console.log('isLoggedIn state', isLoggedIn)
 
   useEffect(() => {
     API.status()
       .then(res => {
         if (res.data.user) {
-          // console.log('res in App.js useEffect', res.data.user[0])
+          console.log('res in App.js useEffect', res.data.user[0])
           setIsLoggedIn({
             loggedIn: true,
             username: res.data.user[0].username,
@@ -36,7 +38,7 @@ function App() {
       .catch(e => {
         console.log('error', e)
       })
-  }, [])
+  })
   
   
   const { loggedIn, username, _id } = isLoggedIn;

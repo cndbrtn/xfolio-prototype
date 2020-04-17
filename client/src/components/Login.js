@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useUserContext } from '../utils/GlobalState'
+import React, { useRef, useState } from 'react';
 import API from '../utils/API'
-import { SET_CURRENT_USER, LOGIN_USER } from '../utils/actions';
 import Granim from 'react-granim';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 // initialize granim
@@ -21,36 +19,11 @@ const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 
 // login component
 const Login = () => {
-    // setting up our global state context
-    // const [state, dispatch] = useUserContext();
+    // setting up our state
     const [state, setState] = useState({
         username: '',
         password: ''
     });
-    // useHistory to send the user where we want without whiping out stored state
-    // const history = useHistory();
-    // console.log('early state', state);
-
-    // checking if the user is already logged in
-
-    // useEffect(() => {
-    //     API.status()
-    //         .then(res => {
-    //             // console.log('api.status response', res)
-    //             if (res.data.user) {
-    //                 dispatch({
-    //                     ...state,
-    //                     isLoggedIn: true
-    //                 });
-    //             }
-    //         })
-    //         // .then(() => {
-    //         //     history.push(`/${state.username}/blog`);
-    //         // })
-    //         .catch(err => {
-    //             console.log('error', err)
-    //         })
-    // });
 
     // our element references
     const nameRef = useRef();
@@ -85,34 +58,7 @@ const Login = () => {
             .then((user) => {
                 console.log('Login.js api.login() result', user.data.username);
                 window.location.assign(`/${user.data.username}/gallery`);
-                // const userData = user.data;
-                // // const type = SET_CURRENT_USER;
-                // // const _id = userData._id;
-                // const username = userData.username;
-                // // const nickname = userData.nickname;
-                // const password = '';
-                // // const journal = userData.journal;
-                // // const works = userData.works;
-                // const favorites = userData.favorites;
-
-                // // dispatch user data to global state to be used throughout their session
-                // dispatch({
-                //     ...state,
-                //     type,
-                //     _id,
-                //     username,
-                //     nickname,
-                //     password,
-                //     journal,
-                //     works,
-                //     favorites
-                // });
-                // if (!user) return console.log('invalid');
-                // // history.push(`/${state.username}/gallery`);
-                
             }).catch(err => console.log(err));
-        
-        // send user to new location by manipulating browser history? I think? Whatever it does it WORKS
     };
 
     return (

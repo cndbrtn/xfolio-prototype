@@ -57,7 +57,7 @@ const NewPost = () => {
         //    })
     }
 
-    // console.log('postState', postState);
+    console.log('postState', postState);
 
     return (
         <div>

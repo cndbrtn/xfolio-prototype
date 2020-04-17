@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
 import { SET_CURRENT_USER, ADD_USER } from '../utils/actions';
@@ -18,14 +18,12 @@ const granimColor = ({   "default-state": {
 const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 
 
-function Signup() {
-
-    // const [userLogin, setUserLogin] = useState({
-    //     username: '',
-    //     password: ''
-    // });
+const Signup = () => {
 
     const [state, dispatch] = useUserContext();
+    const [signUp, setSignUp] = useState({});
+
+    // const [userLogin, setUserLogin] = useState();
 
     console.log("state", state);
 
@@ -37,41 +35,48 @@ function Signup() {
         const email = emailRef.current.value;
         const username = nameRef.current.value;
         const password = passRef.current.value;
-        // const login = {
-        //     username,
-        //     password
-        // }
 
-        dispatch({
-            ...state,
-            type: ADD_USER,
+        setSignUp({
+            // type: ADD_USER,
             username: username,
             password: password,
             email: email
         })
+
+        // setState
         // console.log('state after login', state)
     }
 
     const handleSignup = (e) => {
         e.preventDefault();
         const newUser = {
-            email: state.email,
-            username: state.username,
-            password: state.password
+            email: signUp.email,
+            username: signUp.username,
+            password: signUp.password
         }
         console.log('components/Signup.js sign up', newUser)
         API.registerUser(newUser)
             .then((user) => {
                 console.log('Signup.js api.signup() result', user.data);
-                const userData = user.data;
-                dispatch({
-                    type: SET_CURRENT_USER,
-                    ...userData
-                })
-                    // .catch(err => console.log('error at Login.js storeUser', err))
+                // const userData = user.data;
+                // setSignUp({
+                //     _id: userData._id,
+                //     username: userData.username
+                // })
                 
-                    // window.location.assign(`/${userLogin.username}/blog`)
+                API.login({ username: signUp.username, password: signUp.password })
+                    .then(user => {
+                        console.log('user data after post to api/login from signup', user.data)
+                        dispatch({
+                            ...state,
+                            type: SET_CURRENT_USER,
+                            username: user.data.username,
+                            _id: user.data._id,
+                            // loggedIn: true
+                    })
                 })
+                    window.location.assign(`${signUp.username}/gallery`)
+            })
                 .catch(err => {
                     if (err) console.log('components/Signup.js error', err);
                 })

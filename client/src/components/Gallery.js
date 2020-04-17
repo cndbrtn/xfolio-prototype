@@ -16,9 +16,9 @@ const Gallery = props => {
     
 
     // const history = useHistory();
-    // console.log('props in gallery', props)
+    console.log('props in gallery', props)
     // const uploadLink =  history.push(`/upload`)
-    // console.log('state', state)
+    console.log('state', state)
 
     useEffect(() => {
         console.log('props', props._id)
@@ -49,7 +49,7 @@ const Gallery = props => {
                 <h3>No posts yet!</h3>
                 {/* <Link to={'upload'}>Upload an image</Link>
                 <br /> */}
-                <Link to={'blog'}>Go to your Jounral</Link>
+                <Link to={'blog'}>Go to your blog page</Link>
             </div>
         )
     } else {

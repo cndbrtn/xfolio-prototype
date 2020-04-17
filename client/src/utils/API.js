@@ -5,7 +5,7 @@ export default {
     //     return axios.get('/api/user');
     // },
     getUser: function (username) {
-        console.log(username)
+        // console.log(username)
         return axios.get('/api/user/' + username)
     },
     registerUser: function (newUser) {
