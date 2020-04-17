@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise;
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost/artdb'
+const uri = process.env.MONGODB_URI || process.env.MONGO_DB
 
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }).then(
     () => {
