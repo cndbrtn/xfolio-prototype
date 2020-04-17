@@ -47,9 +47,10 @@ app.use(passport.session());
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
-} else { // I needed this line to make it work in development, no idea why
-    app.use(express.static('client/public'));
 }
+// else { // I needed this line to make it work in development, no idea why
+//     app.use(express.static('client/public'));
+// }
 
 app.use(routes); // all dem routes
 

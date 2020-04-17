@@ -36,6 +36,8 @@
     "node-pre-gyp": "^0.14.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "react-granim": "^1.1.0"
+    "react-granim": "^1.1.0",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
   }
 }
