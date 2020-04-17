@@ -34,6 +34,7 @@ const Upload = () => {
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
+    console.log('host url', host)
 
     const getImage = e => {
         e.preventDefault();
@@ -93,7 +94,7 @@ const Upload = () => {
                             .then(res => {
                                 const { data } = res;
                                 const url = data.replace(/\?.*/, '');
-                                // console.log(trimData);
+                                console.log(url);
                                 setFileState({ ...fileState, url })
 
                                 handlePost(url);
@@ -109,7 +110,7 @@ const Upload = () => {
     const handlePost = (url) => {
         const { title, postBody, tags } = artState;
         const { _id } = state;
-        // console.log('_id in handlePost', _id)
+        console.log('_id in handlePost', _id)
         const newArt = {
             userId: _id,
             url,
