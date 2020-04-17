@@ -64,7 +64,7 @@ const Upload = () => {
         const contentType = file.type;
 
         const generatePutUrl = `https://${host}/generate-put-url`;
-        console.log('generatePutUrl', generatePutUrl)
+        // console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
                 Key: `${state.username}/works/${Date.now()}_${file.name}`,
@@ -77,7 +77,7 @@ const Upload = () => {
 
         axios.get(generatePutUrl, options)
             .then(res => {
-                console.log('res.data', res.data)
+                // console.log('res.data', res.data)
                 const { data } = res;
                 // console.log('put url from res.data', data);
 
