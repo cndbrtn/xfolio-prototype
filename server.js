@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 require('dotenv').config();
 require('./awsUpload');
 const cors = require('cors');
@@ -45,9 +46,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-}
+// if (process.env.NODE_ENV === 'production') {
+    app.use('/static', express.static(path.join(__dirname, 'client/build')));
+// }
 // else { // I needed this line to make it work in development, no idea why
 //     app.use(express.static('client/public'));
 // }
