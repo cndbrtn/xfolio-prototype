@@ -17,7 +17,7 @@ const Gallery = props => {
     // const history = useHistory();
     console.log('props in gallery', props)
     // const uploadLink =  history.push(`/upload`)
-    // console.log('state', state)
+    console.log('state', state)
 
     useEffect(() => {
         // console.log('props', props._id)
@@ -31,7 +31,8 @@ const Gallery = props => {
                     ...state,
                     type: GALLERY_PROPS,
                     username: res.data.username,
-                    _id: res.data._id
+                    _id: res.data._id,
+                    uploaded: false
                 })
              })
     }, [props, state.uploaded])
