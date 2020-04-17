@@ -23,7 +23,7 @@ const App = () => {
     API.status()
       .then(res => {
         if (res.data.user) {
-          console.log('res in App.js useEffect', res.data.user[0])
+          console.log('res in App.js useEffect', res.data)
           setIsLoggedIn({
             loggedIn: true,
             username: res.data.user[0].username,
