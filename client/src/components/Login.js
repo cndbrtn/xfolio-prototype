@@ -57,7 +57,7 @@ const Login = () => {
         API.login(login)
             .then((user) => {
                 console.log('Login.js api.login() result', user.data.username);
-                // window.location.assign(`/${user.data.username}/gallery`);
+                window.location.assign(`/${user.data.username}/gallery`);
             }).catch(err => console.log(err));
     };
 
