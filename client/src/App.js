@@ -48,8 +48,8 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path='/' component={Login} />
-        <Route exact path='/Login' component={Login} />
-        <Route exact path='/Signup' component={Signup} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/signup' component={Signup} />
         <Route exact path='/:username/blog'>
           <Blog loggedIn={loggedIn} username={username} _id={_id} />
         </Route>
