@@ -50,7 +50,7 @@ app.use(passport.session());
 // this fixes a problem with blank pages for the :username/gallery and :username/blog but it also kills all my api routes
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
-    app.get('*', (req, res) => { res.sendfile(path.join(__dirname = 'client/build/index.html')); });
+    app.get('/', (req, res) => { res.sendfile(path.join(__dirname = 'client/build/index.html')); });
 }
 
 app.use(routes); // all dem routes
