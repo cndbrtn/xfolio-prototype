@@ -75,7 +75,7 @@ const Signup = () => {
                             // loggedIn: true
                     })
                 })
-                    window.location.assign(`${signUp.username}/gallery`)
+                    // window.location.assign(`${signUp.username}/gallery`)
             })
                 .catch(err => {
                     if (err) console.log('components/Signup.js error', err);
