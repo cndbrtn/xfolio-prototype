@@ -155,13 +155,13 @@ const Upload = () => {
     
     return (
         <div className="container upload">
-            <form class="upload-box">
-                <div class="upload-info">
+            <form className="upload-box">
+                <div className="upload-info">
                 <div>
                     <label htmlFor="upload">Choose an image</label>
                     <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
                 </div>
-                <div class="upload-mess">
+                <div className="upload-mess">
                     {fileState.message}
                 </div>
                 <div>
@@ -180,7 +180,7 @@ const Upload = () => {
                     <button onClick={uploadFile}>Submit</button>
                 </div>
                 </div>
-                    <div class="upload-prev">
+                    <div className="upload-prev">
                         <img ref={uploadedImg} alt="preview" width="140px" />
                     </div>
             </form>
