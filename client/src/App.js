@@ -17,8 +17,6 @@ const App = () => {
     _id: ''
   });
 
-  // const [state] = useUserContext();
-
   console.log('isLoggedIn state', isLoggedIn)
 
   useEffect(() => {
@@ -38,7 +36,7 @@ const App = () => {
       .catch(e => {
         console.log('error', e)
       })
-  })
+  }, [])
   
   
   const { loggedIn, username, _id } = isLoggedIn;
