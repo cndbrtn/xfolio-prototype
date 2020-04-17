@@ -1,5 +1,6 @@
 {
   "name": "xfolio",
+  "homepage": "https://xfolio-beta.herokuapp.com/",
   "version": "1.0.0",
   "description": "All the good parts of deviantArt and all the good parts of tumblr together to make the art blogging platform we're all dying for",
   "main": "server.js",
