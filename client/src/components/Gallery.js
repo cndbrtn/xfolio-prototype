@@ -54,8 +54,8 @@ const Gallery = props => {
     } else {
         return (
 
-          <div class="gallery-box">
-                <div class ="profile">
+          <div className="gallery-box">
+                <div className ="profile">
                     <p>Welcome to Xfolio:</p>
                 <Upload />
 
@@ -63,20 +63,20 @@ const Gallery = props => {
 
                 <Link to={'blog'}>Go to your Jounral</Link>
                 </div>
-                <div class="gallery">
+                <div className="gallery">
                 {works.map(post => (
-                    <div class="gall" key={post._id}>
-                        <div class="gall-thumb">
+                    <div className="gall" key={post._id}>
+                        <div className="gall-thumb">
                             <img src={post.img} alt={post.title} />
                         </div>
-                        <div class="gall-info">
+                        <div className="gall-info">
                         <div>
                             <i>{post.title}</i>
                         </div>
-                        <div class="gall-descrip">
+                        <div className="gall-descrip">
                             {post.description}
                         </div>
-                        <div class="gall-tags">
+                        <div className="gall-tags">
                             {post.tags}
                         </div>
                         </div>
