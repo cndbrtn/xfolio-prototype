@@ -33,10 +33,22 @@ export default {
     getArt: (username) => {
         return axios.get('/api/artwork' + username)
     },
+    updateArt: (id) => {
+        return axios.put('/api/artwork' + id)
+    },
+    deleteArt: (id) => {
+        return axios.delete('/api/artwork/' + id)
+    },
     postJournal: (newPost) => {
         return axios.post('/api/blog', newPost);
     },
     getJournal: (username) => {
         return axios.get('/api/blog/' + username)
+    },
+    updateJournal: (id) => {
+        return axios.put('/api/blog' + id)
+    },
+    deleteJournal: (id) => {
+        return axios.delete('/api/blog' + id)
     }
 }

@@ -32,4 +32,17 @@ router.get('/:username', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    const { params, user } = req;
+    // console.log('req', )
+    // console.log('query in delete art api route', params)
+    Works.findByIdAndDelete(params.id)
+        .then(() => {
+            User.findByIdAndUpdate(user._id, { $pull: { works: params.id } }, { new: true })
+                .then(user => {
+                    // console.log('user after delete and update art', user)
+                    res.send(user)
+            })
+    })
+})
 module.exports = router;

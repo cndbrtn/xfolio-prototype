@@ -63,7 +63,7 @@ const Upload = () => {
         // console.log('file.type', file.type);
         const contentType = file.type;
 
-        const generatePutUrl = `https://${host}/generate-put-url`;
+        const generatePutUrl = `http://${host}/generate-put-url`;
         // console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
@@ -87,7 +87,7 @@ const Upload = () => {
                         setFileState({ ...fileState, message: 'Upload Successful' });
 
                         const params = res.config.params;
-                        const generateGetUrl = `https://${host}/generate-put-url`
+                        const generateGetUrl = `http://${host}/generate-put-url`
                         const options = {params};
 
                         axios.get(generateGetUrl, options)

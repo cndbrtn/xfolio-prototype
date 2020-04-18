@@ -3,10 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { UserProvider } from './utils/GlobalState'
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Upload from './components/Upload';
+import ArtWork from './components/ArtWork';
 import Blog from './components/Blog';
 import Gallery from './components/Gallery'
 import API from './utils/API';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faTrash, faPencilAlt);
 
 
 const App = () => {  
@@ -53,9 +57,9 @@ const App = () => {
         <Route exact path='/:username/blog'>
           <Blog loggedIn={loggedIn} username={username} _id={_id} />
         </Route>
-        {/* <Route exact path='/:username/upload'>
-          <Upload loggedIn={loggedIn} username={username} _id={_id} />
-        </Route> */}
+        <Route exact path='/:username/gallery/work/:id'>
+          <ArtWork />
+        </Route>
         <Route exact path ='/:username/gallery'>
           <Gallery loggedIn={loggedIn} username={username} _id={_id} />
         </Route>

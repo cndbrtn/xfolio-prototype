@@ -49,6 +49,11 @@ let initialState = {
     favorites: [],
     password: '',
     uploaded: false,
+    postId: '',
+    postImg: '',
+    postTitle: '',
+    postDesc: '',
+    postTags: []
     // loggedIn: false
 };
 
