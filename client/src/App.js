@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { UserProvider } from './utils/GlobalState'
+import Container from './components/Container';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ArtWork from './components/ArtWork';
@@ -50,20 +51,22 @@ const App = () => {
   return (
   <UserProvider>
     <Router>
-      <Switch>
-        <Route exact path='/' component={Login} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/signup' component={Signup} />
-        <Route exact path='/:username/blog'>
-          <Blog loggedIn={loggedIn} username={username} _id={_id} />
-        </Route>
-        <Route exact path='/:username/gallery/work/:id'>
-          <ArtWork />
-        </Route>
-        <Route exact path ='/:username/gallery'>
-          <Gallery loggedIn={loggedIn} username={username} _id={_id} />
-        </Route>
-      </Switch>
+      <Container loggedIn={loggedIn}>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/:username/blog'>
+            <Blog loggedIn={loggedIn} username={username} _id={_id} />
+          </Route>
+          <Route exact path='/:username/gallery/work/:id' component={ArtWork} />
+              {/* <ArtWork _id={_id} username={username} /> */}
+          {/* </Route> */}
+            <Route exact path='/:username/gallery'>
+            <Gallery loggedIn={loggedIn} />
+          </Route>
+        </Switch>
+      </Container>
     </Router>
   </UserProvider>
   )

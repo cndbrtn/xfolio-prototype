@@ -32,6 +32,8 @@ const Upload = () => {
     const tagsRef = useRef();
     const uploadedImg = useRef();
 
+    console.log('uploadedImg', uploadedImg)
+
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
     // console.log('host url', host)

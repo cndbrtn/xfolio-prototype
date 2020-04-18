@@ -31,10 +31,10 @@ export default {
         return axios.post('/api/artwork', newArt);
     },
     getArt: (username) => {
-        return axios.get('/api/artwork' + username)
+        return axios.get('/api/artwork/' + username)
     },
     updateArt: (id) => {
-        return axios.put('/api/artwork' + id)
+        return axios.put('/api/artwork/' + id)
     },
     deleteArt: (id) => {
         return axios.delete('/api/artwork/' + id)
@@ -46,9 +46,9 @@ export default {
         return axios.get('/api/blog/' + username)
     },
     updateJournal: (id) => {
-        return axios.put('/api/blog' + id)
+        return axios.put('/api/blog/' + id)
     },
     deleteJournal: (id) => {
-        return axios.delete('/api/blog' + id)
+        return axios.delete('/api/blog/' + id)
     }
 }

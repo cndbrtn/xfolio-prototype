@@ -7,16 +7,18 @@ import { GALLERY_PROPS } from '../utils/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-const Gallery = props => {
+const Gallery = (props) => {
     const [state, dispatch] = useUserContext();
     const [worksState, setWorksState] = useState({ works: [] });
-    const [post, setPost] = useState({});
+    // const [post, setPost] = useState({});
+    const pathId = window.location.pathname.split('/')
 
     console.log('state', state)
+    console.log('props', props)
 
     useEffect(() => {
         // console.log('props', props._id)
-        API.getUser(props.username)
+        API.getUser(pathId[1])
             .then(res => {
                 console.log('gallery get res', res.data)
                 setWorksState({
@@ -30,7 +32,7 @@ const Gallery = props => {
                     uploaded: false
                 })
              })
-    }, [props, state.uploaded])
+    }, [state.uploaded])
 
     const handleDelete = (id) => {
         API.deleteArt(id)
@@ -74,7 +76,7 @@ const Gallery = props => {
 
           <div className="gallery-box">
                 <div className ="profile">
-                    <p>Welcome to Xfolio:</p>
+                    <p>Welcome to Xfolio: {props.username}</p>
                 <Upload />
                 <Link to={'blog'}>Go to your Jounral</Link>
                 </div>
@@ -82,7 +84,7 @@ const Gallery = props => {
                 {works.map(post => (
                     <div className="gall" key={post._id}>
                         <div className="gall-thumb">
-                            <Link to={'gallery/work/' + post._id} onClick={() => handlePostDetail(post._id)}>
+                            <Link to={'work/' + post._id} onClick={() => handlePostDetail(post._id)}>
                                 <img src={post.img} alt={post.title} />
                             </Link>
                         </div>
