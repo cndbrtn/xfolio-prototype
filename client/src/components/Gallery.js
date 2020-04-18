@@ -86,7 +86,7 @@ const Gallery = (props) => {
                 <div className ="profile">
                     <p>Welcome to Xfolio: {props.username}</p>
                 <Upload />
-                <Link to={'blog'}>Go to your Jounral</Link>
+                <Link to={'blog'}>Go to your blog page</Link>
                 </div>
                 <div className="gallery">
                 {works.map(post => (

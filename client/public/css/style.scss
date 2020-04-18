@@ -98,7 +98,10 @@ a {
 }
 
 .gall-tags {
+    a {
     color: $font-color-2;
+    text-decoration: none;
+    }
     border-top: $font-color-2 solid 1px;
     margin: 10px;
     font-size: 14px;
@@ -186,11 +189,31 @@ a {
     margin: 15px;
     padding: 10px;
     max-width: 600px;
+    min-width: 300px;
 }
 
 .tags {
     margin-top: 10px;
     color: $font-color-2;
     font-size: 14px;
+}
+
+.detail {
+    display: flex;
+    flex-flow: row;
+    .full-info {
+        background-color: $sub-color-3;
+        padding: 10px;
+        width: 130px;
+        height: 600px;
+       h1{
+           font-size: 20px;
+           border-bottom: $font-color-2 1px solid;
+       }
+    }
+    .full-image {
+        margin: auto;
+        max-height: 800px;
+    }
 }
 
