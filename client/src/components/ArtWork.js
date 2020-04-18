@@ -37,14 +37,17 @@ const ArtWork = ({ match }) => {
     console.log('state in detail', state)
     return (
         <div className="detail">
-            <div>{state.postTitle}</div>
-            <div>
-                <img src={state.postImg} alt={state.postTitle} />
-            </div>
+            <div className="full-info">
+            <div><h1>{state.postTitle}</h1></div>
             <div>{state.postDesc}</div>
-            <div>{state.postTags.map(tag => (
+            <div className="tags"><p>Tagged: {state.postTags.map(tag => (
                 <span key={tag}>{tag} </span>
             ))}
+            </p>
+            </div>
+            </div>
+            <div className="full-image">
+                <img className='full-image' src={state.postImg} alt={state.postTitle} />
             </div>
         </div>
     )
