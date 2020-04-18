@@ -34,12 +34,15 @@ const Blog = (props) => {
         
         return (
             <div className="container blog">
-            <div>
-                <h1>Hello {props.username}!</h1>
+                <div className="profile">
+                    <h1>Hello {props.username}!</h1>
+                    <NewPost />
+                    <Link to='gallery'>Gallery Page</Link>
+                </div>
+                <div className="posts">
+                    <Posts />
+                </div>
             </div>
-            <NewPost />
-            <Posts />
-        </div>
     )
 };
 
