@@ -159,6 +159,7 @@ a {
 }
 .upload button:hover {
   background-color: red;
+  color: #ff5100;
 }
 
 .upload-prev {
