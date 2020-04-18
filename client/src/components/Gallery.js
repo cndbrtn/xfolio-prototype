@@ -61,6 +61,8 @@ const Gallery = (props) => {
             postTags: post.tags
         })
     }
+
+    // console.log(window.location)
     
 
     if (!works || !works.length) {
@@ -84,7 +86,7 @@ const Gallery = (props) => {
                 {works.map(post => (
                     <div className="gall" key={post._id}>
                         <div className="gall-thumb">
-                            <Link to={'work/' + post._id} onClick={() => handlePostDetail(post._id)}>
+                            <Link to={'gallery/work/' + post._id} onClick={() => handlePostDetail(post._id)}>
                                 <img src={post.img} alt={post.title} />
                             </Link>
                         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
-// import API from '../utils/API';
+import API from '../utils/API';
 
 const Posts = () => {
     const [state] = useUserContext();
@@ -20,8 +20,10 @@ const Posts = () => {
         return (
             <div>
                 {journal.map(post => (
-                    <div key={post.title}>
+                    <div key={post._id}>
+                        <Link to={'blog/' + post._id}>
                         <h2>{post.title}</h2>
+                        </Link>
                         <div>
                             {post.body}
                         </div>
