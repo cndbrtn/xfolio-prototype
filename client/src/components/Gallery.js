@@ -61,6 +61,8 @@ const Gallery = (props) => {
             postTags: post.tags
         })
     }
+
+    // console.log(window.location)
     
 
     if (!works || !works.length) {

@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import ArtWork from './components/ArtWork';
 import Blog from './components/Blog';
 import Gallery from './components/Gallery'
+import SinglePost from './components/SinglePost'
 import API from './utils/API';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
@@ -27,16 +28,12 @@ const App = () => {
   useEffect(() => {
     API.status()
       .then(res => {
-        // if (res.data.user) {
           console.log('res in App.js useEffect', res.data)
           setIsLoggedIn({
             loggedIn: true,
             username: res.data.user[0].username,
             _id: res.data.user[0]._id
           });
-        // } else {
-        //   return;
-        // }
       })
       .catch(e => {
         console.log('error', e)
@@ -59,11 +56,10 @@ const App = () => {
           <Route exact path='/:username/blog'>
             <Blog loggedIn={loggedIn} username={username} _id={_id} />
           </Route>
+            <Route exact path='/:username/blog/:id' component={SinglePost} />
           <Route exact path='/:username/gallery/work/:id' component={ArtWork} />
-              {/* <ArtWork _id={_id} username={username} /> */}
-          {/* </Route> */}
-            <Route exact path='/:username/gallery'>
-            <Gallery loggedIn={loggedIn} />
+          <Route exact path='/:username/gallery'>
+            <Gallery loggedIn={loggedIn} username={username} />
           </Route>
         </Switch>
       </Container>

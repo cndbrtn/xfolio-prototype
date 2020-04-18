@@ -1,16 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useUserContext } from '../utils/GlobalState'
-import { useHistory } from 'react-router-dom';
-// import API from '../utils/API'
 import axios from 'axios';
 import API from '../utils/API';
 
 const Upload = () => {
 
     const [state, dispatch] = useUserContext();
-    // console.log('state in upload', state)
-    // const history = useHistory();
-    // console.log('state in upload', state)
 
     const [fileState, setFileState] = useState({
         message: '',
@@ -49,7 +44,7 @@ const Upload = () => {
             const { current } = uploadedImg;
             current.file = file;
             reader.onload = e => {
-                // console.log(e.target.result)
+                console.log(e.target.result)
                 current.src = e.target.result;
             };
             reader.readAsDataURL(file);
@@ -130,9 +125,7 @@ const Upload = () => {
         titleRef.current.value = '';
         bodyRef.current.value = '';
         tagsRef.current.value = '';
-        // window.location.assign('gallery')
     }
-
 
     const handleChange = e => {
         e.preventDefault();
@@ -142,11 +135,9 @@ const Upload = () => {
         const prettyTags = tags.map(tag => {
             const trimTag = tag.trim();
             const regex = /\s+/g;
-            const underscoreTag = trimTag.replace(regex, '_')
+            const underscoreTag = trimTag.replace(regex, '_');
             return underscoreTag;
         });
-
-        // console.log('prettyTags', prettyTags);
 
         setArtState({
             ...artState,
