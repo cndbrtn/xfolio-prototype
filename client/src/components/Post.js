@@ -13,21 +13,20 @@ const Posts = () => {
         return (
             <div>
                 <h3>You don't have any posts yet</h3>
-                <Link to='gallery'>Gallery Page</Link>
             </div>
         )
     } else {
         return (
             <div>
                 {journal.map(post => (
-                    <div key={post._id}>
+                    <div key={post._id} className='postbox>
                         <Link to={'blog/' + post._id}>
                         <h2>{post.title}</h2>
                         </Link>
                         <div>
                             {post.body}
                         </div>
-                        <div>
+                        <div className="tags">
                             {post.tags}
                         </div>
                     </div>

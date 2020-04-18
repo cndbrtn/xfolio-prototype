@@ -148,9 +148,8 @@ const Upload = () => {
     }
     
     return (
-        <div className="container upload">
-            <form className="upload-box">
-                <div className="upload-info">
+        <div>
+            <form>
                 <div>
                     <label htmlFor="upload">Choose an image</label>
                     <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
@@ -159,20 +158,19 @@ const Upload = () => {
                     {fileState.message}
                 </div>
                 <div>
-                   <p> Title: </p>
+                <label htmlFor="title"> Title: </label>
                     <input type="text" name="title" ref={titleRef} onChange={handleChange} />
                 </div>
                 <div>
-                   <p>Description:</p>
+                <label htmlFor="body">Description:</label>
                     <textarea name="body" ref={bodyRef} onChange={handleChange} />
                 </div>
                 <div>
-                    <p>Tags, separated by a comma:</p>
+                <label htmlFor="tags">Tags, separated by a comma:</label>
                     <input type="text" name="tags" ref={tagsRef} onChange={handleChange} />
                 </div>
                 <div>
                     <button onClick={uploadFile}>Submit</button>
-                </div>
                 </div>
                     <div className="upload-prev">
                         <img ref={uploadedImg} alt="preview" width="140px" />

@@ -28,7 +28,7 @@ a {
 
     input {
         border: none;
-        border-radius: 15px;
+        // border-radius: 15px;
         padding: 10px;
         margin: 5px;
         width: 250px;
@@ -37,7 +37,7 @@ a {
     button {
         float: right;
         border: none;
-        border-radius: 10px;
+        // border-radius: 10px;
         padding: 8px;
         margin-top: 5px;
         background-color: $sub-color-2;
@@ -79,6 +79,7 @@ a {
     flex-flow: row wrap; 
     justify-content: flex-start;
     align-items: flex-start;
+    padding:20px;
 }
 
 .gall {
@@ -111,66 +112,43 @@ a {
 .profile {
     width: 150px;
     height: 666px;
-    border-radius: 10px;
+    // border-radius: 10px;
     background-color: $sub-color-3;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-
+    padding: 10px;
+    
+    h1 {
+        font-size: 20px;
+    }
     a{
         // color: $font-color;
-        padding: 10px;
+        margin-top: 20px;
+        text-decoration: none;
     }
     a:hover {
-        color: $font-color;
+        // color: $font-color;
+        text-decoration: underline;
     }
-    p{
-        padding: 10px;
-    }
-}
-
-
-// .upload-box {
-//     display: flex;
-//     flex-flow: row;
-// }
-
-.upload-info {
-    display: flex;
-    flex-flow: column;
-    background-color: $sub-color-3;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 13px;
-}
-
-.upload {
-    max-width: 150px;
     label {
         color: $font-color-2;
         font-size: 13px;
     }
     input {
-        padding: 5px;
-        width: 100px;
+        width: 130px;
         border: none;
+        margin-bottom: 10px;
     }
     textarea {
         resize: vertical;
         border: none;
-        width: 100px;
+        width: 130px;
         height: 50px;;
-        padding: 10px;
-        padding-top: 0px;
-    }
-    p {
-        color: $font-color-2;
-        margin-top: 15px;
-        margin-bottom: 4px;
     }
     button {
         border: none;
-        border-radius: 5px;
+        // border-radius: 5px;
         padding: 8px;
         margin-top: 20px;
         background-color: $sub-color-2;
@@ -181,11 +159,38 @@ a {
     }
 }
 
+.upload-info {
+    display: flex;
+    flex-flow: column;
+    background-color: $sub-color-3;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 13px;
+}
+
 .upload-prev {
     max-width: 100px;
 }
 
 .upload-mess {
    display: none;
+}
+
+.blog {
+    display: flex;
+    flex-flow: row;
+}
+
+.postbox {
+    background-color: $sub-color-3;
+    margin: 15px;
+    padding: 10px;
+    max-width: 600px;
+}
+
+.tags {
+    margin-top: 10px;
+    color: $font-color-2;
+    font-size: 14px;
 }
 
