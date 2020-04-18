@@ -20,7 +20,6 @@ a {
 }
 .login input {
   border: none;
-  border-radius: 15px;
   padding: 10px;
   margin: 5px;
   width: 250px;
@@ -28,7 +27,6 @@ a {
 .login button {
   float: right;
   border: none;
-  border-radius: 10px;
   padding: 8px;
   margin-top: 5px;
   background-color: #b9000f;
@@ -68,6 +66,7 @@ a {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 20px;
 }
 
 .gall {
@@ -99,20 +98,46 @@ a {
 .profile {
   width: 150px;
   height: 666px;
-  border-radius: 10px;
   background-color: #282828;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
+  padding: 10px;
+}
+.profile h1 {
+  font-size: 20px;
 }
 .profile a {
-  padding: 10px;
+  margin-top: 20px;
+  text-decoration: none;
 }
 .profile a:hover {
+  text-decoration: underline;
+}
+.profile label {
+  color: #858585;
+  font-size: 13px;
+}
+.profile input {
+  width: 130px;
+  border: none;
+  margin-bottom: 10px;
+}
+.profile textarea {
+  resize: vertical;
+  border: none;
+  width: 130px;
+  height: 50px;
+}
+.profile button {
+  border: none;
+  padding: 8px;
+  margin-top: 20px;
+  background-color: #b9000f;
   color: #dedede;
 }
-.profile p {
-  padding: 10px;
+.profile button:hover {
+  background-color: red;
 }
 
 .upload-info {
@@ -124,49 +149,30 @@ a {
   font-size: 13px;
 }
 
-.upload {
-  max-width: 150px;
-}
-.upload label {
-  color: #858585;
-  font-size: 13px;
-}
-.upload input {
-  padding: 5px;
-  width: 100px;
-  border: none;
-}
-.upload textarea {
-  resize: vertical;
-  border: none;
-  width: 100px;
-  height: 50px;
-  padding: 10px;
-  padding-top: 0px;
-}
-.upload p {
-  color: #858585;
-  margin-top: 15px;
-  margin-bottom: 4px;
-}
-.upload button {
-  border: none;
-  border-radius: 5px;
-  padding: 8px;
-  margin-top: 20px;
-  background-color: #b9000f;
-  color: #dedede;
-}
-.upload button:hover {
-  background-color: red;
-}
-
 .upload-prev {
   max-width: 100px;
 }
 
 .upload-mess {
   display: none;
+}
+
+.blog {
+  display: flex;
+  flex-flow: row;
+}
+
+.postbox {
+  background-color: #282828;
+  margin: 15px;
+  padding: 10px;
+  max-width: 600px;
+}
+
+.tags {
+  margin-top: 10px;
+  color: #858585;
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=style.css.map */

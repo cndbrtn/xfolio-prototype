@@ -65,11 +65,17 @@ const Gallery = (props) => {
 
     if (!works || !works.length) {
         return (
-            <div>
+            <div className="gallery-box">
+            <div className="profile">
+                <h1>Welcome to Xfolio: {props.username}</h1>
                 <Upload />
-                <h3>No posts yet!</h3>
                 <Link to={'blog'}>Go to your blog page</Link>
             </div>
+            <div className="gallery">
+                <h3>No posts yet!</h3>
+            </div>
+            </div>
+
         )
     } else {
         return (
@@ -84,7 +90,7 @@ const Gallery = (props) => {
                 {works.map(post => (
                     <div className="gall" key={post._id}>
                         <div className="gall-thumb">
-                            <Link to={'work/' + post._id} onClick={() => handlePostDetail(post._id)}>
+                            <Link to={'gallery/work/' + post._id} onClick={() => handlePostDetail(post._id)}>
                                 <img src={post.img} alt={post.title} />
                             </Link>
                         </div>
