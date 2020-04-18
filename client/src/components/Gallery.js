@@ -4,24 +4,21 @@ import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
 import Upload from './Upload'
 import { GALLERY_PROPS } from '../utils/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-const Gallery = props => {
+const Gallery = (props) => {
     const [state, dispatch] = useUserContext();
-    const [worksState, setWorksState] = useState({
-        works: []
-    });
-    
-    
+    const [worksState, setWorksState] = useState({ works: [] });
+    // const [post, setPost] = useState({});
+    const pathId = window.location.pathname.split('/')
 
-    // const history = useHistory();
-    console.log('props in gallery', props)
-    // const uploadLink =  history.push(`/upload`)
     console.log('state', state)
+    console.log('props', props)
 
     useEffect(() => {
         // console.log('props', props._id)
-        API.getUser(props.username)
+        API.getUser(pathId[1])
             .then(res => {
                 console.log('gallery get res', res.data)
                 setWorksState({
@@ -35,20 +32,42 @@ const Gallery = props => {
                     uploaded: false
                 })
              })
-    }, [props, state.uploaded])
+    }, [state.uploaded])
 
+    const handleDelete = (id) => {
+        API.deleteArt(id)
+        dispatch({
+            ...state,
+            uploaded: true
+        })
+    }
     
-    // console.log('worksState', worksState.works)
     const { works } = worksState;
-    // console.log('works', works)
+
+    const handlePostDetail = (id) => {
+        const postDetail = works.filter(post => {
+            if (post._id === id) {
+                return post;
+            }
+        })
+        console.log('detail click', postDetail[0])
+        const post = postDetail[0]
+        dispatch({
+            ...state,
+            postId: post._id,
+            postImg: post.img,
+            postTitle: post.title,
+            postDesc: post.description,
+            postTags: post.tags
+        })
+    }
+    
 
     if (!works || !works.length) {
         return (
             <div>
                 <Upload />
                 <h3>No posts yet!</h3>
-                {/* <Link to={'upload'}>Upload an image</Link>
-                <br /> */}
                 <Link to={'blog'}>Go to your blog page</Link>
             </div>
         )
@@ -57,28 +76,37 @@ const Gallery = props => {
 
           <div className="gallery-box">
                 <div className ="profile">
-                    <p>Welcome to Xfolio:</p>
+                    <p>Welcome to Xfolio: {props.username}</p>
                 <Upload />
-
-                <br />
-
                 <Link to={'blog'}>Go to your Jounral</Link>
                 </div>
                 <div className="gallery">
                 {works.map(post => (
                     <div className="gall" key={post._id}>
                         <div className="gall-thumb">
-                            <img src={post.img} alt={post.title} />
+                            <Link to={'work/' + post._id} onClick={() => handlePostDetail(post._id)}>
+                                <img src={post.img} alt={post.title} />
+                            </Link>
+                        </div>
+                        <div>
+                            <button onClick={() => handleDelete(post._id)}>
+                                <FontAwesomeIcon icon="trash" />
+                            </button>
+                            <button>
+                                <FontAwesomeIcon icon="pencil-alt" />
+                            </button>
                         </div>
                         <div className="gall-info">
                         <div>
-                            <i>{post.title}</i>
+                            <i>{post.title}</i>     
                         </div>
                         <div className="gall-descrip">
                             {post.description}
                         </div>
                         <div className="gall-tags">
-                            {post.tags}
+                                {post.tags.map(tag => (
+                                    <Link to={'#'} key={tag}>{tag} </Link>
+                            ))}
                         </div>
                         </div>
                     </div>

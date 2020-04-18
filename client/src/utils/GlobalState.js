@@ -10,17 +10,19 @@ const reducer = (state, action) => {
     // const { type, _id, username, nickname, journal, works, favorites, password } = action;
     switch (action.type) {
         case SET_CURRENT_USER:
-            // console.log('action inside SET CURRENT', action);
+            console.log('action inside SET CURRENT', action);
             return {
                 ...state,
                 type: action.type,
                 _id: action._id,
                 username: action.username,
-                // nickname,
-                // journal,
-                // works,
-                // favorites,
+                postId: action.postId,
+                postImg: action.postImg,
+                postTitle: action.postTitle,
+                postDesc: action.postDesc,
+                postTags: action.postTags,
                 password: '',
+
             }
         case LOGIN_USER:
             return {
@@ -49,6 +51,11 @@ let initialState = {
     favorites: [],
     password: '',
     uploaded: false,
+    postId: '',
+    postImg: '',
+    postTitle: '',
+    postDesc: '',
+    postTags: []
     // loggedIn: false
 };
 
