@@ -27,7 +27,7 @@ const Upload = () => {
     const tagsRef = useRef();
     const uploadedImg = useRef();
 
-    console.log('uploadedImg', uploadedImg)
+    // console.log('uploadedImg', uploadedImg)
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
@@ -44,7 +44,7 @@ const Upload = () => {
             const { current } = uploadedImg;
             current.file = file;
             reader.onload = e => {
-                console.log(e.target.result)
+                // console.log(e.target.result)
                 current.src = e.target.result;
             };
             reader.readAsDataURL(file);
@@ -80,7 +80,7 @@ const Upload = () => {
 
                 axios.put(data, file, options)
                     .then((res) => {
-                        console.log('put file', res.config.params);
+                        // console.log('put file', res.config.params);
                         setFileState({ ...fileState, message: 'Upload Successful' });
 
                         const params = res.config.params;
@@ -91,7 +91,7 @@ const Upload = () => {
                             .then(res => {
                                 const { data } = res;
                                 const url = data.replace(/\?.*/, '');
-                                console.log('replace ? and key in url', url);
+                                // console.log('replace ? and key in url', url);
                                 setFileState({ ...fileState, url })
 
                                 handlePost(url);

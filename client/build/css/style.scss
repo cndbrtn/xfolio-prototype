@@ -3,6 +3,8 @@ $main-color: rgb(69, 69, 69);
 $sub-color-1: rgb(207, 255, 31);
 $sub-color-2: rgb(185, 0, 15);
 $sub-color-3: rgb(40, 40, 40);
+$sub-color-4: rgb(248, 70, 64);
+$sub-color-5: rgb(48, 51, 53);
 $font-color: rgb(222, 222, 222);
 $font-color-2: rgb(133, 133, 133);
 
@@ -20,6 +22,14 @@ a {
     width: 100%;
 }
 
+h1 {
+    text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 .login {
     padding-top: 280px;
     width: 300px;
@@ -28,7 +38,7 @@ a {
 
     input {
         border: none;
-        border-radius: 15px;
+        // border-radius: 15px;
         padding: 10px;
         margin: 5px;
         width: 250px;
@@ -37,7 +47,7 @@ a {
     button {
         float: right;
         border: none;
-        border-radius: 10px;
+        // border-radius: 10px;
         padding: 8px;
         margin-top: 5px;
         background-color: $sub-color-2;
@@ -79,17 +89,35 @@ a {
     flex-flow: row wrap; 
     justify-content: flex-start;
     align-items: flex-start;
+    padding:20px;
 }
 
 .gall {
     padding: 15px;
+    margin:5px;
     text-align: center;
+    background-color: $sub-color-5;
+    .del-butt {
+        padding:8px 20px;
+        color: $font-color;
+        background-color: $sub-color-2;
+        border: none;
+    }
+    .edit-butt {
+        padding:8px 20px;
+        color: $font-color;
+        background-color: $sub-color-4;
+        border: none;
+    }
 }
 
 .gall-thumb {
     height: 300px;
     width: 250px;
     overflow: hidden;
+    img {
+        width:100%;
+    }
 }
 
 .gall-info {
@@ -97,7 +125,10 @@ a {
 }
 
 .gall-tags {
+    a {
     color: $font-color-2;
+    text-decoration: none;
+    }
     border-top: $font-color-2 solid 1px;
     margin: 10px;
     font-size: 14px;
@@ -109,31 +140,57 @@ a {
 
 
 .profile {
-    width: 150px;
-    height: 666px;
-    border-radius: 10px;
+    width: 135px;
+    height: 600px;
+    // border-radius: 10px;
     background-color: $sub-color-3;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-
-    a{
-        // color: $font-color;
-        padding: 10px;
-    }
-    a:hover {
+    padding: 10px;
+    color: $font-color-2;
+    
+    h1 {
+        font-size: 19px;
         color: $font-color;
     }
-    p{
-        padding: 10px;
+    a{
+        // color: $font-color;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+    a:hover {
+        // color: $font-color;
+        text-decoration: underline;
+    }
+    label {
+        color: $font-color-2;
+        font-size: 13px;
+    }
+    input {
+        width: 130px;
+        border: none;
+        margin-bottom: 10px;
+    }
+    textarea {
+        resize: vertical;
+        border: none;
+        width: 130px;
+        height: 50px;;
+    }
+    button {
+        border: none;
+        // border-radius: 5px;
+        padding: 8px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        background-color: $sub-color-2;
+        color: $font-color;
+    }
+    button:hover {
+        background-color: red;
     }
 }
-
-
-// .upload-box {
-//     display: flex;
-//     flex-flow: row;
-// }
 
 .upload-info {
     display: flex;
@@ -144,48 +201,75 @@ a {
     font-size: 13px;
 }
 
-.upload {
-    max-width: 150px;
-    label {
-        color: $font-color-2;
-        font-size: 13px;
-    }
-    input {
-        padding: 5px;
-        width: 100px;
-        border: none;
-    }
-    textarea {
-        resize: vertical;
-        border: none;
-        width: 100px;
-        height: 50px;;
-        padding: 10px;
-        padding-top: 0px;
-    }
-    p {
-        color: $font-color-2;
-        margin-top: 15px;
-        margin-bottom: 4px;
-    }
-    button {
-        border: none;
-        border-radius: 5px;
-        padding: 8px;
-        margin-top: 20px;
-        background-color: $sub-color-2;
-        color: $font-color;
-    }
-    button:hover {
-        background-color: red;
-    }
-}
-
 .upload-prev {
     max-width: 100px;
 }
 
 .upload-mess {
    display: none;
+}
+
+.blog {
+    display: flex;
+    flex-flow: row;
+}
+
+.postbox {
+    background-color: $sub-color-3;
+    margin: 15px;
+    padding: 10px;
+    max-width: 700px;
+    min-width: 300px;
+    height: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    a {
+        color:$font-color;
+    }
+    a:hover {
+        color: $sub-color-1;
+    }
+}
+
+.single-post{
+    background-color: $sub-color-3;
+    padding:20px;
+    max-width: 999px;
+    margin: auto;
+    margin-top: 50px;
+    line-height: 1.6;
+    
+    .post-title {
+        margin-bottom: 80px;
+    }
+
+    .post-tags {
+        color: $font-color-2;
+    }
+}
+
+.tags {
+    margin-top: 10px;
+    color: $font-color-2;
+    font-size: 14px;
+}
+
+.detail {
+    display: flex;
+    flex-flow: row;
+    .full-info {
+        background-color: $sub-color-3;
+        padding: 10px;
+        width: 130px;
+        height: 600px;
+       h1{
+           font-size: 20px;
+           border-bottom: $font-color-2 1px solid;
+       }
+    }
+    .full-image {
+        margin: auto;
+        max-height: 800px;
+    }
 }
 

@@ -8,14 +8,14 @@ import { GALLERY_PROPS } from '../utils/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-const Gallery = (props) => {
+const Gallery = props => {
     const [state, dispatch] = useUserContext();
     const [worksState, setWorksState] = useState({ works: [] });
     // const [post, setPost] = useState({});
     const pathId = window.location.pathname.split('/')
 
     console.log('worksState', worksState)
-    console.log('props', props)
+    // console.log('props', props)
 
     useEffect(() => {
         // console.log('props', props._id)
@@ -45,23 +45,23 @@ const Gallery = (props) => {
     
     const { works } = worksState;
 
-    const handlePostDetail = (id) => {
-        const postDetail = works.filter(post => {
-            if (post._id === id) {
-                return post;
-            }
-        })
-        console.log('detail click', postDetail[0])
-        const post = postDetail[0]
-        dispatch({
-            ...state,
-            postId: post._id,
-            postImg: post.img,
-            postTitle: post.title,
-            postDesc: post.description,
-            postTags: post.tags
-        })
-    }
+    // const handlePostDetail = (id) => {
+    //     const postDetail = works.filter(post => {
+    //         if (post._id === id) {
+    //             return post;
+    //         }
+    //     })
+    //     console.log('detail click', postDetail[0])
+    //     const post = postDetail[0]
+    //     dispatch({
+    //         ...state,
+    //         postId: post._id,
+    //         postImg: post.img,
+    //         postTitle: post.title,
+    //         postDesc: post.description,
+    //         postTags: post.tags
+    //     })
+    // }
 
 
     // console.log(window.location)
@@ -94,7 +94,15 @@ const Gallery = (props) => {
                 {works.map(post => (
                     <div className="gall" key={post._id}>
                         <div className="gall-thumb">
-                            <Link to={'gallery/work/' + post._id} onClick={() => handlePostDetail(post._id)}>
+                            <Link to={{
+                                pathname: 'gallery/work/' + post._id,
+                                state: {
+                                    postId: post._id,
+                                    postImg: post.img,
+                                    postDesc: post.description,
+                                    postTags: post.tags
+                                }
+                            }}>
                                 <img src={post.img} alt={post.title} />
                             </Link>
                         </div>

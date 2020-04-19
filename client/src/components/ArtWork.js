@@ -1,44 +1,38 @@
 import React, { useEffect, useState } from 'react';
-// import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
-// import { SET_CURRENT_USER } from '../utils/actions';
-import { SET_CURRENT_USER } from '../utils/actions';
-import { Link } from 'react-router-dom';
 
+const ArtWork = props => {
 
-const ArtWork = ({ match }) => {
-
-    const [art, setArt] = useState();
-
+    // const [art, setArt] = useState();
     // const pathId = window.location.pathname.split('/')
     // console.log(pathId)
-    const { params } = match;
-    console.log('props.match', params)
+    console.log('props.match', props)
 
-    useEffect(() => {
-        API.getArt(params.username)
-            .then(works => {
-                const art = works.data.works
-                console.log('works in detail', works.data.works)
-                art.filter(post => {
-                    console.log(post._id)
-                    if (post._id === params.id) {
-                        setArt({
-                            // ...state,
-                            // type: SET_CURRENT_USER,
-                            user: post.user,
-                            postId: post._id,
-                            postImg: post.img,
-                            postTitle: post.title,
-                            postDesc: post.description,
-                            postTags: post.tags
-                        })
-                    }
-                })
-        })
-    }, [])
+    const art = props.location.state
 
-    console.log('state in detail', art)
+    console.log('state from props', art)
+    // useEffect(() => {
+    //     API.getArt(props.match.params.username)
+    //         .then(works => {
+    //             const arts = works.data.works
+    //             console.log('works in detail', works.data.works)
+    //             arts.filter(post => {
+    //                 // console.log(post._id)
+    //                 if (post._id === props.match.params.id) {
+    //                     setArt({
+    //                         user: post.user,
+    //                         postId: post._id,
+    //                         postImg: post.img,
+    //                         postTitle: post.title,
+    //                         postDesc: post.description,
+    //                         postTags: post.tags
+    //                     })
+    //                 }
+    //             })
+    //     })
+    // }, [])
+
+    // console.log('art state in detail', art)
     return (
         <div className="detail">
             {art ? (
