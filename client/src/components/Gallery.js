@@ -98,6 +98,7 @@ const Gallery = props => {
                                 pathname: 'gallery/work/' + post._id,
                                 state: {
                                     postId: post._id,
+                                    postTitle: post.title,
                                     postImg: post.img,
                                     postDesc: post.description,
                                     postTags: post.tags

@@ -254,10 +254,12 @@ button:hover {
     font-size: 14px;
 }
 
-.detail {
+.detail-box {
     display: flex;
     flex-flow: row;
     .full-info {
+        display: flex;
+        flex-flow: column;
         background-color: $sub-color-3;
         padding: 10px;
         width: 130px;
@@ -271,5 +273,6 @@ button:hover {
         margin: auto;
         max-height: 800px;
     }
+
 }
 

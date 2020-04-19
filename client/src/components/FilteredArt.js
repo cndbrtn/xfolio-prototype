@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
 
 const FilteredArt = props => {
@@ -52,21 +53,32 @@ const FilteredArt = props => {
     return (
         <div>
             <div>
-                <h1>All artworks tagged '{props.match.params.tag}'</h1>
+                <h2>Here's all artworks tagged '{props.match.params.tag}'</h2>
             </div>
-            <div>
+            <div className="gallery">
                 {posts.map(post => (
-                    <div key={post._id}>
-                        <div>
-                            <h1>{post.title}</h1>
+                    <div key={post._id} className="gall">
+                        <div className="gall-thumb">
+                        <Link to={{
+                                pathname: 'work/' + post._id,
+                                state: {
+                                    postId: post._id,
+                                    postTitle: post.title,
+                                    postImg: post.img,
+                                    postDesc: post.description,
+                                    postTags: post.tags
+                                }
+                            }}>
+                                <img src={post.img} alt={post.title} />
+                            </Link>
                         </div>
                         <div>
-                            <img src={post.img} alt={post.title} />
+                            <h2><i>{post.title}</i></h2>
                         </div>
                         <div>
                             {post.description}
                         </div>
-                        <div>
+                        <div className="gall-tags">
                             {post.tags}
                         </div>
                     </div>
