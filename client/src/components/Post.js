@@ -19,7 +19,7 @@ const Posts = () => {
         return (
             <div>
                 {journal.map(post => (
-                    <div key={post._id} className='postbox'n>
+                    <div key={post._id} className='postbox'>
                         <Link to={'blog/' + post._id}>
                         <h2>{post.title}</h2>
                         </Link>

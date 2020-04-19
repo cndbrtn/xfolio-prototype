@@ -8,6 +8,7 @@ import ArtWork from './components/ArtWork';
 import Blog from './components/Blog';
 import Gallery from './components/Gallery'
 import SinglePost from './components/SinglePost'
+import FilteredArt from './components/FilteredArt'
 import API from './utils/API';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
@@ -56,8 +57,9 @@ const App = () => {
           <Route exact path='/:username/blog'>
             <Blog loggedIn={loggedIn} username={username} _id={_id} />
           </Route>
-            <Route exact path='/:username/blog/:id' component={SinglePost} />
-          <Route exact path='/:username/gallery/work/:id' component={ArtWork} />
+          <Route exact path='/:username/blog/:id' component={SinglePost} />
+            <Route exact path='/:username/gallery/work/:id' component={ArtWork} />
+            <Route exact path='/:username/gallery/:tag' component={FilteredArt} />
           <Route exact path='/:username/gallery'>
             <Gallery loggedIn={loggedIn} username={username} />
           </Route>
