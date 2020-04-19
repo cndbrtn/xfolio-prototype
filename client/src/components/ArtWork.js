@@ -50,10 +50,10 @@ const ArtWork = ({ match }) => {
                 ))}
                     </p>
                     </div>
-                    </div>
                 <div className="full-image">
                     <img className="full-image" src={art.postImg} alt={art.postTitle} />
                 </div>
+                    </div>
         ) : (<h3>Loading...</h3>)}
         </div >
     )
