@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
 import { SET_CURRENT_USER } from '../utils/actions';
+import { Link } from 'react-router-dom';
 
 const ArtWork = ({ match }) => {
 

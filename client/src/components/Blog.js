@@ -35,7 +35,7 @@ const Blog = (props) => {
         return (
             <div className="container blog">
                 <div className="profile">
-                    <h1>Hello {props.username}!</h1>
+                    <h1>Hello {props.username}</h1>
                     <NewPost />
                     <Link to='gallery'>Gallery Page</Link>
                 </div>
