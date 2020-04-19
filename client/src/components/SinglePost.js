@@ -38,7 +38,7 @@ const SinglePost = props => {
                     <div className="post-body">
                         <p>{post.body}</p>
                     </div>
-                    <div>{post.tags.map(tag => (
+                    <div className="post-tags">{post.tags.map(tag => (
                         <span key={tag}>{tag} </span>
                     ))}
                     </div>

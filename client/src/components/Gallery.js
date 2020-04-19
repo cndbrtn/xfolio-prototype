@@ -73,7 +73,7 @@ const Gallery = (props) => {
             <div className="profile">
                 <h1>Welcome to Xfolio: {props.username}</h1>
                 <Upload />
-                <Link to={'blog'}>Go to your blog page</Link>
+                <Link to={'blog'}>Blog Page</Link>
             </div>
             <div className="gallery">
                 <h3>No posts yet!</h3>
@@ -86,9 +86,9 @@ const Gallery = (props) => {
 
           <div className="gallery-box">
                 <div className ="profile">
-                    <p>Welcome to Xfolio: {props.username}</p>
+                    <h1>Welcome to Xfolio: {props.username}</h1>
                 <Upload />
-                <Link to={'blog'}>Go to your Jounral</Link>
+                <Link to={'blog'}>Blog Page</Link>
                 </div>
                 <div className="gallery">
                 {works.map(post => (
@@ -98,14 +98,7 @@ const Gallery = (props) => {
                                 <img src={post.img} alt={post.title} />
                             </Link>
                         </div>
-                        <div>
-                            <button onClick={() => handleDelete(post._id)}>
-                                <FontAwesomeIcon icon="trash" />
-                            </button>
-                            <button>
-                                <FontAwesomeIcon icon="pencil-alt" />
-                            </button>
-                        </div>
+                       
                         <div className="gall-info">
                         <div>
                             <i>{post.title}</i>     
@@ -117,6 +110,14 @@ const Gallery = (props) => {
                                 {post.tags.map(tag => (
                                     <span key={tag}><Tags works={worksState.works} tags={tag} /> </span>
                                 ))}
+                        </div> 
+                        <div>
+                            <button className="del-butt" onClick={() => handleDelete(post._id)}>
+                                <FontAwesomeIcon icon="trash" />
+                            </button>
+                            <button className="edit-butt">
+                                <FontAwesomeIcon icon="pencil-alt" />
+                            </button>
                         </div>
                         </div>
                     </div>

@@ -12,6 +12,14 @@ a {
   width: 100%;
 }
 
+h1 {
+  text-align: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .login {
   padding-top: 280px;
   width: 300px;
@@ -71,7 +79,21 @@ a {
 
 .gall {
   padding: 15px;
+  margin: 5px;
   text-align: center;
+  background-color: #303335;
+}
+.gall .del-butt {
+  padding: 8px 20px;
+  color: #dedede;
+  background-color: #b9000f;
+  border: none;
+}
+.gall .edit-butt {
+  padding: 8px 20px;
+  color: #dedede;
+  background-color: #f84640;
+  border: none;
 }
 
 .gall-thumb {
@@ -79,16 +101,22 @@ a {
   width: 250px;
   overflow: hidden;
 }
+.gall-thumb img {
+  width: 100%;
+}
 
 .gall-info {
   padding: 15px;
 }
 
 .gall-tags {
-  color: #858585;
   border-top: #858585 solid 1px;
   margin: 10px;
   font-size: 14px;
+}
+.gall-tags a {
+  color: #858585;
+  text-decoration: none;
 }
 
 .gall-descrip {
@@ -96,16 +124,18 @@ a {
 }
 
 .profile {
-  width: 150px;
-  height: 666px;
+  width: 135px;
+  height: 600px;
   background-color: #282828;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   padding: 10px;
+  color: #858585;
 }
 .profile h1 {
-  font-size: 20px;
+  font-size: 19px;
+  color: #dedede;
 }
 .profile a {
   margin-top: 20px;
@@ -133,6 +163,7 @@ a {
   border: none;
   padding: 8px;
   margin-top: 20px;
+  margin-bottom: 10px;
   background-color: #b9000f;
   color: #dedede;
 }
@@ -166,13 +197,57 @@ a {
   background-color: #282828;
   margin: 15px;
   padding: 10px;
-  max-width: 600px;
+  max-width: 700px;
+  min-width: 300px;
+  height: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.postbox a {
+  color: #dedede;
+}
+.postbox a:hover {
+  color: #cfff1f;
+}
+
+.single-post {
+  background-color: #282828;
+  padding: 20px;
+  max-width: 999px;
+  margin: auto;
+  margin-top: 50px;
+  line-height: 1.6;
+}
+.single-post .post-title {
+  margin-bottom: 80px;
+}
+.single-post .post-tags {
+  color: #858585;
 }
 
 .tags {
   margin-top: 10px;
   color: #858585;
   font-size: 14px;
+}
+
+.detail {
+  display: flex;
+  flex-flow: row;
+}
+.detail .full-info {
+  background-color: #282828;
+  padding: 10px;
+  width: 130px;
+  height: 600px;
+}
+.detail .full-info h1 {
+  font-size: 20px;
+  border-bottom: #858585 1px solid;
+}
+.detail .full-image {
+  margin: auto;
+  max-height: 800px;
 }
 
 /*# sourceMappingURL=style.css.map */

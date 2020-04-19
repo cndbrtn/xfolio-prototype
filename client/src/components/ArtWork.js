@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 // import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
 // import { SET_CURRENT_USER } from '../utils/actions';
+import { SET_CURRENT_USER } from '../utils/actions';
+import { Link } from 'react-router-dom';
+
 
 const ArtWork = ({ match }) => {
 
@@ -37,22 +40,22 @@ const ArtWork = ({ match }) => {
 
     console.log('state in detail', art)
     return (
-        <div className = "detail" >
+        <div className="detail">
             {art ? (
-                <div>
-                <div>{art.postTitle}</div>
-                <div>
-                    <img src={art.postImg} alt={art.postTitle} />
-                </div>
+                <div className="full-info">
+                <div><h1>{art.postTitle}</h1></div>
                 <div>{art.postDesc}</div>
-                <div>{art.postTags.map(tag => (
+                <div className="tags"><p>Tagged: {art.postTags.map(tag => (
                     <span key={tag}>{tag} </span>
                 ))}
+                    </p>
                     </div>
                     </div>
+                <div className="full-image">
+                    <img className="full-image" src={art.postImg} alt={art.postTitle} />
+                </div>
         ) : (<h3>Loading...</h3>)}
         </div >
-        
     )
 }
 
