@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
-import Upload from './Upload'
+import Upload from './Upload';
+import Tags from './Tags';
 import { GALLERY_PROPS } from '../utils/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -13,7 +14,7 @@ const Gallery = (props) => {
     // const [post, setPost] = useState({});
     const pathId = window.location.pathname.split('/')
 
-    console.log('state', state)
+    console.log('worksState', worksState)
     console.log('props', props)
 
     useEffect(() => {
@@ -61,6 +62,7 @@ const Gallery = (props) => {
             postTags: post.tags
         })
     }
+
 
     // console.log(window.location)
     
@@ -111,10 +113,10 @@ const Gallery = (props) => {
                         <div className="gall-descrip">
                             {post.description}
                         </div>
-                        <div className="gall-tags">
+                            <div className="gall-tags">
                                 {post.tags.map(tag => (
-                                    <Link to={'#'} key={tag}>{tag} </Link>
-                            ))}
+                                    <span key={tag}><Tags works={worksState.works} tags={tag} /> </span>
+                                ))}
                         </div>
                         </div>
                     </div>

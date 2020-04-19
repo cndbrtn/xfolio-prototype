@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { useUserContext } from '../utils/GlobalState';
+import React, { useEffect, useState } from 'react';
+// import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
-import { SET_CURRENT_USER } from '../utils/actions';
+// import { SET_CURRENT_USER } from '../utils/actions';
 
 const ArtWork = ({ match }) => {
 
-    const [state, dispatch] = useUserContext();
+    const [art, setArt] = useState();
 
-    const pathId = window.location.pathname.split('/')
-    console.log(pathId)
+    // const pathId = window.location.pathname.split('/')
+    // console.log(pathId)
     const { params } = match;
     console.log('props.match', params)
 
@@ -20,9 +20,10 @@ const ArtWork = ({ match }) => {
                 art.filter(post => {
                     console.log(post._id)
                     if (post._id === params.id) {
-                        dispatch({
-                            ...state,
-                            type: SET_CURRENT_USER,
+                        setArt({
+                            // ...state,
+                            // type: SET_CURRENT_USER,
+                            user: post.user,
                             postId: post._id,
                             postImg: post.img,
                             postTitle: post.title,
@@ -34,19 +35,24 @@ const ArtWork = ({ match }) => {
         })
     }, [])
 
-    console.log('state in detail', state)
+    console.log('state in detail', art)
     return (
-        <div className="detail">
-            <div>{state.postTitle}</div>
-            <div>
-                <img src={state.postImg} alt={state.postTitle} />
-            </div>
-            <div>{state.postDesc}</div>
-            <div>{state.postTags.map(tag => (
-                <span key={tag}>{tag} </span>
-            ))}
-            </div>
-        </div>
+        <div className = "detail" >
+            {art ? (
+                <div>
+                <div>{art.postTitle}</div>
+                <div>
+                    <img src={art.postImg} alt={art.postTitle} />
+                </div>
+                <div>{art.postDesc}</div>
+                <div>{art.postTags.map(tag => (
+                    <span key={tag}>{tag} </span>
+                ))}
+                    </div>
+                    </div>
+        ) : (<h3>Loading...</h3>)}
+        </div >
+        
     )
 }
 
