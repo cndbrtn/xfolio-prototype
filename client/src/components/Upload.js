@@ -10,6 +10,7 @@ const Upload = () => {
     const [fileState, setFileState] = useState({
         message: '',
         file: '',
+        fileUrl: '',
         url: ''
     });
 
@@ -39,15 +40,19 @@ const Upload = () => {
         // console.log(files);
         if (files && files.length > 0) {
             const file = files[0];
-            setFileState({ ...fileState, file });
-            const reader = new FileReader();
-            const { current } = uploadedImg;
-            current.file = file;
-            reader.onload = e => {
-                // console.log(e.target.result)
-                current.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+            setFileState({
+                ...fileState,
+                file,
+                fileUrl: URL.createObjectURL(e.target.files[0])
+            });
+            // const reader = new FileReader();
+            // // const { current } = uploadedImg;
+            // uploadedImg.current.file = file;
+            // reader.onload = e => {
+            //     // console.log(e.target.result)
+            //     uploadedImg.current.src = e.target.result;
+            // };
+            // reader.readAsDataURL(file);
         };
     };
 
@@ -146,6 +151,20 @@ const Upload = () => {
             tags: prettyTags
         })
     }
+
+    // const ImgRender = () => {
+    //     if (!uploadedImg.current) {
+    //         return (
+    //             <h4>Preview...</h4>
+    //         )
+    //     } else {
+    //         return (
+    //             <div className="upload-prev">
+    //                 <img ref={uploadedImg} alt="preview" width="140px" />
+    //             </div>
+    //         )
+    //     }
+    // }
     
     return (
         <div>
@@ -172,9 +191,14 @@ const Upload = () => {
                 <div>
                     <button onClick={uploadFile}>Submit</button>
                 </div>
-                    <div className="upload-prev">
-                        <img ref={uploadedImg} alt="preview" width="140px" />
-                    </div>
+                {fileState.fileUrl ?
+                    (<div className="upload-prev">
+                        <img src={fileState.fileUrl} alt="preview" width="140px" />
+                    </div>):
+                    (<h4>Preview...</h4>)}
+                
+                    
+                    
             </form>
         </div>
     )
