@@ -122,9 +122,9 @@ const Gallery = props => {
                         <div className="gall-title">
                             {post.title}     
                         </div>
-                        <div className="gall-descrip">
+                        {/* <div className="gall-descrip">
                             {post.description}
-                        </div>
+                        </div> */}
                             <div className="gall-tags">
                                 {post.tags.map(tag => (
                                     <span key={tag}><Tags works={worksState.works} tags={tag} /> </span>
