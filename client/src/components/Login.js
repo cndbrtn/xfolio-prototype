@@ -124,7 +124,7 @@ const Login = props => {
                             </div>) :
                             (<form>
                                 <div>
-                                    <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
+                                    <input type="text" name="username" placeholder="username" onChange={handleChange} ref={nameRef} />
                                 </div>
                                 <div>
                                     <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />

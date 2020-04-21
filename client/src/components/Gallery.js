@@ -96,18 +96,20 @@ const Gallery = props => {
                         </div>)}
 
                     <Link to={'blog'}>Blog Page</Link>
+                    <div>
                     <Link to={{
                         pathname: `gallery/${folioTag}`,
                         state: { works: works }
                     }}>Portfolio</Link>
+                    </div>
+                    <div>
+                        <Link to={''}>Home</Link>
+                    </div>
                     {props.loggedIn ?
                         (<p><Link to="#" onClick={handleLogOut}>Log out</Link></p>) :
                         (<div><p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p></div>)
                     }
-                    <div>
-                        <Link to={''}>Home</Link>
-                    </div>
                 </div>
                 <div className="gallery">
                 {works.map(post => (

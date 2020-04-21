@@ -60,7 +60,7 @@ const NewPost = () => {
     console.log('postState', postState);
 
     return (
-        <div className="postbox">
+        <div className="blog-upload">
             <h2>Make a post:</h2>
             <form onChange={handleChange}>
                 <div>

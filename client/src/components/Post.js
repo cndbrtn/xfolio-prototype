@@ -45,17 +45,21 @@ const Posts = props => {
                         <div className="tags">
                             {post.tags}
                         </div>
+                        {props.loggedIn ? (
                         <div>
-                            <button onClick={() => handleDelete(post._id)}><FontAwesomeIcon icon="trash" /></button>
-                            <Link to={{
-                                pathname: `blog/update/${post._id}`,
-                                state: {
-                                    ...post,
-                                    user: props._id
-                                }
-                            }}><FontAwesomeIcon icon="pencil-alt" /></Link>
+                            <button className="del-butt" onClick={() => handleDelete(post._id)}><FontAwesomeIcon icon="trash" /></button>
+                            <button className="edit-butt">
+                                <Link to={{
+                                    pathname: `blog/update/${post._id}`,
+                                    state: {
+                                        ...post,
+                                        user: props._id
+                                    }
+                                }}><FontAwesomeIcon icon="pencil-alt" /></Link>
+                                </button>
+                                </div>) :
+                    (<span></span>)}
                         </div>
-                    </div>
                 ))}
             </div>
         )

@@ -38,17 +38,22 @@ const Blog = (props) => {
         
         return (
             <div className="blog">
-                <div className="profile">
+                <div className="blog-upload">
                     {props.loggedIn ?
                         (<div>
-                            <h1>Hello {props.username}</h1>
+                            <h1><span>H</span>ello {props.username}</h1>
+                            <NewPost />
                         </div>) :
                         (<div>
                             <h2>{url[3]}'s blog</h2>
                             
                         </div>)
                     }
-                    <Link to='gallery'>Go To Gallery</Link>
+                    <div>
+                    <Link to='gallery'>Go To Gallery</Link> </div>
+                    <div>
+                        <Link to={''}>Home</Link>
+                    </div>
                     {props.loggedIn ?
                         (<div>
                             <p><Link tp="#" onClick={handleLogOut}>Log out</Link></p>
@@ -58,12 +63,8 @@ const Blog = (props) => {
                             <p><Link to='/signup'>Sign up</Link></p>
                         </div>)
                     }
-                    <div>
-                        <Link to={''}>Home</Link>
-                    </div>
                 </div>
                 <div className="posts">
-                    <NewPost />
                     <Posts loggedIn={props.loggedIn} _id={props._id} />
                 </div>
             </div>
