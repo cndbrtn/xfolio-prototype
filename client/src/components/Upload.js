@@ -32,6 +32,7 @@ const Upload = () => {
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
+    const protocol = window.location.protocol;
     // console.log('host url', host)
 
     const getImage = e => {
@@ -45,14 +46,6 @@ const Upload = () => {
                 file,
                 fileUrl: URL.createObjectURL(e.target.files[0])
             });
-            // const reader = new FileReader();
-            // // const { current } = uploadedImg;
-            // uploadedImg.current.file = file;
-            // reader.onload = e => {
-            //     // console.log(e.target.result)
-            //     uploadedImg.current.src = e.target.result;
-            // };
-            // reader.readAsDataURL(file);
         };
     };
 
@@ -65,7 +58,7 @@ const Upload = () => {
         // console.log('file.type', file.type);
         const contentType = file.type;
 
-        const generatePutUrl = `http://${host}/generate-put-url`;
+        const generatePutUrl = `${protocol}//${host}/generate-put-url`;
         // console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
@@ -89,7 +82,7 @@ const Upload = () => {
                         setFileState({ ...fileState, message: 'Upload Successful' });
 
                         const params = res.config.params;
-                        const generateGetUrl = `http://${host}/generate-put-url`
+                        const generateGetUrl = `${protocol}//${host}/generate-put-url`
                         const options = {params};
 
                         axios.get(generateGetUrl, options)
@@ -151,20 +144,6 @@ const Upload = () => {
             tags: prettyTags
         })
     }
-
-    // const ImgRender = () => {
-    //     if (!uploadedImg.current) {
-    //         return (
-    //             <h4>Preview...</h4>
-    //         )
-    //     } else {
-    //         return (
-    //             <div className="upload-prev">
-    //                 <img ref={uploadedImg} alt="preview" width="140px" />
-    //             </div>
-    //         )
-    //     }
-    // }
     
     return (
         <div>
