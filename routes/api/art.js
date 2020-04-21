@@ -32,6 +32,14 @@ router.get('/:username', (req, res) => {
     })
 })
 
+router.put('/:id', ({ params, user, body }, res) => {
+    console.log('req.body in update art ap', body)
+    Works.findByIdAndUpdate(params.id, { $set: { ...body }})
+        .then(res => {
+            console.log('user response update in api', res)
+        })
+})
+
 router.delete('/:id', (req, res) => {
     const { params, user } = req;
     // console.log('req', )
