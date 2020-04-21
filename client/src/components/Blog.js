@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useUserContext } from '../utils/GlobalState';
-import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Posts from './Post';
 import NewPost from './NewPost';
 import { GALLERY_PROPS } from '../utils/actions';
@@ -34,11 +33,12 @@ const Blog = (props) => {
     
     const handleLogOut = () => {
         API.logout();
+        window.location.assign('../../');
     }
         
         return (
-            <div className="container blog">
-                <div className="blog-upload">
+            <div className="blog">
+                <div className="profile">
                     {props.loggedIn ?
                         (<div>
                             <h1>Hello {props.username}</h1>
@@ -51,7 +51,7 @@ const Blog = (props) => {
                     <Link to='gallery'>Go To Gallery</Link>
                     {props.loggedIn ?
                         (<div>
-                            <p><Link to={''} onClick={handleLogOut}>Log out</Link></p>
+                            <p><a onClick={handleLogOut}>Log out</a></p>
                         </div>) :
                         (<div>
                             <p><Link to=''>Sign in</Link></p>

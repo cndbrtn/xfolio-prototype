@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
-import API from '../utils/API'
 
-const RecentArt = (props) => {
+const RecentArt = props => {
 
     const mapTags = props.works.works.map(post => {
         return post.tags
@@ -78,11 +77,6 @@ const RecentArt = (props) => {
                 ))}
             </div>
         )
-    // }
-
-    // return (
-    //     <h3>hey bitch</h3>
-    // )
 }
 
 export default RecentArt;

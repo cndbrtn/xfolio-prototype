@@ -47,6 +47,7 @@ const Gallery = props => {
 
     const handleLogOut = () => {
         API.logout();
+        window.location.assign('../../');
     }
 
     const folioTag = 'portfolio';
@@ -100,7 +101,7 @@ const Gallery = props => {
                         state: { works: works }
                     }}>Portfolio</Link>
                     {props.loggedIn ?
-                        (<p><Link to='' onClick={handleLogOut}>Log out</Link></p>) :
+                        (<p><a onClick={handleLogOut}>Log out</a></p>) :
                         (<div><p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p></div>)
                     }

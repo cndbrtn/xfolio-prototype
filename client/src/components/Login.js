@@ -40,7 +40,7 @@ const Login = props => {
                 works: works.data
             })
         })
-    }, [])
+    }, [props.loggedIn])
 
     console.log('art', art)
 
