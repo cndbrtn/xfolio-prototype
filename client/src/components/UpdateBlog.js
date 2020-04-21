@@ -27,11 +27,11 @@ const UpdateBlog = props => {
 
     console.log('state in updateblog', post)
     return (
-        <div>
+        <div className="dark">
             <div>
-                <h1>update ya blog!</h1>
+                <h1>update this post?</h1>
             </div>
-            <div>
+            <div className="blog-upload">
                 <form onChange={handleChange}>
                     <div>
                         <input type="text" defaultValue={props.location.state.title} ref={titleRef} />

@@ -49,15 +49,12 @@ const RecentArt = props => {
         return (
             <div className="recent-art">
                 <h1>Recently uploaded art:</h1>
+                <div className="recent-box">
                 {props.works.works.map(post => (
                     <div className="post" key={post._id}>
-                        
-                        <div>
-                            <h2>{post.title}</h2>
-                        </div>
-                        <div>
+                        <div className="gall-thumb">
                             <Link to={{
-                                pathname: `${post.user.username}/gallery/work/${post._id}`,
+                                // pathname: `${post.user.username}/gallery/work/${post._id}`,
                                 state: {
                                     postId: post._id,
                                     postTitle: post.title,
@@ -67,14 +64,19 @@ const RecentArt = props => {
                                 }
                             }}><img src={post.img} alt={post._id} /></Link>
                         </div>
-                        <div>
+                                    
+                                    <div>
+                                        <h2>{post.title}</h2>
+                                    </div>
+                        {/* <div>
                             <p>{post.description}</p>
                         </div>
                         <div>
                             <p>{post.tags}</p>
-                        </div>
+                        </div> */}
                     </div>
                 ))}
+                </div>
             </div>
         )
 }
