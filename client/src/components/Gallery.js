@@ -597,13 +597,13 @@ const Gallery = props => {
                         <p><Link to='' onClick={handleLogOut}>Log out</Link></p>
                     </div>):
                     (<div>
-                        <p><Link to=''>Sign in</Link></p>
+                        <p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p>
                     </div>)
                     }
-                    <div>
+                    {/* <div>
                         <Link onClick={() => window.history.back()}>Go back</Link>
-                    </div>
+                    </div> */}
             </div>
             <div className="gallery">
                 <h3>No posts yet!</h3>
@@ -625,11 +625,12 @@ const Gallery = props => {
                     <Link to={'blog'}>Blog Page</Link>
                     {props.loggedIn ?
                         (<p><Link to='' onClick={handleLogOut}>Log out</Link></p>) :
-                        (<p><Link to=''>Log in</Link></p>)
+                        (<div><p><Link to='/login'>Sign in</Link></p>
+                        <p><Link to='/signup'>Sign up</Link></p></div>)
                     }
-                    <div>
+                    {/* <div>
                         <Link onClick={() => window.history.back()}>Go back</Link>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="gallery">
                 {works.map(post => (

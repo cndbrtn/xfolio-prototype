@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import API from '../utils/API';
+import { Link } from 'react-router-dom';
 
 const ArtWork = props => {
     // console.log('props.match', props)
@@ -21,6 +22,9 @@ const ArtWork = props => {
                     ))}
                         </p>
                         </div>
+                        <div>
+                        <Link onClick={() => window.history.back()}>Go back</Link>
+                    </div>
                     </div>
                 <div className="full-image">
                     <img className="full-image" src={art.postImg} alt={art.postTitle} />
