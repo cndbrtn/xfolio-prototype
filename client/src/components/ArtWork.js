@@ -2,35 +2,11 @@ import React, { useEffect, useState } from 'react';
 import API from '../utils/API';
 
 const ArtWork = props => {
-
-    // const [art, setArt] = useState();
-    // const pathId = window.location.pathname.split('/')
-    // console.log(pathId)
-    console.log('props.match', props)
+    // console.log('props.match', props)
 
     const art = props.location.state
 
-    console.log('state from props', art)
-    // useEffect(() => {
-    //     API.getArt(props.match.params.username)
-    //         .then(works => {
-    //             const arts = works.data.works
-    //             console.log('works in detail', works.data.works)
-    //             arts.filter(post => {
-    //                 // console.log(post._id)
-    //                 if (post._id === props.match.params.id) {
-    //                     setArt({
-    //                         user: post.user,
-    //                         postId: post._id,
-    //                         postImg: post.img,
-    //                         postTitle: post.title,
-    //                         postDesc: post.description,
-    //                         postTags: post.tags
-    //                     })
-    //                 }
-    //             })
-    //     })
-    // }, [])
+    // console.log('state from props', art)
 
     // console.log('art state in detail', art)
     return (

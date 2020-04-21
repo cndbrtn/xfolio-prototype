@@ -1,5 +1,7 @@
 # xFolio - Social Sharing for Artists and Creatives
 
+Deployed App: [Deployed on Heroku](https://xfolio-beta.herokuapp.com)
+
 ### Why?
 
 There is a distinct lack of space for artists and creatives to share their work, be it totally sfw, dark, disturbing, or erotic. As artists ourselves we feel that lack deeply. While there are sites where artists can share their work and make connections they are all ages platforms with many restrictions on content. Which makes them ill suited for the large and prolific world of art and content for adults.
