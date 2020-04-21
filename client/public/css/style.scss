@@ -1,4 +1,5 @@
 $font-stack:    Arial, sans-serif;
+$font-stack-2: 'Abel', sans-serif;
 $main-color: rgb(69, 69, 69);
 $sub-color-1: rgb(207, 255, 31);
 $sub-color-2: rgb(185, 0, 15);
@@ -24,14 +25,28 @@ a {
 
 h1 {
     text-align: center;
+    font-family: $font-stack-2;
+}
+
+h2 {
+    font-family: $font-stack-2;
+}
+
+button {
+    font-family: $font-stack-2;
+    font-size: 20px;
 }
 
 button:hover {
     cursor: pointer;
 }
 
+span {
+    color: $sub-color-1;
+}
+
 .login {
-    padding-top: 280px;
+    padding-top: 250px;
     width: 300px;
     margin: auto;
     z-index: 2;
@@ -102,12 +117,14 @@ button:hover {
         color: $font-color;
         background-color: $sub-color-2;
         border: none;
+        font-size: 13px;
     }
     .edit-butt {
         padding:8px 20px;
         color: $font-color;
         background-color: $sub-color-4;
         border: none;
+        font-size: 13px;
     }
 }
 
@@ -116,12 +133,22 @@ button:hover {
     width: 250px;
     overflow: hidden;
     img {
-        width:100%;
+        width: 100%;
     }
 }
 
 .gall-info {
     padding: 15px;
+
+    h1{
+        font-family: $font-stack-2;
+    }
+}
+
+.gall-title {
+    font-family: $font-stack-2;
+    font-size: 22px;
+
 }
 
 .gall-tags {
@@ -151,7 +178,7 @@ button:hover {
     color: $font-color-2;
     
     h1 {
-        font-size: 19px;
+        font-size: 22px;
         color: $font-color;
     }
     a{
@@ -254,10 +281,12 @@ button:hover {
     font-size: 14px;
 }
 
-.detail {
+.detail-box {
     display: flex;
     flex-flow: row;
     .full-info {
+        display: flex;
+        flex-flow: column;
         background-color: $sub-color-3;
         padding: 10px;
         width: 130px;
@@ -271,5 +300,6 @@ button:hover {
         margin: auto;
         max-height: 800px;
     }
+
 }
 

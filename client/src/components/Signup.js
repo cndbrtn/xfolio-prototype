@@ -87,8 +87,8 @@ const Signup = () => {
             <div className="container login signup">
                 <div>
                     <form>
+                        <h1>Welcome to <span>X</span>folio!</h1>
                         <div>
-                            <p>Sign up:</p>
                             <input type="text" name="email" placeholder="email" onChange={handleChange} ref={emailRef} />
                     </div>
                         <div>
@@ -97,13 +97,13 @@ const Signup = () => {
                     <div>
                         <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />
                         </div>
+                <Link to="/Login"><p>Already have an account? Log in here</p></Link>
                         <div>
                             <button name="signup" onClick={handleSignup}>sign up</button>
                             <br />
                         </div>
                     </form>
                 </div>
-                <Link to="/Login"><p>Already have an account? Log in here</p></Link>
             </div>
           <Granim isPausedWhenNotInView ="true" image= {granimImg} states = {granimColor} id="canvas-image" />
        </div>

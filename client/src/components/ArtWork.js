@@ -12,18 +12,22 @@ const ArtWork = props => {
     return (
         <div className="detail">
             {art ? (
-                <div className="full-info">
-                <div><h1>{art.postTitle}</h1></div>
-                <div>{art.postDesc}</div>
-                <div className="tags"><p>Tagged: {art.postTags.map(tag => (
-                    <span key={tag}>{tag} </span>
-                ))}
-                    </p>
+                <div className="detail-box">
+                    <div className="full-info">
+                    <div><h1>{art.postTitle}</h1></div>
+                    <div>{art.postDesc}</div>
+                    <div className="tags"><p>Tagged: {art.postTags.map(tag => (
+                        <span key={tag}>{tag} </span>
+                    ))}
+                        </p>
+                        </div>
                     </div>
                 <div className="full-image">
                     <img className="full-image" src={art.postImg} alt={art.postTitle} />
                 </div>
-                    </div>
+                </div>
+                    
+                    
         ) : (<h3>Loading...</h3>)}
         </div >
     )
