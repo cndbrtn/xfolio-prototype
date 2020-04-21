@@ -27,6 +27,9 @@ export default {
     status: function () {
         return axios.get('/api/user');
     },
+    recentArt: () => {
+        return axios.get('/api/artwork');
+    },
     postArt: (newArt) => {
         return axios.post('/api/artwork', newArt);
     },
@@ -47,8 +50,10 @@ export default {
     getJournal: (username) => {
         return axios.get('/api/blog/' + username)
     },
-    updateJournal: (id) => {
-        return axios.put('/api/blog/' + id)
+    updateJournal: (id, update) => {
+        return axios.put('/api/blog/' + id, {
+            ...update
+        })
     },
     deleteJournal: (id) => {
         return axios.delete('/api/blog/' + id)

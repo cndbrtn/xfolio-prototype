@@ -115,11 +115,14 @@ const Upload = () => {
         };
 
         API.postArt(newArt);
+        setFileState({
+            fileUrl: ''
+        })
         dispatch({
             ...state,
             uploaded: true
         })
-        uploadedImg.current.src = '';
+        // uploadedImg.current.src = '';
         titleRef.current.value = '';
         bodyRef.current.value = '';
         tagsRef.current.value = '';

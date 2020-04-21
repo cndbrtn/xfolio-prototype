@@ -41,8 +41,7 @@ const Blog = (props) => {
                 <div className="blog-upload">
                     {props.loggedIn ?
                         (<div>
-                            <h1><span>H</span>ello: {props.username}</h1>
-                            <NewPost />
+                            <h1>Hello {props.username}</h1>
                         </div>) :
                         (<div>
                             <h2>Now viewing {url[3]}'s blog</h2>
@@ -59,12 +58,13 @@ const Blog = (props) => {
                             <p><Link to='/signup'>Sign up</Link></p>
                         </div>)
                     }
-                    {/* <div>
-                        <Link onClick={() => window.history.back()}>Go back</Link>
-                    </div> */}
+                    <div>
+                        <Link to={''}>Home</Link>
+                    </div>
                 </div>
                 <div className="posts">
-                    <Posts />
+                    <NewPost />
+                    <Posts loggedIn={props.loggedIn} _id={props._id} />
                 </div>
             </div>
     )

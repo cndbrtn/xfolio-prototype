@@ -43,10 +43,13 @@ const Gallery = props => {
     }
     
     const { works } = worksState;
+    console.log('works in gallery', works)
 
     const handleLogOut = () => {
         API.logout();
     }
+
+    const folioTag = 'portfolio';
 
     if (!works || !works.length) {
         return (
@@ -69,9 +72,9 @@ const Gallery = props => {
                         <p><Link to='/signup'>Sign up</Link></p>
                     </div>)
                     }
-                    {/* <div>
-                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} >Go back</Link>
-                    </div> */}
+                    <div>
+                        <Link to={''}>Home</Link>
+                    </div>
             </div>
             <div className="gallery">
                 <h3>No posts yet!</h3>
@@ -90,15 +93,20 @@ const Gallery = props => {
                         (<div>
                             <h2>Now viewing {pathId[1]}'s gallery</h2>
                         </div>)}
-                    <Link to={'blog'}>Go To Blog</Link>
+
+                    <Link to={'blog'}>Blog Page</Link>
+                    <Link to={{
+                        pathname: `gallery/${folioTag}`,
+                        state: { works: works }
+                    }}>Portfolio</Link>
                     {props.loggedIn ?
                         (<p><Link to='' onClick={handleLogOut}>Log out</Link></p>) :
                         (<div><p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p></div>)
                     }
-                    {/* <div>
-                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} >Go back</Link>
-                    </div> */}
+                    <div>
+                        <Link to={''}>Home</Link>
+                    </div>
                 </div>
                 <div className="gallery">
                 {works.map(post => (
@@ -127,7 +135,7 @@ const Gallery = props => {
                         </div> */}
                             <div className="gall-tags">
                                 {post.tags.map(tag => (
-                                    <span key={tag}><Tags works={worksState.works} tags={tag} /> </span>
+                                    <span key={tag}><Tags works={works} tags={tag} /> </span>
                                 ))}
                         </div> 
                             {props.loggedIn ? (

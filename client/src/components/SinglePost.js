@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
 
 const SinglePost = props => {
+    const post = props.location.state
 
-    const [post, setPost] = useState();
-
-    console.log(props.match)
-
-    useEffect(() => {
-        API.getJournal(props.match.params.username)
-            .then(user => {
-                console.log('user res', user.data.journal)
-                const journal = user.data.journal.filter(post => {
-                    if (post._id === props.match.params.id)
-                        return post
-                })
-                console.log('filtered journal', journal[0])
-                setPost({
-                    _id: journal[0]._id,
-                    title: journal[0].title,
-                    body: journal[0].body,
-                    tags: journal[0].tags
-                })
-        })
-    }, [])
-
-    console.log('poststate', post)
-
+    // console.log('post props in SinglePost', post)
 
     return (
         <div className="single-post">
+            <Link to={{pathname: '../blog'}}>Back to blog</Link>
             {post ? (
                 <div>
                     <div className="post-title">
