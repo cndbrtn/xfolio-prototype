@@ -41,7 +41,7 @@ const Blog = (props) => {
                 <div className="blog-upload">
                     {props.loggedIn ?
                         (<div>
-                            <h1>Hello {props.username}</h1>
+                            <h1><span>H</span>ello: {props.username}</h1>
                             <NewPost />
                         </div>) :
                         (<div>
@@ -49,7 +49,7 @@ const Blog = (props) => {
                             
                         </div>)
                     }
-                    <Link to='gallery'>Gallery Page</Link>
+                    <Link to='gallery'>Go To Gallery</Link>
                     {props.loggedIn ?
                         (<div>
                             <p><Link to={''} onClick={handleLogOut}>Log out</Link></p>
