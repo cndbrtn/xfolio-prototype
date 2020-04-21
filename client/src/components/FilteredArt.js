@@ -34,7 +34,7 @@ const FilteredArt = props => {
 
     if (!posts.length) { 
         return (
-            <div className="gallery-box">
+            <div className="detail-box">
             <div className="profile">
                 <h2>Here's all artworks tagged '{props.match.params.tag}'</h2>
                 <div>

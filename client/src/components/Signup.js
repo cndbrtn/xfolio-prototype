@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 
 const granimColor = ({   "default-state": {
     gradients: [
-        ['#e5ff00', '#485563'],
-        ['#FF6B6B', '#556270'],
-        ['#80d3fe', '#7ea0c4'],
-        ['#f0ab51', '#eceba3']
+        ['#e5ff00', '#ff5100'],
+        ['#00ffff', '#556270'],
+        ['#ff0062', '#7ea0c4'],
+        ['#6200ff', '#fd0000']
     ],
     transitionSpeed: 7000}});
     
@@ -92,7 +92,7 @@ const Signup = () => {
                             <input type="text" name="email" placeholder="email" onChange={handleChange} ref={emailRef} />
                     </div>
                         <div>
-                            <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
+                            <input type="text" name="username" placeholder="username" onChange={handleChange} ref={nameRef} />
                     </div>
                     <div>
                         <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />

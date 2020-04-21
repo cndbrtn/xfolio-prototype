@@ -55,20 +55,20 @@ const Gallery = props => {
         return (
             <div className="gallery-box">
             <div className="profile">
-                <h1>Welcome to Xfolio: {props.username}</h1>
+                <h1>Welcome to <span>X</span>folio: {props.username}</h1>
             {props.loggedIn ?
                 (<Upload />) :
                 (<div>
                     <h2>{pathId[1]}'s gallery</h2>
                 </div>)
             }
-            <Link to={'blog'}>Blog Page</Link>
+            <Link to={'blog'}>Go To Blog</Link>
                 {props.loggedIn ?
                     (<div>
                         <p><Link to='' onClick={handleLogOut}>Log out</Link></p>
                     </div>):
                     (<div>
-                        <p><Link to=''>Sign in</Link></p>
+                        <p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p>
                     </div>)
                     }
@@ -87,12 +87,13 @@ const Gallery = props => {
           <div className="gallery-box">
                 <div className ="profile">
 
-                    <h1>Welcome to Xfolio: {props.username}</h1>
+                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                     {props.loggedIn ?
                         (<Upload />) :
                         (<div>
-                            <h2>{pathId[1]}'s gallery</h2>
+                            <h2>Now viewing {pathId[1]}'s gallery</h2>
                         </div>)}
+
                     <Link to={'blog'}>Blog Page</Link>
                     <Link to={{
                         pathname: `gallery/${folioTag}`,
@@ -100,7 +101,8 @@ const Gallery = props => {
                     }}>Portfolio</Link>
                     {props.loggedIn ?
                         (<p><Link to='' onClick={handleLogOut}>Log out</Link></p>) :
-                        (<p><Link to=''>Log in</Link></p>)
+                        (<div><p><Link to='/login'>Sign in</Link></p>
+                        <p><Link to='/signup'>Sign up</Link></p></div>)
                     }
                     <div>
                         <Link to={''}>Home</Link>
@@ -128,9 +130,9 @@ const Gallery = props => {
                         <div className="gall-title">
                             {post.title}     
                         </div>
-                        <div className="gall-descrip">
+                        {/* <div className="gall-descrip">
                             {post.description}
-                        </div>
+                        </div> */}
                             <div className="gall-tags">
                                 {post.tags.map(tag => (
                                     <span key={tag}><Tags works={works} tags={tag} /> </span>
@@ -141,6 +143,7 @@ const Gallery = props => {
                                 <button className="del-butt" onClick={() => handleDelete(post._id)}>
                                     <FontAwesomeIcon icon="trash" />
                                     </button>
+                                    <button className="edit-butt">
                                     <Link to={{
                                         pathname: 'gallery/update/' + post._id,
                                         state: {
@@ -151,6 +154,7 @@ const Gallery = props => {
                                         <FontAwesomeIcon icon="pencil-alt" />
                                     {/* </i> */}
                                 </Link>
+                                    </button>
                                 </div>) :
                                 (<span></span>)}
                         

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import API from '../utils/API';
+import { Link } from 'react-router-dom';
 const ArtWork = props => {
     // console.log('props.match', props)
 
@@ -20,7 +21,6 @@ const ArtWork = props => {
                         ))}
                         </p>
                         </div>
-                        
                         <p><Link to={'../../../' + props.match.params.username + '/gallery'}>Back to gallery</Link></p>
                         <p><Link to={''}>Home</Link></p>
                     </div>

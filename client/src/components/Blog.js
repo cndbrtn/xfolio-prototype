@@ -38,18 +38,17 @@ const Blog = (props) => {
         
         return (
             <div className="container blog">
-                <div className="profile">
+                <div className="blog-upload">
                     {props.loggedIn ?
                         (<div>
                             <h1>Hello {props.username}</h1>
-                            
                         </div>) :
                         (<div>
-                            <h2>{url[3]}'s blog</h2>
+                            <h2>Now viewing {url[3]}'s blog</h2>
                             
                         </div>)
                     }
-                    <Link to='gallery'>Gallery Page</Link>
+                    <Link to='gallery'>Go To Gallery</Link>
                     {props.loggedIn ?
                         (<div>
                             <p><Link to={''} onClick={handleLogOut}>Log out</Link></p>

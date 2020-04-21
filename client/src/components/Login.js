@@ -8,10 +8,10 @@ import Granim from 'react-granim';
 // initialize granim
 const granimColor = ({   "default-state": {
     gradients: [
-        ['#29323c', '#485563'],
-        ['#FF6B6B', '#556270'],
-        ['#80d3fe', '#7ea0c4'],
-        ['#f0ab51', '#eceba3']
+        ['#00a84c', '#b3ff00'],
+        ['#00ffff', '#556270'],
+        ['#ff0062', '#7ea0c4'],
+        ['#6200ff', '#fd0000']
     ],
     transitionSpeed: 7000}});
 
