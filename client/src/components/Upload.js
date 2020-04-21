@@ -20,21 +20,16 @@ const Upload = () => {
         tags: []
     });
     
-    // console.log('artState', artState)
-
     const imgRef = useRef();
     const titleRef = useRef();
     const bodyRef = useRef();
     const tagsRef = useRef();
     const uploadedImg = useRef();
 
-    // console.log('uploadedImg', uploadedImg)
-
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
     const protocol = window.location.protocol;
     // console.log('host url', host)
-
     const getImage = e => {
         e.preventDefault();
         const files = imgRef.current.files;
@@ -48,9 +43,7 @@ const Upload = () => {
             });
         };
     };
-
     // console.log('img upload state:', fileState);
-
     const uploadFile = e => {
         e.preventDefault();
         const { file } = fileState;
@@ -105,7 +98,7 @@ const Upload = () => {
     const handlePost = (url) => {
         const { title, postBody, tags } = artState;
         const { _id } = state;
-        console.log('_id in handlePost', _id)
+        // console.log('_id in handlePost', _id)
         const newArt = {
             userId: _id,
             url,

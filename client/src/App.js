@@ -26,12 +26,12 @@ const App = () => {
     _id: ''
   });
 
-  console.log('isLoggedIn state', isLoggedIn)
+  // console.log('isLoggedIn state', isLoggedIn)
 
   useEffect(() => {
     API.status()
       .then(res => {
-          console.log('res in App.js useEffect', res.data)
+          // console.log('res in App.js useEffect', res.data)
           setIsLoggedIn({
             loggedIn: true,
             username: res.data.user[0].username,

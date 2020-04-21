@@ -10,8 +10,7 @@ const Tags = props => {
             state: {
                 works: props.works
             }
-        }} key={tags}>{tags}</Link>
-        
+        }} key={tags}>{tags}</Link>        
     )
 }
 

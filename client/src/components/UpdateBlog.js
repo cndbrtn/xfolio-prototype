@@ -2,15 +2,13 @@ import React, { useRef, useState } from 'react';
 import API from '../utils/API';
 
 const UpdateBlog = props => {
-
     const [post, setPost] = useState();
 
     const titleRef = useRef();
     const bodyRef = useRef();
     const tagsRef = useRef();
 
-    console.log('props in UpdateBlog', props)
-
+    // console.log('props in UpdateBlog', props)
     const handleChange = () => {
         setPost({
             title: titleRef.current.value,
@@ -24,8 +22,7 @@ const UpdateBlog = props => {
         API.updateJournal(props.match.params.id, post);
         window.location.assign(`../../../${props.match.params.username}/blog`)
     }
-
-    console.log('state in updateblog', post)
+    // console.log('state in updateblog', post)
     return (
         <div className="dark">
             <div>

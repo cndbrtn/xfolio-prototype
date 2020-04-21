@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom'
 
 const SinglePost = props => {
     const post = props.location.state
-
     // console.log('post props in SinglePost', post)
-
     return (
         <div className="single-post">
             <Link to={{pathname: '../blog'}}>Back to blog</Link>
-            {post ? (
-                <div>
+            {post ?
+                (<div>
                     <div className="post-title">
                         <h1>{post.title}</h1>
                     </div>
@@ -24,8 +22,7 @@ const SinglePost = props => {
                     <div>
                         <Link onClick={() => window.history.back()}>Go back</Link>
                     </div>
-                </div>) : (<h3>Loading...</h3>)}
-           
+                </div>) : (<h3>Loading...</h3>)}           
         </div>
     )
 }

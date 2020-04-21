@@ -8,16 +8,16 @@ import API from '../utils/API'
 
 const Blog = (props) => {
     const [state, dispatch] = useUserContext();
-    console.log('props in blog', props)
+    // console.log('props in blog', props)
     // console.log('window history', window.history)
     
     const url = window.location.toString().split('/');
-    console.log('url', url[3])
+    // console.log('url', url[3])
     
     useEffect(() => {
         API.getJournal(url[3])
            .then(res => {
-                console.log('no props res', res.data)
+                // console.log('no props res', res.data)
                 dispatch({
                     ...state,
                     _id: res.data._id,
@@ -29,7 +29,7 @@ const Blog = (props) => {
            .catch(err => console.log('err', err))
         }, [state.uploaded]);
     
-    console.log('state', state);
+    // console.log('state', state);
     
     const handleLogOut = () => {
         API.logout();
