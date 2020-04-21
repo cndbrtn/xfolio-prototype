@@ -44,14 +44,14 @@ const Blog = (props) => {
                             <h1>Hello {props.username}</h1>
                         </div>) :
                         (<div>
-                            <h2>Now viewing {url[3]}'s blog</h2>
+                            <h2>{url[3]}'s blog</h2>
                             
                         </div>)
                     }
                     <Link to='gallery'>Go To Gallery</Link>
                     {props.loggedIn ?
                         (<div>
-                            <p><a onClick={handleLogOut}>Log out</a></p>
+                            <p><Link tp="#" onClick={handleLogOut}>Log out</Link></p>
                         </div>) :
                         (<div>
                             <p><Link to=''>Sign in</Link></p>

@@ -66,7 +66,7 @@ const Gallery = props => {
             <Link to={'blog'}>Go To Blog</Link>
                 {props.loggedIn ?
                     (<div>
-                        <p><Link to='' onClick={handleLogOut}>Log out</Link></p>
+                        <p><Link to='#' onClick={handleLogOut}>Log out</Link></p>
                     </div>):
                     (<div>
                         <p><Link to='/login'>Sign in</Link></p>
@@ -101,7 +101,7 @@ const Gallery = props => {
                         state: { works: works }
                     }}>Portfolio</Link>
                     {props.loggedIn ?
-                        (<p><a onClick={handleLogOut}>Log out</a></p>) :
+                        (<p><Link to="#" onClick={handleLogOut}>Log out</Link></p>) :
                         (<div><p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p></div>)
                     }
