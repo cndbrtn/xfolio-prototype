@@ -86,7 +86,7 @@ const Gallery = props => {
 
           <div className="gallery-box">
                 <div className ="profile">
-                    <h1>Welcome to Xfolio: {props.username}</h1>
+                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                 <Upload />
                 <Link to={'blog'}>Blog Page</Link>
                 </div>
@@ -109,8 +109,8 @@ const Gallery = props => {
                         </div>
                        
                         <div className="gall-info">
-                        <div>
-                            <i>{post.title}</i>     
+                        <div className="gall-title">
+                            {post.title}     
                         </div>
                         <div className="gall-descrip">
                             {post.description}
