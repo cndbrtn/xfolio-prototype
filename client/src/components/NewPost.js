@@ -61,17 +61,18 @@ const NewPost = () => {
 
     return (
         <div>
+            <h2>Make a post:</h2>
             <form onChange={handleChange}>
                 <div>
-                <label htmlFor="title">Title:</label>
+                <label htmlFor="title">Title:</label><br />
                     <input type="text" name="title" ref={titleRef} />
                 </div>
                 <div>
-                <label htmlFor="body">Post:</label>
+                <label htmlFor="body">Post:</label><br />
                     <textarea name="body" ref={bodyRef} />
                 </div>
                 <div>
-                <label htmlFor="tags">Tags, separated by a comma:</label>
+                <label htmlFor="tags">Tags, separated by a comma:</label><br />
                     <input type="text" name="tags" ref={tagsRef} />
                 </div>
                 <div>

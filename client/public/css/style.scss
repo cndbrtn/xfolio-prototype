@@ -6,6 +6,7 @@ $sub-color-2: rgb(185, 0, 15);
 $sub-color-3: rgb(40, 40, 40);
 $sub-color-4: rgb(248, 70, 64);
 $sub-color-5: rgb(48, 51, 53);
+$sub-color-6: rgb(176, 171, 177);
 $font-color: rgb(222, 222, 222);
 $font-color-2: rgb(133, 133, 133);
 
@@ -219,6 +220,49 @@ span {
     }
 }
 
+.blog {
+    display: flex;
+    flex-flow: column;
+}
+
+.blog-upload {
+    margin: auto;
+    max-width: 700px;
+    min-width: 350px;
+    width:600px;
+    label {
+        color: $font-color-2;
+        font-size: 13px;
+    }
+    input {
+        width: 100%;
+        border: none;
+        margin-bottom: 10px;
+        padding: 5px;
+        background-color: $sub-color-6;
+    }
+    textarea {
+        resize: vertical;
+        border: none;
+        padding: 5px;
+        width: 100%;
+        height: 150px;
+        background-color: $sub-color-6;
+    }
+    button {
+        border: none;
+        // border-radius: 5px;
+        padding: 8px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        background-color: $sub-color-2;
+        color: $font-color;
+    }
+    button:hover {
+        background-color: red;
+    }
+}
+
 .upload-info {
     display: flex;
     flex-flow: column;
@@ -236,14 +280,10 @@ span {
    display: none;
 }
 
-.blog {
-    display: flex;
-    flex-flow: row;
-}
-
 .postbox {
     background-color: $sub-color-3;
-    margin: 15px;
+    margin: auto;
+    margin-bottom: 15px;
     padding: 10px;
     max-width: 700px;
     min-width: 300px;

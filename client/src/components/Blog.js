@@ -38,14 +38,14 @@ const Blog = (props) => {
         
         return (
             <div className="container blog">
-                <div className="profile">
+                <div className="blog-upload">
                     {props.loggedIn ?
                         (<div>
                             <h1>Hello {props.username}</h1>
                             <NewPost />
                         </div>) :
                         (<div>
-                            <h2>{url[3]}'s blog</h2>
+                            <h2>Now viewing {url[3]}'s blog</h2>
                             
                         </div>)
                     }
@@ -59,9 +59,9 @@ const Blog = (props) => {
                             <p><Link to='/signup'>Sign up</Link></p>
                         </div>)
                     }
-                    <div>
+                    {/* <div>
                         <Link onClick={() => window.history.back()}>Go back</Link>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="posts">
                     <Posts />
