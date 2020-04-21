@@ -22,7 +22,7 @@ const ArtWork = props => {
                     ))}
                         </p>
                         </div>
-                        <div>
+                        <div className="go-back">
                         <Link onClick={() => window.history.back()}>Go back</Link>
                     </div>
                     </div>

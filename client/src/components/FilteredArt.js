@@ -51,9 +51,9 @@ const FilteredArt = props => {
     // }, [])
 
     return (
-        <div>
-            <div>
-                <h2>Here's all artworks tagged '{props.match.params.tag}'</h2>
+        <div className="detail-box">
+            <div className="profile">
+                <h1>Here's all the pieces tagged '{props.match.params.tag}':</h1>
             </div>
             <div className="gallery">
                 {posts.map(post => (

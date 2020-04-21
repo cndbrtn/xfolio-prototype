@@ -52,14 +52,14 @@ const Gallery = props => {
         return (
             <div className="gallery-box">
             <div className="profile">
-                <h1>Welcome to Xfolio: {props.username}</h1>
+                <h1>Welcome to <span>X</span>folio: {props.username}</h1>
             {props.loggedIn ?
                 (<Upload />) :
                 (<div>
                     <h2>{pathId[1]}'s gallery</h2>
                 </div>)
             }
-            <Link to={'blog'}>Blog Page</Link>
+            <Link to={'blog'}>Go To Blog</Link>
                 {props.loggedIn ?
                     (<div>
                         <p><Link to='' onClick={handleLogOut}>Log out</Link></p>
@@ -69,9 +69,9 @@ const Gallery = props => {
                         <p><Link to='/signup'>Sign up</Link></p>
                     </div>)
                     }
-                    <div>
-                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} */>Go back</Link>
-                    </div>
+                    {/* <div>
+                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} >Go back</Link>
+                    </div> */}
             </div>
             <div className="gallery">
                 <h3>No posts yet!</h3>
@@ -84,21 +84,21 @@ const Gallery = props => {
           <div className="gallery-box">
                 <div className ="profile">
 
-                    <h1>Welcome to Xfolio: {props.username}</h1>
+                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                     {props.loggedIn ?
                         (<Upload />) :
                         (<div>
-                            <h2>{pathId[1]}'s gallery</h2>
+                            <h2>Now viewing {pathId[1]}'s gallery</h2>
                         </div>)}
-                    <Link to={'blog'}>Blog Page</Link>
+                    <Link to={'blog'}>Go To Blog</Link>
                     {props.loggedIn ?
                         (<p><Link to='' onClick={handleLogOut}>Log out</Link></p>) :
                         (<div><p><Link to='/login'>Sign in</Link></p>
                         <p><Link to='/signup'>Sign up</Link></p></div>)
                     }
-                    <div>
-                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} */>Go back</Link>
-                    </div>
+                    {/* <div>
+                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} >Go back</Link>
+                    </div> */}
                 </div>
                 <div className="gallery">
                 {works.map(post => (
@@ -135,6 +135,7 @@ const Gallery = props => {
                                 <button className="del-butt" onClick={() => handleDelete(post._id)}>
                                     <FontAwesomeIcon icon="trash" />
                                     </button>
+                                    <button className="edit-butt">
                                     <Link to={{
                                         pathname: 'gallery/update/' + post._id,
                                         state: {
@@ -145,6 +146,7 @@ const Gallery = props => {
                                         <FontAwesomeIcon icon="pencil-alt" />
                                     {/* </i> */}
                                 </Link>
+                                    </button>
                                 </div>) :
                                 (<span></span>)}
                         

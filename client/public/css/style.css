@@ -2,6 +2,7 @@ body {
   font: 100% Arial, sans-serif;
   background-color: #454545;
   color: #dedede;
+  margin: 0px;
 }
 
 a {
@@ -16,22 +17,27 @@ h1 {
   text-align: center;
   font-family: "Abel", sans-serif;
 }
+h1 span {
+  color: #cfff1f;
+}
 
 h2 {
   font-family: "Abel", sans-serif;
+}
+h2 span {
+  color: #cfff1f;
 }
 
 button {
   font-family: "Abel", sans-serif;
   font-size: 20px;
 }
+button a {
+  color: #dedede;
+}
 
 button:hover {
   cursor: pointer;
-}
-
-span {
-  color: #cfff1f;
 }
 
 .login {
@@ -148,7 +154,7 @@ span {
 }
 
 .profile {
-  width: 135px;
+  width: 150px;
   height: 600px;
   background-color: #282828;
   display: flex;
@@ -156,6 +162,7 @@ span {
   justify-content: flex-start;
   padding: 10px;
   color: #858585;
+  margin: 10px;
 }
 .profile h1 {
   font-size: 22px;
@@ -198,6 +205,7 @@ span {
 .blog {
   display: flex;
   flex-flow: column;
+  background-color: #282828;
 }
 
 .blog-upload {
@@ -207,7 +215,7 @@ span {
   width: 600px;
 }
 .blog-upload label {
-  color: #858585;
+  color: #dedede;
   font-size: 13px;
 }
 .blog-upload input {
@@ -255,13 +263,15 @@ span {
 }
 
 .postbox {
-  background-color: #282828;
+  background-color: #454545;
   margin: auto;
   margin-bottom: 15px;
   padding: 10px;
   max-width: 700px;
   min-width: 300px;
-  height: 160px;
+  height: auto;
+  min-height: 100px;
+  max-height: 190px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -293,25 +303,58 @@ span {
   font-size: 14px;
 }
 
-.detail-box {
-  display: flex;
-  flex-flow: row;
+.go-back {
+  margin-top: 30px;
 }
-.detail-box .full-info {
+
+.full-info {
   display: flex;
   flex-flow: column;
   background-color: #282828;
   padding: 10px;
   width: 130px;
   height: 600px;
+  margin: 15px;
 }
-.detail-box .full-info h1 {
+.full-info h1 {
   font-size: 20px;
   border-bottom: #858585 1px solid;
 }
-.detail-box .full-image {
+.full-info label {
+  color: #858585;
+  font-size: 13px;
+}
+.full-info input {
+  width: 130px;
+  border: none;
+  margin-bottom: 10px;
+}
+.full-info textarea {
+  resize: vertical;
+  border: none;
+  width: 130px;
+  height: 50px;
+}
+.full-info button {
+  border: none;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #b9000f;
+  color: #dedede;
+}
+.full-info button:hover {
+  background-color: red;
+}
+
+.full-image {
   margin: auto;
   max-height: 800px;
+}
+
+.detail-box {
+  display: flex;
+  flex-flow: row;
 }
 
 /*# sourceMappingURL=style.css.map */
