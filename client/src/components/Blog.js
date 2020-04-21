@@ -42,7 +42,7 @@ const Blog = (props) => {
                     {props.loggedIn ?
                         (<div>
                             <h1>Hello {props.username}</h1>
-                            <NewPost />
+                            
                         </div>) :
                         (<div>
                             <h2>{url[3]}'s blog</h2>
@@ -60,11 +60,12 @@ const Blog = (props) => {
                         </div>)
                     }
                     <div>
-                        <Link onClick={() => window.history.back()}>Go back</Link>
+                        <Link to={''}>Home</Link>
                     </div>
                 </div>
                 <div className="posts">
-                    <Posts />
+                    <NewPost />
+                    <Posts loggedIn={props.loggedIn} _id={props._id} />
                 </div>
             </div>
     )

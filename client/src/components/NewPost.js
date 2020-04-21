@@ -60,7 +60,7 @@ const NewPost = () => {
     console.log('postState', postState);
 
     return (
-        <div>
+        <div className="postbox">
             <form onChange={handleChange}>
                 <div>
                 <label htmlFor="title">Title:</label>

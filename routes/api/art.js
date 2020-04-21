@@ -24,6 +24,14 @@ router.post('/', ({ body }, res) => {
     })
 })
 
+router.get('/', (req, res) => {
+    Works.find().populate('user', 'username').sort({ dateUploaded: -1 })
+        .then(works => {
+            // console.log('works in login', works)
+        res.send(works)
+    })
+})
+
 router.get('/:username', (req, res) => {
     console.log('req body in /:username', req.body)
     User.findOne({ username: 'username' }).populate('works journal favorites').then(user => {

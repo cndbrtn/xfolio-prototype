@@ -43,10 +43,13 @@ const Gallery = props => {
     }
     
     const { works } = worksState;
+    console.log('works in gallery', works)
 
     const handleLogOut = () => {
         API.logout();
     }
+
+    const folioTag = 'portfolio';
 
     if (!works || !works.length) {
         return (
@@ -70,7 +73,7 @@ const Gallery = props => {
                     </div>)
                     }
                     <div>
-                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} */>Go back</Link>
+                        <Link to={''}>Home</Link>
                     </div>
             </div>
             <div className="gallery">
@@ -91,12 +94,16 @@ const Gallery = props => {
                             <h2>{pathId[1]}'s gallery</h2>
                         </div>)}
                     <Link to={'blog'}>Blog Page</Link>
+                    <Link to={{
+                        pathname: `gallery/${folioTag}`,
+                        state: { works: works }
+                    }}>Portfolio</Link>
                     {props.loggedIn ?
                         (<p><Link to='' onClick={handleLogOut}>Log out</Link></p>) :
                         (<p><Link to=''>Log in</Link></p>)
                     }
                     <div>
-                        <Link to={{ path: window.history.back }}/* onClick={() => window.history.back()} */>Go back</Link>
+                        <Link to={''}>Home</Link>
                     </div>
                 </div>
                 <div className="gallery">
@@ -126,7 +133,7 @@ const Gallery = props => {
                         </div>
                             <div className="gall-tags">
                                 {post.tags.map(tag => (
-                                    <span key={tag}><Tags works={worksState.works} tags={tag} /> </span>
+                                    <span key={tag}><Tags works={works} tags={tag} /> </span>
                                 ))}
                         </div> 
                             {props.loggedIn ? (

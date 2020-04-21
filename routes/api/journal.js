@@ -33,4 +33,25 @@ router.get('/:username', ({ params }, res) => {
         .catch(err => console.log('err in /api/blog/:username post route', err))
 })
 
+router.put('/:id', ({ body, params }, res) => {
+    console.log('body in api journal update', body)
+    console.log('params in api journal update', params)
+    Journal.findByIdAndUpdate(params.id, { $set: { ...body } })
+        .then(post => {
+            console.log('res in api journal update', post)
+        res.send(post)
+    })
+})
+
+router.delete('/:id', ({ params, user }, res) => {
+    // console.log('req in journal delete api', req);
+    Journal.findByIdAndDelete(params.id)
+        .then(() => {
+            User.findByIdAndUpdate(user._id, { $pull: { journal: params.id } })
+                .then(user => {
+                res.send(user)
+            })
+    })
+})
+
 module.exports = router;

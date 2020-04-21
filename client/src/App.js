@@ -10,6 +10,7 @@ import Gallery from './components/Gallery'
 import SinglePost from './components/SinglePost'
 import FilteredArt from './components/FilteredArt'
 import UpdateArt from './components/UpdateArt'
+import UpdateBlog from './components/UpdateBlog';
 import API from './utils/API';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
@@ -52,8 +53,9 @@ const App = () => {
     <Router>
       <Container loggedIn={loggedIn}>
         <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/login' component={Login} />
+            <Route exact path={['/', '/login']}>
+              <Login loggedIn={loggedIn} username={username} id={_id} />
+            </Route>
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/:username/blog'>
             <Blog loggedIn={loggedIn} username={username} _id={_id} />
@@ -63,7 +65,8 @@ const App = () => {
             <Route exact path='/:username/gallery/:tag' component={FilteredArt} />
           <Route exact path='/:username/gallery'>
             <Gallery loggedIn={loggedIn} username={username} />
-          </Route>
+            </Route>
+          <Route exact path='/:username/blog/update/:id' component={UpdateBlog} />
           <Route exact path='/:username/gallery/update/:id' component={UpdateArt} />
         </Switch>
       </Container>
