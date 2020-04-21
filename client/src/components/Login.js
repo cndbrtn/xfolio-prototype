@@ -65,6 +65,7 @@ const Login = () => {
         <div className="login-page">
             <div className="container login">
                 <div>
+                    <h1><span>X</span>folio:</h1>
                     <form>
                         <div>
                             <input type="text" name="username" placeholder="Username" onChange={handleChange} ref={nameRef} />
@@ -72,12 +73,12 @@ const Login = () => {
                     <div>
                         <input type="password" name="password" placeholder="password" onChange={handleChange} ref={passRef} />
                         </div>
+                <Link to="/Signup"><p>New to Xfolio? Sign up here</p></Link>
                         <div>
                             <button name="login" onClick={handleLogin}>sign in</button>
                         </div>
                     </form>
                 </div>
-                <Link to="/Signup"><p>New to Xfolio? Sign up here</p></Link>
             </div>
           <Granim isPausedWhenNotInView ="true" image= {granimImg} states = {granimColor} id="canvas-image" />
        </div>

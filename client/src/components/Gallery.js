@@ -600,9 +600,9 @@ const Gallery = props => {
         )
     } else {
         return (
-
           <div className="gallery-box">
                 <div className ="profile">
+
                     <h1>Welcome to Xfolio: {props.username}</h1>
                     {props.loggedIn ?
                         (<Upload />) :
@@ -612,7 +612,6 @@ const Gallery = props => {
                     <Link to={'blog'}>Blog Page</Link>
                     {props.loggedIn ? (<Link to={''} onClick={handleLogOut}>Log out</Link>) :
                         (<Link to={''}>Log in</Link>)}
-                
                 </div>
                 <div className="gallery">
                 {works.map(post => (
@@ -633,8 +632,8 @@ const Gallery = props => {
                         </div>
                        
                         <div className="gall-info">
-                        <div>
-                            <i>{post.title}</i>     
+                        <div className="gall-title">
+                            {post.title}     
                         </div>
                         <div className="gall-descrip">
                             {post.description}
