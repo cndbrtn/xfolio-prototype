@@ -21,5 +21,5 @@ Yes and no. Adult content isn't only porn, though labeling something as "porn" i
 * Paywall posts so you can monetize your work, or add the extra layer of paywall protection on your mature art
 * Comments and likes on all posts
 * User can choose who sees their work either though lists of 'allowed users' or other means
-* Flagging innapropriate posts (posts that contain content that is illegal in the USA)
+* Flagging innapropriate posts (such as illegal content, harassment, or hate speach)
 * So much more!
