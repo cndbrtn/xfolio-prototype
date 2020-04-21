@@ -140,6 +140,7 @@ button:hover {
 }
 
 .gall-tags {
+  color: #858585;
   border-top: #858585 solid 1px;
   margin: 10px;
   font-size: 14px;
@@ -312,7 +313,7 @@ button:hover {
   flex-flow: column;
   background-color: #282828;
   padding: 10px;
-  width: 130px;
+  width: 15z0px;
   height: 600px;
   margin: 15px;
 }
