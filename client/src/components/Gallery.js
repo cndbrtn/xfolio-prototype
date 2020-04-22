@@ -77,7 +77,7 @@ const Gallery = props => {
                         (<p>Bio: { bio}</p>) :
                         (<span></span>)}
                 {twitter ? 
-                    (<a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>):
+                        (<a href={`https://twitter.com/${twitter}`} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> @{twitter}</a>):
                     (<span></span>)}
                 {props.loggedIn ?
                     (<div>
@@ -120,7 +120,7 @@ const Gallery = props => {
                         (<p>Bio: { bio}</p>) :
                         (<span></span>)} 
                     {twitter ?
-                        (<a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>) :
+                        (<a href={`https://twitter.com/${twitter}`} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> @{twitter}</a>) :
                         (<span></span>)}
                     <br/>
                     {props.loggedIn ?
