@@ -37,7 +37,8 @@ const UserSchema = new Schema({
     },
     // profile picture
     pfp: {
-        type: String
+        type: String,
+        // default: 'https://img-storage-euaj.s3-us-west-1.amazonaws.com/default/pfp/default-pfp.jpg'
     },
     // social media link
     twitter: {
