@@ -9,7 +9,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Gallery = props => {
     const [state, dispatch] = useUserContext();
-    const [worksState, setWorksState] = useState({ works: [] });
+    const [worksState, setWorksState] = useState({
+        works: [],
+        pfp: '',
+        nickname: '',
+        bio: '',
+        twitter: '',
+        _id: ''
+    });
     // const [post, setPost] = useState({});
     const pathId = window.location.pathname.split('/')
 
@@ -22,7 +29,12 @@ const Gallery = props => {
             .then(res => {
                 console.log('gallery get res', res.data)
                 setWorksState({
-                    works: res.data.works
+                    works: res.data.works,
+                    pfp: res.data.pfp,
+                    nickname: res.data.nickname,
+                    twitter: res.data.twitter,
+                    bio: res.data.bio,
+                    _id: res.data._id
                 });
                 dispatch({
                     ...state,
@@ -42,7 +54,7 @@ const Gallery = props => {
         })
     }
     
-    const { works } = worksState;
+    const { works, nickname, pfp, twitter, bio } = worksState;
     console.log('works in gallery', works)
 
     const handleLogOut = () => {
@@ -56,7 +68,12 @@ const Gallery = props => {
         return (
             <div className="gallery-box">
             <div className="profile">
-                <h1>Welcome to <span>X</span>folio: {props.username}</h1>
+                    <h1>Welcome to <span>X</span>folio: {nickname}</h1>
+                    <img src={pfp} alt="profile picture" height="150px" width="150px" />
+                    <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
+                    <div>
+                        <p>Bio: {bio}</p>
+                    </div>
             {props.loggedIn ?
                 (<Upload />) :
                 (<div>
@@ -87,14 +104,16 @@ const Gallery = props => {
         return (
           <div className="gallery-box">
                 <div className ="profile">
-
-                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
+                    <h1>Welcome to <span>X</span>folio: {nickname}</h1>
+                    <img src={pfp} alt="profile picture" height="150px" width="150px" />
+                    <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
+                    <p>Bio: {bio}</p>
+                    <Link to={`../../${props.username}/setup`}>Update Profile</Link>
                     {props.loggedIn ?
                         (<Upload />) :
                         (<div>
                             <h2>Now viewing {pathId[1]}'s gallery</h2>
                         </div>)}
-
                     <Link to={'blog'}>Blog Page</Link>
                     <div>
                     <Link to={{

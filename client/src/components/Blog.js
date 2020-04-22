@@ -56,7 +56,7 @@ const Blog = (props) => {
                     </div>
                     {props.loggedIn ?
                         (<div>
-                            <p><Link tp="#" onClick={handleLogOut}>Log out</Link></p>
+                            <p><Link to="#" onClick={handleLogOut}>Log out</Link></p>
                         </div>) :
                         (<div>
                             <p><Link to=''>Sign in</Link></p>

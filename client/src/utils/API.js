@@ -11,6 +11,11 @@ export default {
             email: newUser.email
         })
     },
+    updateUser: (newPf) => {
+        return axios.put('/api/user/' + newPf._id, {
+            ...newPf
+        })
+    },
     login: function (login) {
         return axios.post('/api/user/login', {
             username: login.username,

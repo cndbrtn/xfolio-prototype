@@ -22,8 +22,6 @@ const Signup = () => {
     const [state, dispatch] = useUserContext();
     const [signUp, setSignUp] = useState({});
 
-    // console.log("state", state);
-
     const emailRef = useRef();
     const nameRef = useRef();
     const passRef = useRef();
@@ -50,22 +48,9 @@ const Signup = () => {
         // console.log('components/Signup.js sign up', newUser)
         API.registerUser(newUser)
             .then(() => {
-                // console.log('Signup.js api.signup() result', user.data);   
                 API.login({ username: signUp.username, password: signUp.password })
-                    .then(user => {
-                        // console.log('user data after post to api/login from signup', user.data)
-                        dispatch({
-                            ...state,
-                            type: SET_CURRENT_USER,
-                            username: user.data.username,
-                            _id: user.data._id,
-                    })
-                })
-                    window.location.assign(`${signUp.username}/gallery`)
+                window.location.assign(`${signUp.username}/setup`)
             })
-                .catch(err => {
-                    if (err) console.log('components/Signup.js error', err);
-                })
         }
 
     return (
