@@ -75,7 +75,10 @@ const Gallery = props => {
                         <p>Bio: {bio}</p>
                     </div>
             {props.loggedIn ?
-                (<Upload />) :
+                (<div>
+                    <Link to={`../../${props.username}/setup`}>Update Profile</Link>
+                    <Upload />
+                </div>) :
                 (<div>
                     <h2>{pathId[1]}'s gallery</h2>
                 </div>)
@@ -108,9 +111,12 @@ const Gallery = props => {
                     <img src={pfp} alt="profile picture" height="150px" width="150px" />
                     <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
                     <p>Bio: {bio}</p>
-                    <Link to={`../../${props.username}/setup`}>Update Profile</Link>
+                    
                     {props.loggedIn ?
-                        (<Upload />) :
+                        (<div>
+                            <Link to={`../../${props.username}/setup`}>Update Profile</Link>
+                            <Upload />
+                        </div>) :
                         (<div>
                             <h2>Now viewing {pathId[1]}'s gallery</h2>
                         </div>)}
