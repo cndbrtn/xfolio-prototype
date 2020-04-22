@@ -6,16 +6,16 @@ import NewPost from './NewPost';
 import { GALLERY_PROPS } from '../utils/actions';
 import API from '../utils/API'
 
-const Blog = (props) => {
+const Blog = props => {
     const [state, dispatch] = useUserContext();
-    // console.log('props in blog', props)
+    console.log('props in blog', props)
     // console.log('window history', window.history)
     
-    const url = window.location.toString().split('/');
-    // console.log('url', url[3])
+    const url = window.location.pathname.split('/');
+    // console.log('url', url[1])
     
     useEffect(() => {
-        API.getJournal(url[3])
+        API.getJournal(url[1])
            .then(res => {
                 // console.log('no props res', res.data)
                 dispatch({
@@ -42,7 +42,7 @@ const Blog = (props) => {
                     {props.loggedIn ?
                         (<div>
                             <h1><span>H</span>ello {props.username}</h1>
-                            <NewPost />
+                            <NewPost loggedInId={props._id} loggedInUser={props.username} pathUser={url[1]}  />
                         </div>) :
                         (<div>
                             <h2>{url[3]}'s blog</h2>

@@ -3,10 +3,12 @@ import { useUserContext } from '../utils/GlobalState'
 import axios from 'axios';
 import API from '../utils/API';
 
-const Upload = () => {
+const Upload = props => {
+
+    console.log('props in upload', props)
 
     const [state, dispatch] = useUserContext();
-    console.log('state in upload', state)
+    // console.log('state in upload', state)
 
     const [fileState, setFileState] = useState({
         message: '',
@@ -141,42 +143,44 @@ const Upload = () => {
         })
     }
     
-    return (
-        <div>
-            <form>
-                <div>
-                    <label htmlFor="upload">Choose an image</label>
-                    <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
-                </div>
-                <div className="upload-mess">
-                    {fileState.message}
-                </div>
-                <div>
-                <label htmlFor="title"> Title: </label>
-                    <input type="text" name="title" ref={titleRef} onChange={handleChange} />
-                </div>
-                <div>
-                <label htmlFor="body">Description:</label>
-                    <textarea name="body" ref={bodyRef} onChange={handleChange} />
-                </div>
-                <div>
-                <label htmlFor="tags">Tags, separated by a comma:</label>
-                    <input type="text" name="tags" ref={tagsRef} onChange={handleChange} />
-                </div>
-                <div>
-                    <button onClick={uploadFile}>Submit</button>
-                </div>
-                {fileState.fileUrl ?
-                    (<div className="upload-prev">
-                        <img src={fileState.fileUrl} alt="preview" width="140px" />
-                    </div>):
-                    (<h4>Preview...</h4>)}
-                
-                    
-                    
-            </form>
-        </div>
-    )
+    if (props.pathUser == props.loggedInUser) {
+        return (
+            <div>
+                <form>
+                    <div>
+                        <label htmlFor="upload">Choose an image</label>
+                        <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
+                    </div>
+                    <div className="upload-mess">
+                        {fileState.message}
+                    </div>
+                    <div>
+                    <label htmlFor="title"> Title: </label>
+                        <input type="text" name="title" ref={titleRef} onChange={handleChange} />
+                    </div>
+                    <div>
+                    <label htmlFor="body">Description:</label>
+                        <textarea name="body" ref={bodyRef} onChange={handleChange} />
+                    </div>
+                    <div>
+                    <label htmlFor="tags">Tags, separated by a comma:</label>
+                        <input type="text" name="tags" ref={tagsRef} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <button onClick={uploadFile}>Submit</button>
+                    </div>
+                    {fileState.fileUrl ?
+                        (<div className="upload-prev">
+                            <img src={fileState.fileUrl} alt="preview" width="140px" />
+                        </div>):
+                        (<h4>Preview...</h4>)
+                    }                    
+                </form>
+            </div>
+        )
+    } else {
+        return (<span></span>)
+    }
 }
 
 export default Upload;
