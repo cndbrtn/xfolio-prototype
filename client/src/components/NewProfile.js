@@ -21,21 +21,21 @@ const NewProfile = props => {
 
     // const [state, dispatch] = useUserContext();
 
-    console.log('props in NewProfile', props)
-
+    
     const [fileState, setFileState] = useState({
         message: '',
         file: '',
         fileUrl: '',
         url: ''
     });
-
+    
     const [bioState, setBioState] = useState({
         nickname: '',
         bio: '',
         twitter: ''
     });
-
+    console.log('fileState in NewProfile', fileState)
+    
     const imgRef = useRef();
     const twitRef = useRef();
     const bioRef = useRef();
@@ -45,7 +45,6 @@ const NewProfile = props => {
         API.getUser(props.username)
             .then(user => {
                 if (user.data.pfp) {
-                    // console.log('user response in useEffect', user.data)
                     setBioState({
                         nickname: user.data.nickname,
                         bio: user.data.bio,
@@ -53,10 +52,9 @@ const NewProfile = props => {
                     })
                     setFileState({
                         ...fileState,
-                        fileUrl: user.data.pfp
+                        fileUrl: user.data.pfp,
                     })
                 } else {
-                    // console.log('user response in useEffect', user.data)
                     setBioState({
                         nickname: user.data.nickname,
                         bio: user.data.bio,
@@ -65,13 +63,11 @@ const NewProfile = props => {
                 }
                 
             })
-        // twitRef.current.value = 
     }, [props])
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
     const protocol = window.location.protocol;
-    // console.log('host url', host)
     const getImage = e => {
         e.preventDefault();
         const files = imgRef.current.files;
@@ -95,7 +91,6 @@ const NewProfile = props => {
             const contentType = file.type;
     
             const generatePutUrl = `${protocol}//${host}/generate-put-url`;
-            // console.log('generatePutUrl', generatePutUrl)
             const options = {
                 params: {
                     Key: `${props.username}/pfp/${Date.now()}_${file.name}`,
@@ -108,24 +103,20 @@ const NewProfile = props => {
     
             axios.get(generatePutUrl, options)
                 .then(res => {
-                    // console.log('res.data', res.data)
-                    const { data } = res;
-                    // console.log('put url from res.data', data);
-    
+                    const { data } = res;    
                     axios.put(data, file, options)
                         .then((res) => {
                             // console.log('put file', res.config.params);
                             setFileState({ ...fileState, message: 'Upload Successful' });
-    
+
                             const params = res.config.params;
                             const generateGetUrl = `${protocol}//${host}/generate-put-url`
                             const options = { params };
-    
+
                             axios.get(generateGetUrl, options)
                                 .then(res => {
                                     const { data } = res;
                                     const url = data.replace(/\?.*/, '');
-                                    // console.log('replace ? and key in url', url);
                                     setFileState({ ...fileState, url })
     
                                     handlePost(url);
@@ -137,7 +128,7 @@ const NewProfile = props => {
                         });
                 });
         } else {
-            handlePost('')
+            handlePost()
         }
     };
     
@@ -145,20 +136,26 @@ const NewProfile = props => {
 
     const handlePost = (url) => {
         const { nickname, bio, twitter } = bioState;
-        // const { _id } = state;
-        // console.log('_id in handlePost', _id)
-        const newPf = {
-            _id: props._id,
-            pfp: url,
-            nickname: nickname,
-            bio: bio,
-            twitter: twitter
-        };
-
-        console.log('newPF', newPf);
-
-        API.updateUser(newPf);
-        window.location.assign(`../../${props.username}/gallery`)
+        if (!url) {
+            const newPf = {
+                _id: props._id,
+                nickname: nickname,
+                bio: bio,
+                twitter: twitter
+            };
+            API.updateUser(newPf);
+            window.location.assign(`../../${props.username}/gallery`)
+        } else {
+            const newPf = {
+                _id: props._id,
+                pfp: url,
+                nickname: nickname,
+                bio: bio,
+                twitter: twitter
+            };    
+            API.updateUser(newPf);
+            window.location.assign(`../../${props.username}/gallery`)
+        }
     }
 
     const handleChange = () => {
