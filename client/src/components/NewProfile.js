@@ -144,9 +144,9 @@ const NewProfile = props => {
     }
 
     return (
-        <div className="signup-page">
-            <div className="container signup login">
-            <form>
+        <div className="nuprofile-page">
+            <div className="container">
+            <form className="nuprofile">
                 <div>
                     <label htmlFor="upload">Choose an image</label>
                     <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
@@ -169,7 +169,7 @@ const NewProfile = props => {
                     <textarea name="body" ref={bioRef} onChange={handleChange} />
                 </div>
                 <div>
-                        <label htmlFor="twit">Twitter:</label><br />
+                        <label htmlFor="twit">Twitter handle:</label><br />
                     <input type="text" name="twit" ref={twitRef} onChange={handleChange} />
                 </div>
                 <div>
