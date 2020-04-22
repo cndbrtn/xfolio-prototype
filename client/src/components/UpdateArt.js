@@ -51,7 +51,7 @@ const UpdateArt = ({location, match}) => {
                     <button onClick={handleUpdate}>Save</button>
                 </div>
                 <div className="go-back">
-                        <Link onClick={() => window.history.back()}>Go back</Link>
+                            <Link to={'/' + params.username + '/gallery'}>Go back</Link>
                     </div>
                 </div>
                 <div className="full-image">

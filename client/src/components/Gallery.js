@@ -68,7 +68,7 @@ const Gallery = props => {
         return (
             <div className="gallery-box">
             <div className="profile">
-                    <h1>Welcome to <span>X</span>folio: {nickname}</h1>
+                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                     <img src={pfp} alt="profile picture" height="150px" width="150px" />
                     <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
                     <div>
@@ -104,7 +104,7 @@ const Gallery = props => {
         return (
           <div className="gallery-box">
                 <div className ="profile">
-                    <h1>Welcome to <span>X</span>folio: {nickname}</h1>
+                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                     <img src={pfp} alt="profile picture" height="150px" width="150px" />
                     <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
                     <p>Bio: {bio}</p>
