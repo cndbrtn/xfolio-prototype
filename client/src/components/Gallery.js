@@ -109,12 +109,13 @@ const Gallery = props => {
                 <div className ="profile">
                     <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                     <img src={pfp} alt="profile picture" height="150px" width="150px" />
-                    <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
                     <p>Bio: {bio}</p>
-                    
+                    <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> twitter link</a>
+                    <br></br>
                     {props.loggedIn ?
                         (<div>
-                            <Link to={`../../${props.username}/setup`}>Update Profile</Link>
+                            <Link className="incognito-link" to={`../../${props.username}/setup`}>(Update Profile)</Link>
+                            <hr></hr>
                             <Upload />
                         </div>) :
                         (<div>
