@@ -46,7 +46,7 @@ const RecentArt = props => {
                  <div className="post" key={post._id}>
                     <div className="gall-thumb">
                         <Link to={{
-                            // pathname: `${post.user.username}/gallery/work/${post._id}`,
+                            pathname: `${post.user.username}/gallery/work/${post._id}`,
                             state: {
                                 postId: post._id,
                                 postTitle: post.title,

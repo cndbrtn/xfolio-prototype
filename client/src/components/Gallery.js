@@ -70,14 +70,18 @@ const Gallery = props => {
             <div className="profile">
                     <h1>Welcome to <span>X</span>folio: {props.username}</h1>
                     <img src={pfp} alt="profile picture" height="150px" width="150px" />
-                    <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>
+                    {twitter ? 
+                        (<a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>):
+                        (<span></span>)
+                    }
+                    
                     <div>
                         <p>Bio: {bio}</p>
                     </div>
             {props.loggedIn ?
                 (<div>
                     <Link to={`../../${props.username}/setup`}>Update Profile</Link>
-                    <Upload />
+                    <Upload loggedInId={props._id} loggedInUser={props.username} pathUser={pathId[1]} />
                 </div>) :
                 (<div>
                     <h2>{pathId[1]}'s gallery</h2>
@@ -116,7 +120,7 @@ const Gallery = props => {
                         (<div>
                             <Link className="incognito-link" to={`../../${props.username}/setup`}>(Update Profile)</Link>
                             <hr></hr>
-                            <Upload />
+                            <Upload loggedInId={props._id} loggedInUser={props.username} pathUser={pathId[1]} />
                         </div>) :
                         (<div>
                             <h2>Now viewing {pathId[1]}'s gallery</h2>

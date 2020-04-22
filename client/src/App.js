@@ -66,7 +66,7 @@ const App = () => {
             <Route exact path='/:username/gallery/work/:id' component={ArtWork} />
             <Route exact path='/:username/gallery/:tag' component={FilteredArt} />
           <Route exact path='/:username/gallery'>
-            <Gallery loggedIn={loggedIn} username={username} />
+            <Gallery loggedIn={loggedIn} username={username} _id={_id} />
             </Route>
           <Route exact path='/:username/blog/update/:id' component={UpdateBlog} />
           <Route exact path='/:username/gallery/update/:id' component={UpdateArt} />

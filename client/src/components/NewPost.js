@@ -3,7 +3,8 @@ import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
 import { GALLERY_PROPS } from '../utils/actions';
 
-const NewPost = () => {
+const NewPost = props => {
+    console.log('props in NewPost', props)
     const [state, dispatch] = useUserContext();
     const [postState, setPostState] = useState();
 
@@ -45,42 +46,42 @@ const NewPost = () => {
         };
 
         API.postJournal(newPost)
-            // .then(post => {
-                // console.log('new post in NewPost.js result', post)
-                dispatch({
-                    ...state,
-                    type: GALLERY_PROPS,
-                    uploaded: true,
+            dispatch({
+                ...state,
+                type: GALLERY_PROPS,
+                uploaded: true,
                     // journal: post.data.journal
-                }
-               )
-        //    })
+            })
     }
 
-    console.log('postState', postState);
+    // console.log('postState', postState);
 
-    return (
-        <div className="blog-upload">
-            <h2>Make a post:</h2>
-            <form onChange={handleChange}>
-                <div>
-                <label htmlFor="title">Title:</label><br />
-                    <input type="text" name="title" ref={titleRef} />
-                </div>
-                <div>
-                <label htmlFor="body">Post:</label><br />
-                    <textarea name="body" ref={bodyRef} />
-                </div>
-                <div>
-                <label htmlFor="tags">Tags, separated by a comma:</label><br />
-                    <input type="text" name="tags" ref={tagsRef} />
-                </div>
-                <div>
-                    <button name="submit" onClick={handleSubmit}>Submit Post</button>
-                </div>
-            </form>
-        </div>
-    )
+    if (props.loggedInUser === props.pathUser) {
+        return (
+            <div className="blog-upload">
+                <h2>Make a post:</h2>
+                <form onChange={handleChange}>
+                    <div>
+                    <label htmlFor="title">Title:</label><br />
+                        <input type="text" name="title" ref={titleRef} />
+                    </div>
+                    <div>
+                    <label htmlFor="body">Post:</label><br />
+                        <textarea name="body" ref={bodyRef} />
+                    </div>
+                    <div>
+                    <label htmlFor="tags">Tags, separated by a comma:</label><br />
+                        <input type="text" name="tags" ref={tagsRef} />
+                    </div>
+                    <div>
+                        <button name="submit" onClick={handleSubmit}>Submit Post</button>
+                    </div>
+                </form>
+            </div>
+        )
+    } else {
+        return (<span></span>)
+    }
 }
 
 export default NewPost;
