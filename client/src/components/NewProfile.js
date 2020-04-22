@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
 import Granim from 'react-granim'
@@ -21,7 +21,7 @@ const NewProfile = props => {
 
     // const [state, dispatch] = useUserContext();
 
-    // console.log('state in NewProfile', state)
+    console.log('props in NewProfile', props)
 
     const [fileState, setFileState] = useState({
         message: '',
@@ -40,6 +40,33 @@ const NewProfile = props => {
     const twitRef = useRef();
     const bioRef = useRef();
     const nickRef = useRef();
+
+    useEffect(() => {
+        API.getUser(props.username)
+            .then(user => {
+                if (user.data.pfp) {
+                    // console.log('user response in useEffect', user.data)
+                    setBioState({
+                        nickname: user.data.nickname,
+                        bio: user.data.bio,
+                        twitter: user.data.twitter
+                    })
+                    setFileState({
+                        ...fileState,
+                        fileUrl: user.data.pfp
+                    })
+                } else {
+                    // console.log('user response in useEffect', user.data)
+                    setBioState({
+                        nickname: user.data.nickname,
+                        bio: user.data.bio,
+                        twitter: user.data.twitter
+                    })
+                }
+                
+            })
+        // twitRef.current.value = 
+    }, [props])
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
@@ -61,53 +88,57 @@ const NewProfile = props => {
     // console.log('img upload state:', fileState);
     const uploadFile = e => {
         e.preventDefault();
-        const { file } = fileState;
-        setFileState({ ...fileState, message: 'Uploading...' });
-        // console.log('file.type', file.type);
-        const contentType = file.type;
-
-        const generatePutUrl = `${protocol}//${host}/generate-put-url`;
-        // console.log('generatePutUrl', generatePutUrl)
-        const options = {
-            params: {
-                Key: `${props.username}/pfp/${Date.now()}_${file.name}`,
-                ContentType: contentType
-            },
-            headers: {
-                'Content-Type': contentType
-            }
-        };
-
-        axios.get(generatePutUrl, options)
-            .then(res => {
-                // console.log('res.data', res.data)
-                const { data } = res;
-                // console.log('put url from res.data', data);
-
-                axios.put(data, file, options)
-                    .then((res) => {
-                        // console.log('put file', res.config.params);
-                        setFileState({ ...fileState, message: 'Upload Successful' });
-
-                        const params = res.config.params;
-                        const generateGetUrl = `${protocol}//${host}/generate-put-url`
-                        const options = { params };
-
-                        axios.get(generateGetUrl, options)
-                            .then(res => {
-                                const { data } = res;
-                                const url = data.replace(/\?.*/, '');
-                                // console.log('replace ? and key in url', url);
-                                setFileState({ ...fileState, url })
-
-                                handlePost(url);
-                            })
-                    })
-                    .catch(err => {
-                        setFileState({ ...fileState, message: 'Something went wrong, try again' });
-                        console.log('err', err);
-                    });
-            });
+        if (fileState.file) {
+            const { file } = fileState;
+            setFileState({ ...fileState, message: 'Uploading...' });
+            // console.log('file.type', file.type);
+            const contentType = file.type;
+    
+            const generatePutUrl = `${protocol}//${host}/generate-put-url`;
+            // console.log('generatePutUrl', generatePutUrl)
+            const options = {
+                params: {
+                    Key: `${props.username}/pfp/${Date.now()}_${file.name}`,
+                    ContentType: contentType
+                },
+                headers: {
+                    'Content-Type': contentType
+                }
+            };
+    
+            axios.get(generatePutUrl, options)
+                .then(res => {
+                    // console.log('res.data', res.data)
+                    const { data } = res;
+                    // console.log('put url from res.data', data);
+    
+                    axios.put(data, file, options)
+                        .then((res) => {
+                            // console.log('put file', res.config.params);
+                            setFileState({ ...fileState, message: 'Upload Successful' });
+    
+                            const params = res.config.params;
+                            const generateGetUrl = `${protocol}//${host}/generate-put-url`
+                            const options = { params };
+    
+                            axios.get(generateGetUrl, options)
+                                .then(res => {
+                                    const { data } = res;
+                                    const url = data.replace(/\?.*/, '');
+                                    // console.log('replace ? and key in url', url);
+                                    setFileState({ ...fileState, url })
+    
+                                    handlePost(url);
+                                })
+                        })
+                        .catch(err => {
+                            setFileState({ ...fileState, message: 'Something went wrong, try again' });
+                            console.log('err', err);
+                        });
+                });
+        } else {
+            handlePost('')
+        }
     };
     
     console.log('bioState', bioState)
@@ -162,15 +193,15 @@ const NewProfile = props => {
                 </div>
                 <div>
                         <label htmlFor="nickname">Nickname: </label><br />
-                    <input type="text" name="title" ref={nickRef} onChange={handleChange} />
+                    <input type="text" name="nickname" ref={nickRef} defaultValue={bioState.nickname} onChange={handleChange} />
                 </div>
                 <div>
                     <label htmlFor="bio">Bio:</label><br />
-                    <textarea name="body" ref={bioRef} onChange={handleChange} />
+                    <textarea name="bio" ref={bioRef} defaultValue={bioState.bio} onChange={handleChange} />
                 </div>
                 <div>
                         <label htmlFor="twit">Twitter handle:</label><br />
-                    <input type="text" name="twit" ref={twitRef} onChange={handleChange} />
+                    <input type="text" name="twit" ref={twitRef} defaultValue={bioState.twitter} onChange={handleChange} />
                 </div>
                 <div>
                     <button onClick={uploadFile}>Submit</button>

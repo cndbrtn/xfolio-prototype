@@ -68,26 +68,26 @@ const Gallery = props => {
         return (
             <div className="gallery-box">
             <div className="profile">
-                    <h1>Welcome to <span>X</span>folio: {props.username}</h1>
-                    <img src={pfp} alt="profile picture" height="150px" width="150px" />
-                    {twitter ? 
-                        (<a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>):
-                        (<span></span>)
-                    }
-                    
-                    <div>
-                        <p>Bio: {bio}</p>
-                    </div>
-            {props.loggedIn ?
-                (<div>
-                    <Link to={`../../${props.username}/setup`}>Update Profile</Link>
-                    <Upload loggedInId={props._id} loggedInUser={props.username} pathUser={pathId[1]} />
-                </div>) :
-                (<div>
-                    <h2>{pathId[1]}'s gallery</h2>
-                </div>)
-            }
-            <Link to={'blog'}>Go To Blog</Link>
+                <h1>Welcome to <span>X</span>folio: {props.username}</h1>
+                {pfp ? 
+                    (<img src={pfp} alt="profile picture" height="150px" width="150px" />):
+                    (<img src='/images/default-pfp.jpg' alt="profile picture" height="150px" width="150px" />)}
+                    <h4>{nickname}</h4>
+                    {bio ?
+                        (<p>Bio: { bio}</p>) :
+                        (<span></span>)}
+                {twitter ? 
+                    (<a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>):
+                    (<span></span>)}
+                {props.loggedIn ?
+                    (<div>
+                        <Link to={`../../${props.username}/setup`}>Update Profile</Link>
+                        <Upload loggedInId={props._id} loggedInUser={props.username} pathUser={pathId[1]} />
+                    </div>) :
+                    (<div>
+                        <h2>{pathId[1]}'s gallery</h2>
+                    </div>)}
+                <Link to={'blog'}>Go To Blog</Link>
                 {props.loggedIn ?
                     (<div>
                         <p><Link to='#' onClick={handleLogOut}>Log out</Link></p>
@@ -112,10 +112,17 @@ const Gallery = props => {
           <div className="gallery-box">
                 <div className ="profile">
                     <h1>Welcome to <span>X</span>folio: {props.username}</h1>
-                    <img src={pfp} alt="profile picture" height="150px" width="150px" />
-                    <p>Bio: {bio}</p>
-                    <a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> twitter link</a>
-                    <br></br>
+                    {pfp ?
+                        (<img src={pfp} alt="profile picture" height="150px" width="150px" />) :
+                        (<img src='/images/default-pfp.jpg' alt="profile picture" height="150px" width="150px" />)}
+                    <h4>{nickname}</h4>
+                    {bio ?
+                        (<p>Bio: { bio}</p>) :
+                        (<span></span>)} 
+                    {twitter ?
+                        (<a href={twitter} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> profile</a>) :
+                        (<span></span>)}
+                    <br/>
                     {props.loggedIn ?
                         (<div>
                             <Link className="incognito-link" to={`../../${props.username}/setup`}>(Update Profile)</Link>
