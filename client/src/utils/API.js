@@ -1,11 +1,7 @@
 import axios from 'axios';
 
 export default {
-    // getUsers: function () {
-    //     return axios.get('/api/user');
-    // },
     getUser: function (username) {
-        // console.log(username)
         return axios.get('/api/user/' + username)
     },
     registerUser: function (newUser) {
@@ -13,6 +9,11 @@ export default {
             username: newUser.username,
             password: newUser.password,
             email: newUser.email
+        })
+    },
+    updateUser: (newPf) => {
+        return axios.put('/api/user/' + newPf._id, {
+            ...newPf
         })
     },
     login: function (login) {

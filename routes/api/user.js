@@ -71,25 +71,15 @@ router.get('/:username', ({ params }, res) => {
         .then(user => res.send(user))
         .catch(err => console.log(err));
 })
-//     .post(create)
-//     .put(update)
-//     .delete(remove);
+
+router.put('/:id', ({body, params}, res) => {
+    console.log('body in user api update', body)
+    console.log('params in user api update', params)
+    User.findByIdAndUpdate(params.id, { $set: { ...body } })
+        .then(user => {
+            console.log('user in user update api', user)
+        res.send(user)
+    })
+})
 
 module.exports = router;
-// router.route('/login').post(function (req, res, next) {
-//         console.log('routes/login.js, login, req.body', req.body);
-//         next();
-//     },
-//         passport.authenticate('local'),
-//         (req, res) => {
-//             console.log('logged in', req.user);
-//             res.send(req.user);
-// });
-
-// router.route('/:username')
-//     .get(findByUsername);
-
-// router.route('/:id')
-//     .get(findById);
-
-

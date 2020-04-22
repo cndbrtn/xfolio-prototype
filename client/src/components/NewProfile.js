@@ -1,12 +1,27 @@
 import React, { useRef, useState } from 'react';
-import { useUserContext } from '../utils/GlobalState'
-import axios from 'axios';
+import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
+import Granim from 'react-granim'
+import axios from 'axios'
 
-const Upload = () => {
+const NewProfile = props => {
+    const granimColor = ({
+        "default-state": {
+            gradients: [
+                ['#e5ff00', '#ff5100'],
+                ['#00ffff', '#556270'],
+                ['#ff0062', '#7ea0c4'],
+                ['#6200ff', '#fd0000']
+            ],
+            transitionSpeed: 7000
+        }
+    });
 
-    const [state, dispatch] = useUserContext();
-    console.log('state in upload', state)
+    const granimImg = ({ source: '../images/bg.jpeg', blendingMode: 'multiply' });
+
+    // const [state, dispatch] = useUserContext();
+
+    // console.log('state in NewProfile', state)
 
     const [fileState, setFileState] = useState({
         message: '',
@@ -15,16 +30,16 @@ const Upload = () => {
         url: ''
     });
 
-    const [artState, setArtState] = useState({
-        title: '',
-        postBody: '',
-        tags: []
+    const [bioState, setBioState] = useState({
+        nickname: '',
+        bio: '',
+        twitter: ''
     });
-    
+
     const imgRef = useRef();
-    const titleRef = useRef();
-    const bodyRef = useRef();
-    const tagsRef = useRef();
+    const twitRef = useRef();
+    const bioRef = useRef();
+    const nickRef = useRef();
 
     // dynamic host for putting/getting images to/from bucket
     const host = window.location.host;
@@ -55,7 +70,7 @@ const Upload = () => {
         // console.log('generatePutUrl', generatePutUrl)
         const options = {
             params: {
-                Key: `${state.username}/works/${Date.now()}_${file.name}`,
+                Key: `${props.username}/pfp/${Date.now()}_${file.name}`,
                 ContentType: contentType
             },
             headers: {
@@ -76,7 +91,7 @@ const Upload = () => {
 
                         const params = res.config.params;
                         const generateGetUrl = `${protocol}//${host}/generate-put-url`
-                        const options = {params};
+                        const options = { params };
 
                         axios.get(generateGetUrl, options)
                             .then(res => {
@@ -94,89 +109,77 @@ const Upload = () => {
                     });
             });
     };
+    
+    console.log('bioState', bioState)
 
     const handlePost = (url) => {
-        const { title, postBody, tags } = artState;
-        const { _id } = state;
-        console.log('_id in handlePost', _id)
-        const newArt = {
-            userId: _id,
-            url,
-            title,
-            postBody,
-            tags
+        const { nickname, bio, twitter } = bioState;
+        // const { _id } = state;
+        // console.log('_id in handlePost', _id)
+        const newPf = {
+            _id: props._id,
+            pfp: url,
+            nickname: nickname,
+            bio: bio,
+            twitter: twitter
         };
 
-        API.postArt(newArt);
-        setFileState({
-            fileUrl: ''
-        })
-        dispatch({
-            ...state,
-            uploaded: true
-        })
-        // uploadedImg.current.src = '';
-        titleRef.current.value = '';
-        bodyRef.current.value = '';
-        tagsRef.current.value = '';
+        console.log('newPF', newPf);
+
+        API.updateUser(newPf);
+        window.location.assign(`../../${props.username}/gallery`)
     }
 
-    const handleChange = e => {
-        e.preventDefault();
-        const title = titleRef.current.value;
-        const postBody = bodyRef.current.value;
-        const tags = tagsRef.current.value.split(',');
-        const prettyTags = tags.map(tag => {
-            const trimTag = tag.trim();
-            const regex = /\s+/g;
-            const underscoreTag = trimTag.replace(regex, '_');
-            return underscoreTag;
-        });
+    const handleChange = () => {
+        const nickname = nickRef.current.value;
+        const bio = bioRef.current.value;
+        const twitter = twitRef.current.value;
 
-        setArtState({
-            ...artState,
-            title,
-            postBody,
-            tags: prettyTags
+        setBioState({
+            ...bioState,
+            nickname,
+            bio,
+            twitter
         })
     }
-    
+
     return (
-        <div>
+        <div className="signup-page">
+            <div className="container signup login">
             <form>
                 <div>
                     <label htmlFor="upload">Choose an image</label>
                     <input id="upload-file" type="file" name="upload" accept="image/*" onChange={getImage} ref={imgRef} />
                 </div>
+                {fileState.fileUrl ?
+                    (<div className="upload-prev">
+                        <img src={fileState.fileUrl} alt="preview" width="140px" />
+                    </div>) :
+                    (<h4>Preview...</h4>)
+                }
                 <div className="upload-mess">
                     {fileState.message}
                 </div>
                 <div>
-                <label htmlFor="title"> Title: </label>
-                    <input type="text" name="title" ref={titleRef} onChange={handleChange} />
+                        <label htmlFor="nickname">Nickname: </label><br />
+                    <input type="text" name="title" ref={nickRef} onChange={handleChange} />
                 </div>
                 <div>
-                <label htmlFor="body">Description:</label>
-                    <textarea name="body" ref={bodyRef} onChange={handleChange} />
+                    <label htmlFor="bio">Bio:</label><br />
+                    <textarea name="body" ref={bioRef} onChange={handleChange} />
                 </div>
                 <div>
-                <label htmlFor="tags">Tags, separated by a comma:</label>
-                    <input type="text" name="tags" ref={tagsRef} onChange={handleChange} />
+                        <label htmlFor="twit">Twitter:</label><br />
+                    <input type="text" name="twit" ref={twitRef} onChange={handleChange} />
                 </div>
                 <div>
                     <button onClick={uploadFile}>Submit</button>
                 </div>
-                {fileState.fileUrl ?
-                    (<div className="upload-prev">
-                        <img src={fileState.fileUrl} alt="preview" width="140px" />
-                    </div>):
-                    (<h4>Preview...</h4>)}
-                
-                    
-                    
-            </form>
+                </form>
+            </div>
+            <Granim isPausedWhenNotInView="true" image={granimImg} states={granimColor} id="canvas-image" />
         </div>
     )
 }
 
-export default Upload;
+export default NewProfile;

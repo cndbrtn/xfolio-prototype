@@ -35,6 +35,14 @@ const UserSchema = new Schema({
         type: String,
         validate: [({ length }) => length <= 160, 'bio cannot exceed 160 characters']
     },
+    // profile picture
+    pfp: {
+        type: String
+    },
+    // social media link
+    twitter: {
+        type: String
+    },
     // journal posts stored here for each user
     journal: [
         {

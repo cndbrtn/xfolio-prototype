@@ -6,11 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Posts = props => {
     const [state, setState] = useUserContext();
-
-    console.log('props in Post', props)
-
+    // console.log('props in Post', props)
     // const url = window.location.toString().split('/');
-
     const handleDelete = id => {
         API.deleteJournal(id)
         setState({

@@ -3,8 +3,8 @@ import API from '../utils/API';
 import { Link } from 'react-router-dom';
 
 const UpdateArt = ({location, match}) => {
-    console.log('props.location in UpdateArt', location)
-    console.log('props.match in UpdateArt', match)
+    // console.log('props.location in UpdateArt', location)
+    // console.log('props.match in UpdateArt', match)
     const [update, setUpdate] = useState();
     const { state } = location;
     const { params } = match;
@@ -22,13 +22,12 @@ const UpdateArt = ({location, match}) => {
         })
     }
 
-    console.log('update state', update)
+    // console.log('update state', update)
     const handleUpdate = (e) => {
         e.preventDefault();
         API.updateArt(params.id, update)
             
-        window.location.assign('/' + params.username + '/gallery')
-        
+        window.location.assign('/' + params.username + '/gallery')  
     }
 
     return (

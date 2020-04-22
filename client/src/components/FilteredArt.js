@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const FilteredArt = props => {
-    console.log('props in FilteredArt', props.location.state.works)
+    // console.log('props in FilteredArt', props.location.state.works)
 
     const mapTags = props.location.state.works.map(post => {
         return post.tags
     })
 
-    
     const tags = []
     mapTags.filter(tag => {
         for (let i = 0; i < tag.length; i++) {
@@ -17,19 +16,17 @@ const FilteredArt = props => {
             }
         }
     })
-    
-    console.log('filtered tags', tags)
+    // console.log('filtered tags', tags)
 
     const posts = props.location.state.works.filter(post => {
-        console.log('post in posts filter', post)
+        // console.log('post in posts filter', post)
         for (let res of tags) {
             if (post.tags === res) {
                 return post
             }
         }        
     })
-
-    console.log("posts if they match???", posts)
+    // console.log("posts if they match???", posts)
     // console.log('state in FilteredArt', state)
 
     if (!posts.length) { 

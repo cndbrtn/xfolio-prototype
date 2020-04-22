@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useUserContext } from '../utils/GlobalState'
 import API from '../utils/API'
-import { SET_CURRENT_USER, ADD_USER } from '../utils/actions';
+import { SET_CURRENT_USER } from '../utils/actions';
 import Granim from 'react-granim';
 import { Link } from 'react-router-dom';
 
@@ -19,13 +19,8 @@ const granimImg = ({source: '../images/bg.jpeg', blendingMode: 'multiply'});
 
 
 const Signup = () => {
-
     const [state, dispatch] = useUserContext();
     const [signUp, setSignUp] = useState({});
-
-    // const [userLogin, setUserLogin] = useState();
-
-    console.log("state", state);
 
     const emailRef = useRef();
     const nameRef = useRef();
@@ -37,14 +32,10 @@ const Signup = () => {
         const password = passRef.current.value;
 
         setSignUp({
-            // type: ADD_USER,
             username: username,
             password: password,
             email: email
         })
-
-        // setState
-        // console.log('state after login', state)
     }
 
     const handleSignup = (e) => {
@@ -54,32 +45,12 @@ const Signup = () => {
             username: signUp.username,
             password: signUp.password
         }
-        console.log('components/Signup.js sign up', newUser)
+        // console.log('components/Signup.js sign up', newUser)
         API.registerUser(newUser)
-            .then((user) => {
-                console.log('Signup.js api.signup() result', user.data);
-                // const userData = user.data;
-                // setSignUp({
-                //     _id: userData._id,
-                //     username: userData.username
-                // })
-                
+            .then(() => {
                 API.login({ username: signUp.username, password: signUp.password })
-                    .then(user => {
-                        console.log('user data after post to api/login from signup', user.data)
-                        dispatch({
-                            ...state,
-                            type: SET_CURRENT_USER,
-                            username: user.data.username,
-                            _id: user.data._id,
-                            // loggedIn: true
-                    })
-                })
-                    window.location.assign(`${signUp.username}/gallery`)
+                window.location.assign(`${signUp.username}/setup`)
             })
-                .catch(err => {
-                    if (err) console.log('components/Signup.js error', err);
-                })
         }
 
     return (
