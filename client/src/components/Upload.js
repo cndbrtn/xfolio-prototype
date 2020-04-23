@@ -117,7 +117,7 @@ const Upload = props => {
             ...state,
             uploaded: true
         })
-        // uploadedImg.current.src = '';
+        imgRef.current.value = '';
         titleRef.current.value = '';
         bodyRef.current.value = '';
         tagsRef.current.value = '';
