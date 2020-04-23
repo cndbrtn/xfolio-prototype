@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
 import Upload from './Upload';
+import GallButtons from './GallButtons';
 import Tags from './Tags';
 import { GALLERY_PROPS } from '../utils/actions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Gallery = props => {
     const [state, dispatch] = useUserContext();
@@ -46,13 +47,7 @@ const Gallery = props => {
              })
     }, [state.uploaded])
 
-    const handleDelete = (id) => {
-        API.deleteArt(id)
-        dispatch({
-            ...state,
-            uploaded: true
-        })
-    }
+
     
     const { works, nickname, pfp, twitter, bio } = worksState;
     console.log('works in gallery', works)
@@ -73,11 +68,11 @@ const Gallery = props => {
                     (<img src={pfp} alt="profile picture" height="150px" width="150px" />):
                     (<img src='/images/default-pfp.jpg' alt="profile picture" height="150px" width="150px" />)}
                     <h4>{nickname}</h4>
-                    {bio ?
-                        (<p>Bio: { bio}</p>) :
-                        (<span></span>)}
+                {bio ?
+                    (<p>Bio: { bio}</p>) :
+                    (<span></span>)}
                 {twitter ? 
-                        (<a href={`https://twitter.com/${twitter}`} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> @{twitter}</a>):
+                    (<a href={`https://twitter.com/${twitter}`} target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']} /> @{twitter}</a>):
                     (<span></span>)}
                 {props.loggedIn ?
                     (<div>
@@ -179,23 +174,25 @@ const Gallery = props => {
                                 ))}
                         </div> 
                             {props.loggedIn ? (
-                                <div>
-                                <button className="del-butt" onClick={() => handleDelete(post._id)}>
-                                    <FontAwesomeIcon icon="trash" />
-                                    </button>
-                                    <button className="edit-butt">
-                                    <Link to={{
-                                        pathname: 'gallery/update/' + post._id,
-                                        state: {
-                                            ...post
-                                        }
-                                    }}>
-                                    {/* <i className="edit-butt"> */}
-                                        <FontAwesomeIcon icon="pencil-alt" />
-                                    {/* </i> */}
-                                </Link>
-                                    </button>
-                                </div>) :
+                                <GallButtons loggedInUser={props.username} pathUser={pathId[1]} post={post} />
+                                // <div>
+                                // <button className="del-butt" onClick={() => handleDelete(post._id)}>
+                                //     <FontAwesomeIcon icon="trash" />
+                                //     </button>
+                                //     <button className="edit-butt">
+                                //     <Link to={{
+                                //         pathname: 'gallery/update/' + post._id,
+                                //         state: {
+                                //             ...post
+                                //         }
+                                //     }}>
+                                //     {/* <i className="edit-butt"> */}
+                                //         <FontAwesomeIcon icon="pencil-alt" />
+                                //     {/* </i> */}
+                                // </Link>
+                                //     </button>
+                                // </div>
+                                ) :
                                 (<span></span>)}
                         
                         </div>

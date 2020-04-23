@@ -20,7 +20,7 @@ const SinglePost = props => {
                     ))}
                     </div>
                     <div>
-                        <Link onClick={() => window.history.back()}>Go back</Link>
+                        <Link to='#' onClick={() => window.history.back()}>Go back</Link>
                     </div>
                 </div>) : (<h3>Loading...</h3>)}           
         </div>

@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/GlobalState';
 import API from '../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import BlogButtons from './BlogButtons'
 
 const Posts = props => {
     const [state, setState] = useUserContext();
-    // console.log('props in Post', props)
+    console.log('props in Post', props)
     // const url = window.location.toString().split('/');
     const handleDelete = id => {
         API.deleteJournal(id)
@@ -42,20 +43,22 @@ const Posts = props => {
                         <div className="tags">
                             {post.tags}
                         </div>
-                        {props.loggedIn ? (
-                        <div>
-                            <button className="del-butt" onClick={() => handleDelete(post._id)}><FontAwesomeIcon icon="trash" /></button>
-                            <button className="edit-butt">
-                                <Link to={{
-                                    pathname: `blog/update/${post._id}`,
-                                    state: {
-                                        ...post,
-                                        user: props._id
-                                    }
-                                }}><FontAwesomeIcon icon="pencil-alt" /></Link>
-                                </button>
-                                </div>) :
-                    (<span></span>)}
+                        {props.loggedIn ?
+                            (<BlogButtons _id={props._id} post={post} loggedInUser={props.username} pathUser={props.pathUser} />
+                        // <div>
+                        //     <button className="del-butt" onClick={() => handleDelete(post._id)}><FontAwesomeIcon icon="trash" /></button>
+                        //     <button className="edit-butt">
+                        //         <Link to={{
+                        //             pathname: `blog/update/${post._id}`,
+                        //             state: {
+                        //                 ...post,
+                        //                 user: props._id
+                        //             }
+                        //         }}><FontAwesomeIcon icon="pencil-alt" /></Link>
+                        //         </button>
+                        //         </div>
+                            ) :
+                            (<span></span>)}
                         </div>
                 ))}
             </div>

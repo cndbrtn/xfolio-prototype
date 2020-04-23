@@ -65,7 +65,7 @@ const Blog = props => {
                     }
                 </div>
                 <div className="posts">
-                    <Posts loggedIn={props.loggedIn} _id={props._id} />
+                    <Posts loggedIn={props.loggedIn} _id={props._id} username={props.username} pathUser={url[1]} />
                 </div>
             </div>
     )
