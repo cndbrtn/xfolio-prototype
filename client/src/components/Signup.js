@@ -57,7 +57,8 @@ const Signup = () => {
         <div className="signup-page">
             <div className="container login signup">
                 <div>
-                    <form>
+                    <h3>Xfolio signups are currently invite only!</h3>
+                    {/* <form>
                         <h1>Welcome to <span>X</span>folio!</h1>
                         <div>
                             <input type="text" name="email" placeholder="email" onChange={handleChange} ref={emailRef} />
@@ -73,7 +74,7 @@ const Signup = () => {
                             <button name="signup" onClick={handleSignup}>sign up</button>
                             <br />
                         </div>
-                    </form>
+                    </form> */}
                 </div>
             </div>
           <Granim isPausedWhenNotInView ="true" image= {granimImg} states = {granimColor} id="canvas-image" />
